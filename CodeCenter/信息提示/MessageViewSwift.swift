@@ -1,0 +1,963 @@
+//
+//  MessageViewSwift.swift
+//  BusinessTime
+//
+//  Created by mac on 16/4/29.
+//  Copyright © 2016年 kaifa24. All rights reserved.
+//
+
+import UIKit
+
+///属性值变更
+typealias propertyChange = @convention(block) (propertyName: NSString) -> Void
+
+///按钮点击回调
+typealias buttonClick = @convention(block) (textValue: NSString) -> Void
+
+class CNKVOProperty: NSObject{
+    var propertyValueChanged: propertyChange?
+}
+
+class CNLabelProperty: CNKVOProperty{
+    var textAlignment:NSTextAlignment = .Center{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "textAlignment")
+            }
+        }
+    }
+    var textColor:UIColor?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "textColor")
+            }
+        }
+    }
+    var font:UIFont?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "font")
+            }
+        }
+    }
+    var text:String?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "text")
+            }
+        }
+    }
+}
+
+///标题
+class CNTitleProperty: CNLabelProperty{
+    var separatorEnable:Bool?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "separatorEnable")
+            }
+        }
+    }
+    
+    var separatorColor:UIColor?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "separatorColor")
+            }
+        }
+    }
+}
+
+///文本输入框
+class CNTextFieldProperty: CNLabelProperty{
+    var placeholder:String?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "placeholder")
+            }
+        }
+    }
+    var borderStyle:UITextBorderStyle?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "borderStyle")
+            }
+        }
+    }
+    
+    var enable:Bool = false{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "enable")
+            }
+        }
+    }
+}
+
+///按钮
+class CNButtonProperty: CNKVOProperty{
+    var titleColor:UIColor?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "titleColor")
+            }
+        }
+    }
+    var font:UIFont?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "font")
+            }
+        }
+    }
+    var title:String?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "title")
+            }
+        }
+    }
+    var enable:Bool = true{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "enable")
+            }
+        }
+    }
+}
+
+//struct MessageViewButtonStyle : OptionSetType{
+//    let rawValue: UInt
+//    
+//    init(rawValue: UInt){
+//        self.rawValue = rawValue
+//    }
+//    
+//    static var None:MessageViewButtonStyle {return MessageViewButtonStyle(rawValue: 0)}
+//    
+//    static var Left:MessageViewButtonStyle {return MessageViewButtonStyle(rawValue: 1)}
+//    
+//    static var Right:MessageViewButtonStyle {return MessageViewButtonStyle(rawValue: 1 << 1)}
+//    
+//    static var LeftAndRight:MessageViewButtonStyle {return MessageViewButtonStyle(rawValue: 1 | 1 << 1)}
+//}
+
+class MessageViewSwift: UIView {
+    
+    /// 标题
+    let title = CNTitleProperty()
+    
+    /// 上边的信息
+    let topMessage = CNLabelProperty()
+    
+    /// 输入框
+    let textField = CNTextFieldProperty()
+    
+    /// 下边的信息
+    let bottomMessage = CNLabelProperty()
+    
+    /// 左边的Button
+    let leftButton = CNButtonProperty()
+    
+    /// 右边的Button
+    let rightButton = CNButtonProperty()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.reset()//重置控件
+        self.addCNKVO()//添加KVO
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        self.reset()//重置控件
+        self.addCNKVO()//添加KVO
+        
+//        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit{
+        print("deinit")
+    }
+    
+    //MARK: - 添加KVO
+    private func addCNKVO(){
+        
+        title.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "text":
+                self.titleLabelControl.text = self.title.text
+                break
+                
+            case "textColor":
+                self.titleLabelControl.textColor = self.title.textColor
+                break
+                
+            case "textAlignment":
+                self.titleLabelControl.textAlignment = self.title.textAlignment
+                break
+                
+            case "font":
+                self.titleLabelControl.font = self.title.font
+                break
+                
+            case "separatorEnable":
+                self.titleSeperator.hidden = !self.title.separatorEnable!
+                break
+                
+            case "separatorColor":
+                self.titleSeperator.backgroundColor = self.title.separatorColor
+                break
+                
+            default: break
+            }
+            
+        }
+        
+        topMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            
+            
+            switch propertyName {
+            case "text":
+                self.topMessageLabelControl.text = self.topMessage.text
+                
+                self.updateTitleSeparator()//更新标题分割线
+                break
+                
+            case "textColor":
+                self.topMessageLabelControl.textColor = self.topMessage.textColor
+                break
+                
+            case "textAlignment":
+                self.topMessageLabelControl.textAlignment = self.topMessage.textAlignment
+                break
+                
+            case "font":
+                self.topMessageLabelControl.font = self.topMessage.font
+                break
+                
+            default: break
+            }
+            
+        }
+        
+        textField.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "text":
+                self.textFieldControl.text = self.textField.text
+                break
+                
+            case "textColor":
+                self.textFieldControl.textColor = self.textField.textColor
+                break
+                
+            case "textAlignment":
+                self.textFieldControl.textAlignment = self.textField.textAlignment
+                break
+                
+            case "font":
+                self.textFieldControl.font = self.textField.font
+                break
+                
+            case "placeholder":
+                self.textFieldControl.placeholder = self.textField.placeholder
+                break
+                
+            case "borderStyle":
+                self.textFieldControl.borderStyle = self.textField.borderStyle!
+                break
+            case "enable":
+                self.textFieldHeightConstraint?.constant = self.textField.enable ? 38.0 : 0
+                self.textFieldTopConstraint?.constant = self.textField.enable ? 8.0 : 0
+                
+                self.updateTitleSeparator()//更新标题分割线
+                break
+                
+            default: break
+            }
+            
+        }
+        
+        bottomMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "text":
+                self.bottomMessageLabelControl.text = self.bottomMessage.text
+                
+                self.updateTitleSeparator()//更新标题分割线
+                break
+                
+            case "textColor":
+                self.bottomMessageLabelControl.textColor = self.bottomMessage.textColor
+                break
+                
+            case "textAlignment":
+                self.bottomMessageLabelControl.textAlignment = self.bottomMessage.textAlignment
+                break
+                
+            case "font":
+                self.bottomMessageLabelControl.font = self.bottomMessage.font
+                break
+                
+            default: break
+            }
+            
+        }
+        
+        rightButton.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "title":
+                self.rightButtonControl.setTitle(self.rightButton.title, forState: .Normal)
+                
+                print(self.rightButtonControl.titleLabel?.text)
+                print(self.rightButtonControl.hidden)
+                print(self.rightButtonControl)
+                break
+                
+            case "titleColor":
+                self.rightButtonControl.setTitleColor(self.rightButton.titleColor, forState: .Normal)
+                break
+
+            case "font":
+                self.rightButtonControl.titleLabel?.font = self.rightButton.font
+                break
+                
+            case "enable":
+                self.rightButtonControl.hidden = !self.rightButton.enable//右边按钮不可用的时候隐藏
+                if(self.rightButton.enable){//右边按钮可用
+                    if(self.leftButton.enable){//如果左边按钮可用，则右边按钮只占一半的宽度
+                        self.rightButtonWidthConstraint_PanelWidth?.active = false
+                        self.rightButtonWidthConstraint_PanelHalfWidth?.active = true
+                    }
+                    else{//否则右边按钮的宽度 == 按钮容器的宽度
+                        self.rightButtonWidthConstraint_PanelWidth?.active = true
+                        self.rightButtonWidthConstraint_PanelHalfWidth?.active = false
+                    }
+                }
+                
+                self.leftButtonControl.hidden = !self.leftButton.enable//左边按钮不可用的时候隐藏
+                if(self.leftButton.enable){//左边按钮可用
+                    if(self.rightButton.enable){//如果右边按钮可用，则左边按钮只占一半的宽度
+                        self.leftButtonWidthConstraint_PanelWidth?.active = false
+                        self.leftButtonWidthConstraint_PanelHalfWidth?.active = true
+                    }
+                    else{//否则右左边按钮的宽度 == 按钮容器的宽度
+                        self.leftButtonWidthConstraint_PanelWidth?.active = true
+                        self.leftButtonWidthConstraint_PanelHalfWidth?.active = false
+                    }
+                }
+                
+                //只有左右两个按钮同时可用的时候，才需要显示垂直的分割线
+                if(self.rightButton.enable && self.leftButton.enable){
+                    self.buttonVerticalSeparator.hidden = false
+                }
+                else{
+                    self.buttonVerticalSeparator.hidden = true
+                }
+                
+                //只要有一个按钮可用，那么按钮容器的高度就得为44，否则为0
+                if (self.rightButton.enable || self.leftButton.enable){
+                    self.buttonPanelHeightConstraint?.constant = 44
+//                    self.buttonPanelTopConstraint?.constant = 15.0
+                }
+                else{
+                    self.buttonPanelHeightConstraint?.constant = 0
+//                    self.buttonPanelTopConstraint?.constant = 0.0
+                }
+                
+                break
+                
+            default: break
+            }
+        }
+        
+        leftButton.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "title":
+                self.leftButtonControl.setTitle(self.leftButton.title, forState: .Normal)
+                print(self.leftButtonControl.titleLabel?.text)
+                print(self.leftButtonControl.hidden)
+                print(self.leftButtonControl)
+                break
+                
+            case "titleColor":
+                self.leftButtonControl.setTitleColor(self.leftButton.titleColor, forState: .Normal)
+                break
+                
+            case "font":
+                self.leftButtonControl.titleLabel?.font = self.leftButton.font
+                break
+                
+            case "enable":
+                self.rightButton.enable = self.rightButton.enable
+                break
+                
+            default: break
+            }
+        }
+    }
+    
+    //MARK: - 重置控件
+    func reset(){
+        //背景色
+        self.backgroundColor = UIColor.whiteColor()
+        
+        //圆角
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 5
+        
+        //标题
+        self.title.text = "提示"
+        self.title.textColor = UIColor.blackColor()
+        self.title.textAlignment = .Center
+        self.title.font = UIFont.systemFontOfSize(20.0)
+        self.title.separatorEnable = false
+        self.title.separatorColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
+        
+        //TopMessage
+        self.topMessage.text = nil
+        self.topMessage.textColor = UIColor.lightGrayColor()
+        self.topMessage.textAlignment = .Center
+        self.topMessage.font = UIFont.systemFontOfSize(16.0)
+        
+        //TextField
+        self.textField.text = nil
+        self.textField.textColor = UIColor.blackColor()
+        self.textField.textAlignment = .Left
+        self.textField.font = UIFont.systemFontOfSize(16.0)
+        self.textField.placeholder = "请输入"
+        self.textField.borderStyle = .RoundedRect
+        self.textField.enable = false
+        
+        //BottomMessage
+        self.bottomMessage.text = nil
+        self.bottomMessage.textColor = UIColor.lightGrayColor()
+        self.bottomMessage.textAlignment = .Left
+        self.bottomMessage.font = UIFont.systemFontOfSize(16.0)
+        
+        //LeftButton
+        self.leftButton.enable = true
+        self.leftButton.title = "取消"
+        self.leftButton.titleColor = UIColor.lightGrayColor()
+        self.leftButton.font = UIFont.systemFontOfSize(16.0)
+        
+        //RightButton
+        self.rightButton.enable = true
+        self.rightButton.title = "确定"
+        self.rightButton.titleColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+        self.rightButton.font = UIFont.systemFontOfSize(16.0)
+        
+    }
+    
+    //MARK: - 标题
+    
+    private var _titleLabelControl:UILabel!{
+        didSet{
+            //背景色
+            _titleLabelControl.backgroundColor = UIColor.clearColor()
+            
+            //不限定行数
+            _titleLabelControl.numberOfLines = 0
+            
+            self.addSubview(_titleLabelControl)
+            _titleLabelControl.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            let topLC = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 15.0)
+            topLC.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            trailingLC.active = true
+        }
+    }
+    private var titleLabelControl:UILabel{
+        get{
+            if(_titleLabelControl == nil){
+                _titleLabelControl = UILabel()
+                
+                self.title.font = self.title.font
+                self.title.textColor = self.title.textColor
+                self.title.textAlignment = self.title.textAlignment
+                self.title.text = self.title.text
+            }
+            
+            return _titleLabelControl
+        }
+    }
+    
+    ///标题分割线
+    private var _titleSeperator:UIView!{
+        didSet{
+            //填充色
+            _titleSeperator.backgroundColor = self.title.separatorColor
+            _titleSeperator.tag = 1314
+            _titleSeperator.hidden = true
+            
+            self.addSubview(_titleSeperator)
+            _titleSeperator.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            let topLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabelControl, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
+            topLC.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            trailingLC.active = true
+            
+            //高度
+            let heightLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
+            heightLC.active = true
+        }
+    }
+    private var titleSeperator:UIView!{
+        get{
+            if(_titleSeperator == nil){
+                _titleSeperator = UIView()
+                
+                self.title.separatorColor = self.title.separatorColor
+                self.title.separatorEnable = self.title.separatorEnable
+            }
+            
+            return _titleSeperator
+        }
+    }
+    
+    //MARK: 更新标题分割线（主要是根据有木有“TopMessage、TextField、BottomMessage”来确定是否显示标题分割线）
+    private func updateTitleSeparator(){
+        if((self.topMessage.text != nil && self.topMessage.text != "") ||
+            self.textField.enable ||
+            (self.bottomMessage.text != nil && self.bottomMessage.text != "")){
+            
+            self.title.separatorEnable = true
+        }
+        else{
+            self.title.separatorEnable = false
+        }
+    }
+    
+    //MARK: - TopMessage
+    
+    private var _topMessageLabelControl: UILabel!{
+        didSet{
+            //背景色
+            _topMessageLabelControl.backgroundColor = UIColor.clearColor()
+            
+            //不限定行数
+            _topMessageLabelControl.numberOfLines = 0
+            
+            self.addSubview(_topMessageLabelControl)
+            _topMessageLabelControl.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.titleSeperator, attribute: .Bottom, multiplier: 1.0, constant: self.topMessage.text != nil && self.topMessage.text != "" ? 15.0 : 0.0)
+            self.topMessageTopConstraint?.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            trailingLC.active = true
+        }
+    }
+    private var topMessageLabelControl: UILabel{
+        get{
+            if(_topMessageLabelControl == nil){
+                _topMessageLabelControl = UILabel()
+                
+                self.topMessage.font = self.topMessage.font
+                self.topMessage.textColor = self.topMessage.textColor
+                self.topMessage.textAlignment = self.topMessage.textAlignment
+                self.topMessage.text = self.topMessage.text
+            }
+            
+            return _topMessageLabelControl
+        }
+    }
+    private var topMessageTopConstraint:NSLayoutConstraint?//Top信息Top约束
+    
+    
+    //MARK: - TextField
+    
+    private var _textFieldControl: UITextField?{
+        didSet{
+            self.addSubview(_textFieldControl!)
+            _textFieldControl!.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Top, relatedBy: .Equal, toItem: self.topMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? 8.0 : 0)
+            self.textFieldTopConstraint?.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            trailingLC.active = true
+            
+            //高度
+            self.textFieldHeightConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.textField.enable ? 38.0 : 0.0)
+            self.textFieldHeightConstraint?.active = true
+        }
+    }
+    private var textFieldControl: UITextField{
+        get{
+            if(_textFieldControl == nil){
+                _textFieldControl = UITextField()
+                
+                self.textField.text = self.textField.text
+                self.textField.textColor = self.textField.textColor
+                self.textField.textAlignment = self.textField.textAlignment
+                self.textField.font = self.textField.font
+                self.textField.placeholder = self.textField.placeholder
+                self.textField.borderStyle = self.textField.borderStyle
+                self.textField.enable = self.textField.enable
+            }
+            
+            return _textFieldControl!
+        }
+    }
+    private var textFieldHeightConstraint:NSLayoutConstraint?//文本输入框高度约束
+    private var textFieldTopConstraint:NSLayoutConstraint?//文本输入框Top约束
+    
+    //MARK: - BottomMessage
+    
+    private var _bottomMessageLabelControl: UILabel!{
+        didSet{
+            //背景色
+            _bottomMessageLabelControl.backgroundColor = UIColor.clearColor()
+            
+            //不限定行数
+            _bottomMessageLabelControl.numberOfLines = 0
+            
+            self.addSubview(_bottomMessageLabelControl)
+            _bottomMessageLabelControl.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldControl, attribute: .Bottom, multiplier: 1.0, constant: self.bottomMessage.text != nil && self.bottomMessage.text != "" ? 8.0 : 0.0)
+            self.bottomMessageTopConstraint?.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            trailingLC.active = true
+        }
+    }
+    
+    private var bottomMessageLabelControl: UILabel{
+        get{
+            if(_bottomMessageLabelControl == nil){
+                _bottomMessageLabelControl = UILabel()
+                
+                self.bottomMessage.font = self.bottomMessage.font
+                self.bottomMessage.textColor = self.bottomMessage.textColor
+                self.bottomMessage.textAlignment = self.bottomMessage.textAlignment
+                self.bottomMessage.text = self.bottomMessage.text
+            }
+            
+            return _bottomMessageLabelControl
+        }
+    }
+    private var bottomMessageTopConstraint:NSLayoutConstraint?//Bottom信息Top约束
+    
+    //MARK: - 不再提醒
+    private var _noLongerRemindPanel: UIView!{
+        didSet{
+            self.addSubview(_noLongerRemindPanel)
+            _noLongerRemindPanel.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            self.noLongerRemindPanelTopConstraint = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? 8.0 : 0.0)
+            self.noLongerRemindPanelTopConstraint?.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            trailingLC.active = true
+        }
+    }
+    private var noLongerRemindPanel: UIView{
+        get{
+            if(_noLongerRemindPanel == nil){
+                _noLongerRemindPanel = UIView()
+            }
+            
+            return _noLongerRemindPanel
+        }
+    }
+    private var noLongerRemindPanelTopConstraint:NSLayoutConstraint?//Bottom信息Top约束
+    
+    //MARK: - 底部按钮
+    
+    //底部按钮容器(请勿直接调用，可调用buttonPanel)
+    private var _buttonPanel: UIView!{
+        didSet{
+            _buttonPanel.clipsToBounds = true
+            
+            self.addSubview(_buttonPanel)
+            _buttonPanel.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            trailingLC.active = true
+            
+            //Top
+            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Top, relatedBy: .Equal, toItem: self.noLongerRemindPanel, attribute: .Bottom, multiplier: 1.0, constant: 15.0)
+            self.buttonPanelTopConstraint?.active = true;
+            
+            //Bottom
+            let bottomLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            bottomLC.active = true
+            
+            //高度
+            self.buttonPanelHeightConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44.0)
+            self.buttonPanelHeightConstraint?.active = true
+            
+            //水平分割线
+            self.buttonHorizontalSeparator
+            
+            //垂直分割线
+            self.buttonVerticalSeparator
+        }
+    }
+    private var buttonPanel:UIView{//底部按钮容器
+        get{
+            if(_buttonPanel == nil){
+                _buttonPanel = UIView()
+            }
+            
+            return _buttonPanel
+        }
+    }
+    private var buttonPanelHeightConstraint: NSLayoutConstraint?//按钮容器的高度
+    private var buttonPanelTopConstraint: NSLayoutConstraint?//按钮容器的Top约束
+    
+    ///按钮水平分割线
+    private var _buttonHorizontalSeparator:UIView!{
+        didSet{
+            //填充色
+            _buttonHorizontalSeparator.backgroundColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
+            _buttonHorizontalSeparator.tag = 1314
+            
+            self.buttonPanel.addSubview(_buttonHorizontalSeparator)
+            _buttonHorizontalSeparator.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            let topLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Top, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Top, multiplier: 1.0, constant: 0.0)
+            topLC.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Leading, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Leading, multiplier: 1.0, constant: 4.0)
+            leadigLC.active = true
+            
+            //Trailing
+            let trailingLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Trailing, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Trailing, multiplier: 1.0, constant: -4.0)
+            trailingLC.active = true
+            
+            //高度
+            let heightLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
+            heightLC.active = true
+        }
+    }
+    private var buttonHorizontalSeparator:UIView!{
+        get{
+            if(_buttonHorizontalSeparator == nil){
+                _buttonHorizontalSeparator = UIView()
+            }
+            
+            return _buttonHorizontalSeparator
+        }
+    }
+    
+    ///按钮水平分割线
+    private var _buttonVerticalSeparator:UIView!{
+        didSet{
+            //填充色
+            _buttonVerticalSeparator.backgroundColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
+            _buttonVerticalSeparator.tag = 1315
+            
+            self.buttonPanel.addSubview(_buttonVerticalSeparator)
+            _buttonVerticalSeparator.translatesAutoresizingMaskIntoConstraints = false
+
+            //CenterX
+            let centerXLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .CenterX, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+            centerXLC.active = true
+            
+            //CenterY
+            let centerYLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .CenterY, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
+            centerYLC.active = true
+            
+            //宽度
+            let widthLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
+            widthLC.active = true
+            
+            //高度
+            let heightLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .Height, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Height, multiplier: 0.67, constant: 0)
+            heightLC.active = true
+        }
+    }
+    private var buttonVerticalSeparator:UIView!{
+        get{
+            if(_buttonVerticalSeparator == nil){
+                _buttonVerticalSeparator = UIView()
+            }
+            
+            return _buttonVerticalSeparator
+        }
+    }
+    
+    
+    //MARK: 左边的按钮(请勿直接调用，可调用leftButtonControl)
+    private var _leftButtonControl: UIButton!{
+        didSet{
+            //背景色
+            self._leftButtonControl.backgroundColor = UIColor.clearColor()
+            
+            self.buttonPanel.addSubview(_leftButtonControl)
+            _leftButtonControl.translatesAutoresizingMaskIntoConstraints = false
+            
+            //点击事件
+            _leftButtonControl.addTarget(self, action: #selector(self.leftButtonClick(_:)), forControlEvents: .TouchUpInside)
+            
+            //Top
+            let topLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Top, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Top, multiplier: 1.0, constant: 0)
+            topLC.active = true
+            
+            //Leading
+            let leadigLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Leading, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadigLC.active = true
+            
+            //Bottom
+            let bottomLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            bottomLC.active = true
+            
+            //== 父容器宽度的一半
+            self.leftButtonWidthConstraint_PanelHalfWidth = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 0.5, constant: 0)
+            self.leftButtonWidthConstraint_PanelHalfWidth!.active = true
+            
+            //== 父容器的宽度
+            self.leftButtonWidthConstraint_PanelWidth = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 1.0, constant: 0)
+           
+            self.leftButtonWidthConstraint_PanelWidth!.active = false
+        }
+    }
+    private var leftButtonControl: UIButton{
+        get{
+            if(_leftButtonControl == nil){
+                _leftButtonControl = UIButton()
+                
+                self.leftButton.enable = self.leftButton.enable
+                self.leftButton.title = self.leftButton.title
+                self.leftButton.titleColor = self.leftButton.titleColor
+                self.leftButton.font = self.leftButton.font
+            }
+            
+            return _leftButtonControl
+        }
+    }
+    
+    private var leftButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度的一半
+    private var leftButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度
+
+    var leftButtonClicked: buttonClick?
+    @objc private func leftButtonClick(sender: UIButton){
+        if (self.leftButtonClicked != nil){
+            self.leftButtonClicked!(textValue: self.textFieldControl.text ?? "")
+        }
+        else{
+            self .hideFromSuperView()
+        }
+    }
+    
+    
+    //MARK: 右边的按钮(请勿直接调用，可调用leftButtonControl)
+    private var _rightButtonControl: UIButton!{
+        didSet{
+            self.buttonPanel.addSubview(_rightButtonControl)
+            _rightButtonControl.translatesAutoresizingMaskIntoConstraints = false
+            
+            //点击事件
+            _rightButtonControl.addTarget(self, action: #selector(self.rightButtonClick(_:)), forControlEvents: .TouchUpInside)
+
+            
+            //Top
+            let topLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .Top, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Top, multiplier: 1.0, constant: 0)
+            topLC.active = true
+            
+            //Bottom
+            let bottomLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            bottomLC.active = true
+            
+            //Trailing
+            let leadigLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            leadigLC.active = true
+            
+            //== 父容器宽度的一半
+            self.rightButtonWidthConstraint_PanelHalfWidth = NSLayoutConstraint.init(item: self._rightButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 0.5, constant: 0)
+            self.rightButtonWidthConstraint_PanelHalfWidth!.active = true
+            
+            //== 父容器的宽度
+            self.rightButtonWidthConstraint_PanelWidth = NSLayoutConstraint.init(item: self._rightButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 1.0, constant: 0)
+            
+            self.rightButtonWidthConstraint_PanelWidth!.active = false
+        }
+    }
+    private var rightButtonControl: UIButton{
+        get{
+            if(_rightButtonControl == nil){
+                _rightButtonControl = UIButton()
+                
+                self.rightButton.enable = self.rightButton.enable
+                self.rightButton.title = self.rightButton.title
+                self.rightButton.titleColor = self.rightButton.titleColor
+                self.rightButton.font = self.rightButton.font
+            }
+            
+            return _rightButtonControl
+        }
+    }
+    
+    private var rightButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度的一半
+    private var rightButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度
+    
+    var rightButtonClicked: buttonClick?
+    @objc private func rightButtonClick(sender: UIButton){
+        if (self.rightButtonClicked != nil){
+            self.rightButtonClicked!(textValue: self.textFieldControl.text ?? "")
+        }
+        else{
+            self .hideFromSuperView()
+        }
+    }
+    
+    /*
+    // Only override drawRect: if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func drawRect(rect: CGRect) {
+        // Drawing code
+    }
+    */
+
+}
