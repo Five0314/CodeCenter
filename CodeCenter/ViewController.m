@@ -47,8 +47,8 @@
     newUV.rightButton.title = @"草泥马";
     newUV.rightButton.titleColor = [UIColor redColor];
     
-    newUV.textField.placeholder = @"我们一起看月亮爬上来";
-    newUV.textField.enable = true;
+//    newUV.textField.placeholder = @"我们一起看月亮爬上来";
+//    newUV.textField.enable = true;
     
     newUV.leftButtonClicked = ^(NSString * textValue) {
         [weakUV hideFromSuperView];
