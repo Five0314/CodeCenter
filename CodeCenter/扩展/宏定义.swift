@@ -38,11 +38,6 @@ func RGB(red: Float, green: Float, blue: Float, alpha: Float) -> UIColor{
     return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha))
 }
 
-
-
-//MARK : - 闭包类型定义
-typealias noParamNoReturn = @convention(block) () -> Void
-
  /// 分隔线颜色
 let SeparatorColor = RGB(243, green: 243, blue: 243)
 

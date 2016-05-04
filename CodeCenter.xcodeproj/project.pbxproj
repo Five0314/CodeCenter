@@ -43,7 +43,6 @@
 		3C181C4D1CCCEDE90038D63F /* 约束OC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "约束OC.swift"; sourceTree = "<group>"; };
 		3C181C4E1CCCEDE90038D63F /* 自定义属性.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "自定义属性.swift"; sourceTree = "<group>"; };
 		3C181C551CCCEE5F0038D63F /* CodeCenter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CodeCenter-Bridging-Header.h"; sourceTree = "<group>"; };
-		3C181C561CCCEEDC0038D63F /* CNImport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNImport.h; sourceTree = "<group>"; };
 		3C181C581CCCF1020038D63F /* EnumForShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumForShowView.h; sourceTree = "<group>"; };
 		3C181C591CCCF1020038D63F /* EnumForShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumForShowView.m; sourceTree = "<group>"; };
 		3CED6B341CD59E33006DD28C /* MessageViewSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewSwift.swift; sourceTree = "<group>"; };
@@ -113,7 +112,6 @@
 				3C181C4C1CCCEDE90038D63F /* 约束.swift */,
 				3C181C4D1CCCEDE90038D63F /* 约束OC.swift */,
 				3C181C4E1CCCEDE90038D63F /* 自定义属性.swift */,
-				3C181C561CCCEEDC0038D63F /* CNImport.h */,
 				3C181C581CCCF1020038D63F /* EnumForShowView.h */,
 				3C181C591CCCF1020038D63F /* EnumForShowView.m */,
 			);

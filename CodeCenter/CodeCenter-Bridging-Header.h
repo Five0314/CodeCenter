@@ -10,7 +10,6 @@
 #define CodeCenter_Bridging_Header_h
 
 #import <UIKit/UIKit.h>
-#import "CNImport.h"
 #import "EnumForShowView.h"
 
 #endif /* CodeCenter_Bridging_Header_h */

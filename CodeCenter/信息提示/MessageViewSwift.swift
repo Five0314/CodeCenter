@@ -19,6 +19,35 @@ class CNKVOProperty: NSObject{
 }
 
 class CNLabelProperty: CNKVOProperty{
+    var top: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "top")
+            }
+        }
+    }
+    var bottom: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "bottom")
+            }
+        }
+    }
+    var leading: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "leading")
+            }
+        }
+    }
+    var trailing: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "trailing")
+            }
+        }
+    }
+    
     var textAlignment:NSTextAlignment = .Center{
         didSet{
             if self.propertyValueChanged != nil{
@@ -187,6 +216,22 @@ class MessageViewSwift: UIView {
         
         title.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
+            case "top":
+                self.titleTopConstraint?.constant = CGFloat(self.title.top)
+                break
+                
+            case "bottom":
+                self.titleSeperatorTopConstraint?.constant = CGFloat(self.title.bottom)
+                break
+                
+            case "leading":
+                self.titleLeadingConstraint?.constant = CGFloat(self.title.leading)
+                break
+                
+            case "trailing":
+                self.titleTrailingConstraint?.constant = CGFloat(-self.title.trailing)
+                break
+                
             case "text":
                 self.titleLabelControl.text = self.title.text
                 break
@@ -218,11 +263,25 @@ class MessageViewSwift: UIView {
         
         topMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             
-            
             switch propertyName {
+            case "top":
+                self.topMessageTopConstraint?.constant = CGFloat(self.topMessage.top)
+                break
+                
+            case "bottom":
+                self.textFieldTopConstraint?.constant = CGFloat(self.topMessage.bottom)
+                break
+                
+            case "leading":
+                self.topMessageLeadingConstraint?.constant = CGFloat(self.topMessage.leading)
+                break
+                
+            case "trailing":
+                self.topMessageTrailingConstraint?.constant = CGFloat(-self.topMessage.trailing)
+                break
+                
             case "text":
                 self.topMessageLabelControl.text = self.topMessage.text
-                
                 self.updateTitleSeparator()//更新标题分割线
                 break
                 
@@ -245,6 +304,22 @@ class MessageViewSwift: UIView {
         
         textField.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
+            case "top":
+                self.textFieldTopConstraint?.constant = CGFloat(self.textField.top)
+                break
+                
+            case "bottom":
+                self.bottomMessageTopConstraint?.constant = CGFloat(self.textField.bottom)
+                break
+                
+            case "leading":
+                self.textFieldLeadingConstraint?.constant = CGFloat(self.textField.leading)
+                break
+                
+            case "trailing":
+                self.textFieldTrailingConstraint?.constant = CGFloat(-self.textField.trailing)
+                break
+                
             case "text":
                 self.textFieldControl.text = self.textField.text
                 break
@@ -282,6 +357,22 @@ class MessageViewSwift: UIView {
         
         bottomMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
+            case "top":
+                self.bottomMessageTopConstraint?.constant = CGFloat(self.bottomMessage.top)
+                break
+                
+            case "bottom":
+                self.buttonPanelTopConstraint?.constant = CGFloat(self.bottomMessage.bottom)
+                break
+                
+            case "leading":
+                self.bottomMessageLeadingConstraint?.constant = CGFloat(self.bottomMessage.leading)
+                break
+                
+            case "trailing":
+                self.bottomMessageTrailingConstraint?.constant = CGFloat(-self.bottomMessage.trailing)
+                break
+                
             case "text":
                 self.bottomMessageLabelControl.text = self.bottomMessage.text
                 
@@ -309,10 +400,6 @@ class MessageViewSwift: UIView {
             switch propertyName {
             case "title":
                 self.rightButtonControl.setTitle(self.rightButton.title, forState: .Normal)
-                
-                print(self.rightButtonControl.titleLabel?.text)
-                print(self.rightButtonControl.hidden)
-                print(self.rightButtonControl)
                 break
                 
             case "titleColor":
@@ -376,9 +463,6 @@ class MessageViewSwift: UIView {
             switch propertyName {
             case "title":
                 self.leftButtonControl.setTitle(self.leftButton.title, forState: .Normal)
-                print(self.leftButtonControl.titleLabel?.text)
-                print(self.leftButtonControl.hidden)
-                print(self.leftButtonControl)
                 break
                 
             case "titleColor":
@@ -408,6 +492,10 @@ class MessageViewSwift: UIView {
         self.layer.cornerRadius = 5
         
         //标题
+        self.title.top = 15.0
+        self.title.bottom = 15.0
+        self.title.leading = 8.0
+        self.title.trailing = 8.0
         self.title.text = "提示"
         self.title.textColor = UIColor.blackColor()
         self.title.textAlignment = .Center
@@ -416,12 +504,20 @@ class MessageViewSwift: UIView {
         self.title.separatorColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
         
         //TopMessage
+        self.topMessage.top = 15.0
+        self.topMessage.bottom = 8.0
+        self.topMessage.leading = 8.0
+        self.topMessage.trailing = 8.0
         self.topMessage.text = nil
         self.topMessage.textColor = UIColor.lightGrayColor()
         self.topMessage.textAlignment = .Center
         self.topMessage.font = UIFont.systemFontOfSize(16.0)
         
         //TextField
+        self.textField.top = 8.0
+        self.textField.bottom = 8.0
+        self.textField.leading = 8.0
+        self.textField.trailing = 8.0
         self.textField.text = nil
         self.textField.textColor = UIColor.blackColor()
         self.textField.textAlignment = .Left
@@ -431,6 +527,10 @@ class MessageViewSwift: UIView {
         self.textField.enable = false
         
         //BottomMessage
+        self.bottomMessage.top = 8.0
+        self.bottomMessage.bottom = 8.0
+        self.bottomMessage.leading = 8.0
+        self.bottomMessage.trailing = 8.0
         self.bottomMessage.text = nil
         self.bottomMessage.textColor = UIColor.lightGrayColor()
         self.bottomMessage.textAlignment = .Left
@@ -464,16 +564,16 @@ class MessageViewSwift: UIView {
             _titleLabelControl.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topLC = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 15.0)
-            topLC.active = true
-            
-            //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
-            leadigLC.active = true
+            self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.top))
+            self.titleTopConstraint?.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
-            trailingLC.active = true
+            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
+            self.titleTrailingConstraint?.active = true
+            
+            //Leading
+            self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
+            self.titleLeadingConstraint?.active = true
         }
     }
     private var titleLabelControl:UILabel{
@@ -490,6 +590,9 @@ class MessageViewSwift: UIView {
             return _titleLabelControl
         }
     }
+    var titleTopConstraint: NSLayoutConstraint?
+    var titleTrailingConstraint: NSLayoutConstraint?
+    var titleLeadingConstraint: NSLayoutConstraint?
     
     ///标题分割线
     private var _titleSeperator:UIView!{
@@ -503,8 +606,8 @@ class MessageViewSwift: UIView {
             _titleSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabelControl, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
-            topLC.active = true
+            self.titleSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabelControl, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.bottom))
+            self.titleSeperatorTopConstraint?.active = true
             
             //Leading
             let leadigLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
@@ -531,6 +634,7 @@ class MessageViewSwift: UIView {
             return _titleSeperator
         }
     }
+    var titleSeperatorTopConstraint: NSLayoutConstraint?
     
     //MARK: 更新标题分割线（主要是根据有木有“TopMessage、TextField、BottomMessage”来确定是否显示标题分割线）
     private func updateTitleSeparator(){
@@ -559,16 +663,16 @@ class MessageViewSwift: UIView {
             _topMessageLabelControl.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.titleSeperator, attribute: .Bottom, multiplier: 1.0, constant: self.topMessage.text != nil && self.topMessage.text != "" ? 15.0 : 0.0)
+            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.titleSeperator, attribute: .Bottom, multiplier: 1.0, constant: self.topMessage.text != nil && self.topMessage.text != "" ? CGFloat(self.topMessage.top) : 0.0)
             self.topMessageTopConstraint?.active = true
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
-            leadigLC.active = true
+            self.topMessageLeadingConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.topMessage.leading))
+            self.topMessageLeadingConstraint?.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
-            trailingLC.active = true
+            self.topMessageTrailingConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.topMessage.trailing))
+            self.topMessageTrailingConstraint?.active = true
         }
     }
     private var topMessageLabelControl: UILabel{
@@ -585,7 +689,9 @@ class MessageViewSwift: UIView {
             return _topMessageLabelControl
         }
     }
-    private var topMessageTopConstraint:NSLayoutConstraint?//Top信息Top约束
+    private var topMessageTopConstraint:NSLayoutConstraint?
+    private var topMessageLeadingConstraint:NSLayoutConstraint?
+    private var topMessageTrailingConstraint:NSLayoutConstraint?
     
     
     //MARK: - TextField
@@ -596,16 +702,16 @@ class MessageViewSwift: UIView {
             _textFieldControl!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Top, relatedBy: .Equal, toItem: self.topMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? 8.0 : 0)
+            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Top, relatedBy: .Equal, toItem: self.topMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? CGFloat(self.textField.top) : 0)
             self.textFieldTopConstraint?.active = true
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
-            leadigLC.active = true
+            self.textFieldLeadingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.textField.leading))
+            self.textFieldLeadingConstraint?.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
-            trailingLC.active = true
+            self.textFieldTrailingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.textField.trailing))
+            self.textFieldTrailingConstraint?.active = true
             
             //高度
             self.textFieldHeightConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.textField.enable ? 38.0 : 0.0)
@@ -629,8 +735,10 @@ class MessageViewSwift: UIView {
             return _textFieldControl!
         }
     }
-    private var textFieldHeightConstraint:NSLayoutConstraint?//文本输入框高度约束
-    private var textFieldTopConstraint:NSLayoutConstraint?//文本输入框Top约束
+    private var textFieldTopConstraint:NSLayoutConstraint?
+    private var textFieldLeadingConstraint:NSLayoutConstraint?
+    private var textFieldTrailingConstraint:NSLayoutConstraint?
+    private var textFieldHeightConstraint:NSLayoutConstraint?
     
     //MARK: - BottomMessage
     
@@ -646,16 +754,16 @@ class MessageViewSwift: UIView {
             _bottomMessageLabelControl.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldControl, attribute: .Bottom, multiplier: 1.0, constant: self.bottomMessage.text != nil && self.bottomMessage.text != "" ? 8.0 : 0.0)
+            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldControl, attribute: .Bottom, multiplier: 1.0, constant: self.bottomMessage.text != nil && self.bottomMessage.text != "" ? CGFloat(self.topMessage.top) : 0.0)
             self.bottomMessageTopConstraint?.active = true
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
-            leadigLC.active = true
+            self.bottomMessageLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.topMessage.leading))
+            self.bottomMessageLeadingConstraint?.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
-            trailingLC.active = true
+            self.bottomMessageTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.topMessage.trailing))
+            self.bottomMessageTrailingConstraint?.active = true
         }
     }
     
@@ -673,37 +781,39 @@ class MessageViewSwift: UIView {
             return _bottomMessageLabelControl
         }
     }
-    private var bottomMessageTopConstraint:NSLayoutConstraint?//Bottom信息Top约束
+    private var bottomMessageTopConstraint:NSLayoutConstraint?
+    private var bottomMessageLeadingConstraint:NSLayoutConstraint?
+    private var bottomMessageTrailingConstraint:NSLayoutConstraint?
     
-    //MARK: - 不再提醒
-    private var _noLongerRemindPanel: UIView!{
-        didSet{
-            self.addSubview(_noLongerRemindPanel)
-            _noLongerRemindPanel.translatesAutoresizingMaskIntoConstraints = false
-            
-            //Top
-            self.noLongerRemindPanelTopConstraint = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? 8.0 : 0.0)
-            self.noLongerRemindPanelTopConstraint?.active = true
-            
-            //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
-            leadigLC.active = true
-            
-            //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
-            trailingLC.active = true
-        }
-    }
-    private var noLongerRemindPanel: UIView{
-        get{
-            if(_noLongerRemindPanel == nil){
-                _noLongerRemindPanel = UIView()
-            }
-            
-            return _noLongerRemindPanel
-        }
-    }
-    private var noLongerRemindPanelTopConstraint:NSLayoutConstraint?//Bottom信息Top约束
+//    //MARK: - 不再提醒
+//    private var _noLongerRemindPanel: UIView!{
+//        didSet{
+//            self.addSubview(_noLongerRemindPanel)
+//            _noLongerRemindPanel.translatesAutoresizingMaskIntoConstraints = false
+//            
+//            //Top
+//            self.noLongerRemindPanelTopConstraint = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? 8.0 : 0.0)
+//            self.noLongerRemindPanelTopConstraint?.active = true
+//            
+//            //Leading
+//            let leadigLC = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+//            leadigLC.active = true
+//            
+//            //Trailing
+//            let trailingLC = NSLayoutConstraint.init(item: _noLongerRemindPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+//            trailingLC.active = true
+//        }
+//    }
+//    private var noLongerRemindPanel: UIView{
+//        get{
+//            if(_noLongerRemindPanel == nil){
+//                _noLongerRemindPanel = UIView()
+//            }
+//            
+//            return _noLongerRemindPanel
+//        }
+//    }
+//    private var noLongerRemindPanelTopConstraint:NSLayoutConstraint?//Bottom信息Top约束
     
     //MARK: - 底部按钮
     
@@ -724,7 +834,7 @@ class MessageViewSwift: UIView {
             trailingLC.active = true
             
             //Top
-            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Top, relatedBy: .Equal, toItem: self.noLongerRemindPanel, attribute: .Bottom, multiplier: 1.0, constant: 15.0)
+            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.bottomMessage.bottom))
             self.buttonPanelTopConstraint?.active = true;
             
             //Bottom

@@ -192,21 +192,33 @@ extension UIView{
         op.hideStyle = hideStyle
         op.maskStyle = maskStyle
         
-        return self.showInView(op)
+        
+        return self.showInView(ViewShowAndHideOptions(ocOptions: op))
+    }
+
+    ///从左边显示
+    func showFromLeft(superUV: UIView, constraints: [NSLayoutConstraint], showMask : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .Left, hideStyle: .Left, options: constraints)
     }
     
-    /**
-     在父容器中弹出自己
-     
-     - parameter options: 参数
-     
-     - returns: 成功与否
-     */
-    func showInView(options: ViewShowAndHideOptionsOC) -> Bool{
-        
-        let op = ViewShowAndHideOptions(ocOptions: options)
-        
-        return self.showInView(op)
+    ///从右边显示
+    func showFromRight(superUV: UIView, constraints: [NSLayoutConstraint], askStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .Right, hideStyle: .Right, options: constraints)
+    }
+    
+    ///从上边显示
+    func showFromTop(superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .Top, hideStyle: .Top, options: constraints)
+    }
+    
+    ///从下边显示
+    func showFromBottom(superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .Bottom, hideStyle: .Bottom, options: constraints)
+    }
+    
+    ///弹出视图
+    func showInView(superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .None, hideStyle: .Bottom, options: constraints)
     }
 }
 
@@ -220,7 +232,7 @@ extension UIView{
      - parameter complete:           隐藏完毕回调
      */
     func hideFromSuperViewOC(hideStyle: CNShowOrHideStyleOC, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
-        var shStyle:CNShowOrHideStyle =  .None
+        var shStyle:CNHideStyle = .None
         
         switch hideStyle {
         case CNShowOrHideStyleOC.Top:

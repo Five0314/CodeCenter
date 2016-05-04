@@ -10,7 +10,19 @@ import UIKit
 
 //MARK: - 枚举 视图弹出、隐藏方向
 /// 显示、隐藏 类型
-enum CNShowOrHideStyle: UInt{
+enum CNShowStyle: UInt{
+    case None = 0
+    case Top = 1
+    case Bottom = 2
+    case Left = 3
+    case Right = 4
+    
+    func ocValue() -> CNShowOrHideStyleOC{
+        return CNShowOrHideStyleOC(rawValue: self.rawValue)
+    }
+}
+
+enum CNHideStyle: UInt{
     case None = 0
     case Top = 1
     case Bottom = 2
@@ -70,13 +82,13 @@ private class ViewOptionsForShowAndHide{
 struct ViewShowAndHideOptions{
 //MARK: 进入方向
     /// 进入方向
-    var showStyle: CNShowOrHideStyle = .Right
+    var showStyle: CNShowStyle = .Right
     
 //    var showAnimationStyle: 
     
 //MARK: 隐藏方向
     /// 隐藏方向
-    var hideStyle: CNShowOrHideStyle = .Right
+    var hideStyle: CNHideStyle = .Right
 //    var asd: MaskType_0314
 //MARK: 约束
     /// 显示自己的父容器
@@ -119,7 +131,7 @@ struct ViewShowAndHideOptions{
     
     init(){}
     
-    init(superUV: UIView?, showStyle: CNShowOrHideStyle, hideStyle: CNShowOrHideStyle, masktype: CNMaskStyle, cs : [NSLayoutConstraint]){
+    init(superUV: UIView?, showStyle: CNShowStyle, hideStyle: CNHideStyle, masktype: CNMaskStyle, cs : [NSLayoutConstraint]){
         self.superUV = superUV
         
         self.showStyle = showStyle
@@ -351,6 +363,9 @@ extension UIView{
     }
 }
 
+//MARK : - 闭包类型定义
+typealias noParamNoReturn = @convention(block) () -> Void
+
 // MARK: - 在父容器中弹出自己
 extension UIView{
 
@@ -364,7 +379,7 @@ extension UIView{
      
      - returns: 成功与否
      */
-    func showInView(superUV: UIView, showStyle: CNShowOrHideStyle, hideStyle: CNShowOrHideStyle, options: [NSLayoutConstraint]) -> Bool{
+    func showInView(superUV: UIView, showStyle: CNShowStyle, hideStyle: CNHideStyle, options: [NSLayoutConstraint]) -> Bool{
         var op = ViewShowAndHideOptions(cs : options);
         op.superUV = superUV
         op.showStyle = showStyle
@@ -534,7 +549,7 @@ extension UIView{
      - parameter removeAfterComplet: 动画结束，是否从父容器中移除自己
      - parameter complete:           隐藏完毕回调
      */
-    func hideFromSuperView(hideStyle: CNShowOrHideStyle?, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
+    func hideFromSuperView(hideStyle: CNHideStyle?, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
         var duration = 0.25
         if hideStyle == nil || hideStyle == .None{
             duration = 0.5
