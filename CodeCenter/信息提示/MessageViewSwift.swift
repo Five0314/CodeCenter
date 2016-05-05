@@ -97,6 +97,25 @@ class CNTitleProperty: CNLabelProperty{
     }
 }
 
+//分割线
+class CNSeparatorProperty: CNLabelProperty{
+    var fillColor:UIColor?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "fillColor")
+            }
+        }
+    }
+    
+    var enable:Bool?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "enable")
+            }
+        }
+    }
+}
+
 ///文本输入框
 class CNTextFieldProperty: CNLabelProperty{
     var placeholder:String?{
@@ -196,6 +215,8 @@ class MessageViewSwift: UIView {
         
         self.reset()//重置控件
         self.addCNKVO()//添加KVO
+        
+        self.rightButtonControl//只要实例化任何一个Button，会以为关联调用而全部被初始化
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -203,6 +224,8 @@ class MessageViewSwift: UIView {
         
         self.reset()//重置控件
         self.addCNKVO()//添加KVO
+        
+        self.rightButtonControl//只要实例化任何一个Button，会以为关联调用而全部被初始化
         
 //        fatalError("init(coder:) has not been implemented")
     }
@@ -221,7 +244,7 @@ class MessageViewSwift: UIView {
                 break
                 
             case "bottom":
-                self.titleSeperatorTopConstraint?.constant = CGFloat(self.title.bottom)
+                self.titleSeperatorTopConstraint?.constant = CGFloat(-self.title.bottom)
                 break
                 
             case "leading":
@@ -269,7 +292,7 @@ class MessageViewSwift: UIView {
                 break
                 
             case "bottom":
-                self.textFieldTopConstraint?.constant = CGFloat(self.topMessage.bottom)
+                self.topMessageBottomConstraint?.constant = CGFloat(-self.topMessage.bottom)
                 break
                 
             case "leading":
@@ -309,7 +332,7 @@ class MessageViewSwift: UIView {
                 break
                 
             case "bottom":
-                self.bottomMessageTopConstraint?.constant = CGFloat(self.textField.bottom)
+                self.textFieldBottomConstraint?.constant = CGFloat(-self.textField.bottom)
                 break
                 
             case "leading":
@@ -343,9 +366,10 @@ class MessageViewSwift: UIView {
             case "borderStyle":
                 self.textFieldControl.borderStyle = self.textField.borderStyle!
                 break
+                
             case "enable":
                 self.textFieldHeightConstraint?.constant = self.textField.enable ? 38.0 : 0
-                self.textFieldTopConstraint?.constant = self.textField.enable ? 8.0 : 0
+                self.textFieldTopConstraint?.constant = self.textField.enable ? CGFloat(self.textField.top) : 0
                 
                 self.updateTitleSeparator()//更新标题分割线
                 break
@@ -362,7 +386,7 @@ class MessageViewSwift: UIView {
                 break
                 
             case "bottom":
-                self.buttonPanelTopConstraint?.constant = CGFloat(self.bottomMessage.bottom)
+                self.buttonPanelTopConstraint?.constant = CGFloat(-self.bottomMessage.bottom)
                 break
                 
             case "leading":
@@ -514,8 +538,8 @@ class MessageViewSwift: UIView {
         self.topMessage.font = UIFont.systemFontOfSize(16.0)
         
         //TextField
-        self.textField.top = 8.0
-        self.textField.bottom = 8.0
+        self.textField.top = 0.0
+        self.textField.bottom = 0.0
         self.textField.leading = 8.0
         self.textField.trailing = 8.0
         self.textField.text = nil
@@ -528,7 +552,7 @@ class MessageViewSwift: UIView {
         
         //BottomMessage
         self.bottomMessage.top = 8.0
-        self.bottomMessage.bottom = 8.0
+        self.bottomMessage.bottom = 15.0
         self.bottomMessage.leading = 8.0
         self.bottomMessage.trailing = 8.0
         self.bottomMessage.text = nil
@@ -552,6 +576,37 @@ class MessageViewSwift: UIView {
     
     //MARK: - 标题
     
+    private var _titlePanel:UIView?{
+        didSet{
+            //背景色
+            _titlePanel!.backgroundColor = UIColor.clearColor()
+            
+            self.addSubview(_titlePanel!)
+            _titlePanel!.translatesAutoresizingMaskIntoConstraints = false
+
+            //Top
+            let topCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
+            topCS.active = true
+            
+            //Leading
+            let leadingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadingCS.active = true
+            
+            //Trailing
+            let trailingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            trailingCS.active = true
+        }
+    }
+    private var titlePanel:UIView{
+        get{
+            if(_titlePanel == nil){
+                _titlePanel = UIView()
+            }
+            
+            return _titlePanel!
+        }
+    }
+    
     private var _titleLabelControl:UILabel!{
         didSet{
             //背景色
@@ -562,17 +617,17 @@ class MessageViewSwift: UIView {
             
             self.addSubview(_titleLabelControl)
             _titleLabelControl.translatesAutoresizingMaskIntoConstraints = false
-            
+
             //Top
-            self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.top))
+            self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.top))
             self.titleTopConstraint?.active = true
             
             //Trailing
-            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
+            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
             self.titleTrailingConstraint?.active = true
             
             //Leading
-            self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
+            self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
             self.titleLeadingConstraint?.active = true
         }
     }
@@ -585,6 +640,8 @@ class MessageViewSwift: UIView {
                 self.title.textColor = self.title.textColor
                 self.title.textAlignment = self.title.textAlignment
                 self.title.text = self.title.text
+                
+                self.titleSeperator
             }
             
             return _titleLabelControl
@@ -602,19 +659,23 @@ class MessageViewSwift: UIView {
             _titleSeperator.tag = 1314
             _titleSeperator.hidden = true
             
-            self.addSubview(_titleSeperator)
+            self.titlePanel.addSubview(_titleSeperator)
             _titleSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
             self.titleSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabelControl, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.bottom))
             self.titleSeperatorTopConstraint?.active = true
             
+            //Bottom
+            let bottomLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+            bottomLC.active = true
+            
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 8.0)
+            let leadigLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: 8.0)
             leadigLC.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
+            let trailingLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
             trailingLC.active = true
             
             //高度
@@ -651,6 +712,37 @@ class MessageViewSwift: UIView {
     
     //MARK: - TopMessage
     
+    private var _topMessagePanel:UIView?{
+        didSet{
+            //背景色
+            _topMessagePanel!.backgroundColor = UIColor.clearColor()
+            
+            self.addSubview(_topMessagePanel!)
+            _topMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            let topCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            topCS.active = true
+            
+            //Leading
+            let leadingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadingCS.active = true
+            
+            //Trailing
+            let trailingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            trailingCS.active = true
+        }
+    }
+    private var topMessagePanel:UIView{
+        get{
+            if(_topMessagePanel == nil){
+                _topMessagePanel = UIView()
+            }
+            
+            return _topMessagePanel!
+        }
+    }
+    
     private var _topMessageLabelControl: UILabel!{
         didSet{
             //背景色
@@ -659,19 +751,23 @@ class MessageViewSwift: UIView {
             //不限定行数
             _topMessageLabelControl.numberOfLines = 0
             
-            self.addSubview(_topMessageLabelControl)
+            self.topMessagePanel.addSubview(_topMessageLabelControl)
             _topMessageLabelControl.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.titleSeperator, attribute: .Bottom, multiplier: 1.0, constant: self.topMessage.text != nil && self.topMessage.text != "" ? CGFloat(self.topMessage.top) : 0.0)
+            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Top, multiplier: 1.0, constant: self.topMessage.text != nil && self.topMessage.text != "" ? CGFloat(self.topMessage.top) : 0.0)
             self.topMessageTopConstraint?.active = true
             
+            //Bottom
+            self.topMessageBottomConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.topMessage.bottom))
+            self.topMessageBottomConstraint?.active = true
+            
             //Leading
-            self.topMessageLeadingConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.topMessage.leading))
+            self.topMessageLeadingConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.topMessage.leading))
             self.topMessageLeadingConstraint?.active = true
             
             //Trailing
-            self.topMessageTrailingConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.topMessage.trailing))
+            self.topMessageTrailingConstraint = NSLayoutConstraint.init(item: _topMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.topMessage.trailing))
             self.topMessageTrailingConstraint?.active = true
         }
     }
@@ -690,32 +786,75 @@ class MessageViewSwift: UIView {
         }
     }
     private var topMessageTopConstraint:NSLayoutConstraint?
+    private var topMessageBottomConstraint:NSLayoutConstraint?
     private var topMessageLeadingConstraint:NSLayoutConstraint?
     private var topMessageTrailingConstraint:NSLayoutConstraint?
     
     
     //MARK: - TextField
     
-    private var _textFieldControl: UITextField?{
+    private var _textFieldPanel:UIView?{
         didSet{
-            self.addSubview(_textFieldControl!)
-            _textFieldControl!.translatesAutoresizingMaskIntoConstraints = false
+            //背景色
+            _textFieldPanel!.backgroundColor = UIColor.clearColor()
+            
+            //
+            _textFieldPanel?.clipsToBounds = true
+            
+            self.addSubview(_textFieldPanel!)
+            _textFieldPanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Top, relatedBy: .Equal, toItem: self.topMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: self.textField.enable ? CGFloat(self.textField.top) : 0)
-            self.textFieldTopConstraint?.active = true
+            let topCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Top, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            topCS.active = true
             
             //Leading
-            self.textFieldLeadingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.textField.leading))
-            self.textFieldLeadingConstraint?.active = true
+            let leadingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadingCS.active = true
             
             //Trailing
-            self.textFieldTrailingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.textField.trailing))
-            self.textFieldTrailingConstraint?.active = true
+            let trailingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            trailingCS.active = true
             
             //高度
-            self.textFieldHeightConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.textField.enable ? 38.0 : 0.0)
+            self.textFieldHeightConstraint = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.textField.enable ? 38.0 : 0.0)
             self.textFieldHeightConstraint?.active = true
+        }
+    }
+    private var textFieldPanel:UIView{
+        get{
+            if(_textFieldPanel == nil){
+                _textFieldPanel = UIView()
+            }
+            
+            return _textFieldPanel!
+        }
+    }
+    
+    private var _textFieldControl: UITextField?{
+        didSet{
+            self.textFieldPanel.addSubview(_textFieldControl!)
+            _textFieldControl!.translatesAutoresizingMaskIntoConstraints = false
+
+            //Top
+            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.textField.top))
+            self.textFieldTopConstraint?.active = true
+            
+            //Bottom
+            self.textFieldBottomConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Bottom, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.textField.bottom))
+            self.textFieldBottomConstraint?.active = true
+
+            //Leading
+            self.textFieldLeadingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Leading, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.textField.leading))
+            self.textFieldLeadingConstraint?.active = true
+
+            //Trailing
+            self.textFieldTrailingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Trailing, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.textField.trailing))
+            self.textFieldTrailingConstraint?.active = true
+            
+
+            
+//            print(self.textFieldHeightConstraint)
         }
     }
     private var textFieldControl: UITextField{
@@ -736,11 +875,43 @@ class MessageViewSwift: UIView {
         }
     }
     private var textFieldTopConstraint:NSLayoutConstraint?
+    private var textFieldBottomConstraint:NSLayoutConstraint?
     private var textFieldLeadingConstraint:NSLayoutConstraint?
     private var textFieldTrailingConstraint:NSLayoutConstraint?
     private var textFieldHeightConstraint:NSLayoutConstraint?
     
     //MARK: - BottomMessage
+    
+    private var _bottomMessagePanel:UIView?{
+        didSet{
+            //背景色
+            _bottomMessagePanel!.backgroundColor = UIColor.clearColor()
+            
+            self.addSubview(_bottomMessagePanel!)
+            _bottomMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            let topCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            topCS.active = true
+            
+            //Leading
+            let leadingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadingCS.active = true
+            
+            //Trailing
+            let trailingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            trailingCS.active = true
+        }
+    }
+    private var bottomMessagePanel:UIView{
+        get{
+            if(_bottomMessagePanel == nil){
+                _bottomMessagePanel = UIView()
+            }
+            
+            return _bottomMessagePanel!
+        }
+    }
     
     private var _bottomMessageLabelControl: UILabel!{
         didSet{
@@ -750,19 +921,23 @@ class MessageViewSwift: UIView {
             //不限定行数
             _bottomMessageLabelControl.numberOfLines = 0
             
-            self.addSubview(_bottomMessageLabelControl)
+            self.bottomMessagePanel.addSubview(_bottomMessageLabelControl)
             _bottomMessageLabelControl.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldControl, attribute: .Bottom, multiplier: 1.0, constant: self.bottomMessage.text != nil && self.bottomMessage.text != "" ? CGFloat(self.topMessage.top) : 0.0)
+            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.topMessage.top))
             self.bottomMessageTopConstraint?.active = true
             
+            //Bottom
+            self.bottomMessageBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.bottomMessage.bottom))
+            self.bottomMessageBottomConstraint?.active = true
+            
             //Leading
-            self.bottomMessageLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.topMessage.leading))
+            self.bottomMessageLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.topMessage.leading))
             self.bottomMessageLeadingConstraint?.active = true
             
             //Trailing
-            self.bottomMessageTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.topMessage.trailing))
+            self.bottomMessageTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.topMessage.trailing))
             self.bottomMessageTrailingConstraint?.active = true
         }
     }
@@ -782,6 +957,7 @@ class MessageViewSwift: UIView {
         }
     }
     private var bottomMessageTopConstraint:NSLayoutConstraint?
+    private var bottomMessageBottomConstraint:NSLayoutConstraint?
     private var bottomMessageLeadingConstraint:NSLayoutConstraint?
     private var bottomMessageTrailingConstraint:NSLayoutConstraint?
     
@@ -834,7 +1010,7 @@ class MessageViewSwift: UIView {
             trailingLC.active = true
             
             //Top
-            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessageLabelControl, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.bottomMessage.bottom))
+            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
             self.buttonPanelTopConstraint?.active = true;
             
             //Bottom

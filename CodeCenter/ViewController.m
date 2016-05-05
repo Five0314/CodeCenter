@@ -29,37 +29,37 @@
 - (IBAction)click:(UIButton *)sender{
     MessageViewSwift * newUV = [MessageViewSwift new];
     __weak MessageViewSwift * weakUV = newUV;
-    newUV.title.text = @"百撕不得骑姐";
+    newUV.title.text = @"title";
     newUV.title.textColor = [UIColor purpleColor];
     newUV.title.font = [UIFont systemFontOfSize:20.0];
-    newUV.title.top = 10.0;
-    newUV.title.bottom = 50.0;
-    
-    newUV.topMessage.text = @"无敌提示";
+//    newUV.title.top = 10.0;
+//    newUV.title.bottom = 50.0;
+//
+    newUV.topMessage.text = @"德玛西亚";
     newUV.topMessage.textColor = [UIColor cyanColor];
-    newUV.topMessage.top = 10.0;
-    newUV.topMessage.bottom = 50.0;
-    
-    newUV.textField.placeholder = @"我们一起看月亮爬上来";
-    newUV.textField.enable = true;
-    newUV.textField.top = 10.0;
-    newUV.textField.bottom = 50.0;
-    
-    newUV.bottomMessage.text = @"你大爷打野";
-    newUV.bottomMessage.textColor = [UIColor orangeColor];
-    newUV.bottomMessage.top = 10.0;
-    newUV.bottomMessage.bottom = 50.0;
+    newUV.topMessage.top = 15.0;
+    newUV.topMessage.bottom = 15.0;
+//
+//    newUV.textField.placeholder = @"textField";
+//    newUV.textField.enable = true;
+////    newUV.textField.top = 10.0;
+////    newUV.textField.bottom = 50.0;
+//    
+//    newUV.bottomMessage.text = @"bottomMessage";
+//    newUV.bottomMessage.textColor = [UIColor orangeColor];
+//    newUV.bottomMessage.top = 10.0;
+//    newUV.bottomMessage.bottom = 50.0;
 //    newUV.bottomMessage.leading = 100;
 //    newUV.bottomMessage.trailing = 100;
 
     
-    newUV.leftButton.title = @"河蟹";
-    newUV.leftButton.titleColor = [UIColor blueColor];
-//    newUV.leftButton.enable = false;
-    
-//    newUV.rightButton.enable = false;
-    newUV.rightButton.title = @"草泥马";
-    newUV.rightButton.titleColor = [UIColor redColor];
+//    newUV.leftButton.title = @"LeftButton";
+//    newUV.leftButton.titleColor = [UIColor blueColor];
+////    newUV.leftButton.enable = false;
+//    
+////    newUV.rightButton.enable = false;
+//    newUV.rightButton.title = @"RightButton";
+//    newUV.rightButton.titleColor = [UIColor redColor];
     
 
 
