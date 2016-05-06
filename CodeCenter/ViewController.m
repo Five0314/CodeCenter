@@ -39,14 +39,14 @@
     newUV.topMessage.textColor = [UIColor cyanColor];
     newUV.topMessage.top = 15.0;
     newUV.topMessage.bottom = 15.0;
+
+    newUV.textField.placeholder = @"textField";
+    newUV.textField.enable = true;
+//    newUV.textField.top = 10.0;
+//    newUV.textField.bottom = 50.0;
 //
-//    newUV.textField.placeholder = @"textField";
-//    newUV.textField.enable = true;
-////    newUV.textField.top = 10.0;
-////    newUV.textField.bottom = 50.0;
-//    
-//    newUV.bottomMessage.text = @"bottomMessage";
-//    newUV.bottomMessage.textColor = [UIColor orangeColor];
+    newUV.bottomMessage.text = @"bottomMessage";
+    newUV.bottomMessage.textColor = [UIColor orangeColor];
 //    newUV.bottomMessage.top = 10.0;
 //    newUV.bottomMessage.bottom = 50.0;
 //    newUV.bottomMessage.leading = 100;

@@ -18,7 +18,7 @@ class CNKVOProperty: NSObject{
     var propertyValueChanged: propertyChange?
 }
 
-class CNLabelProperty: CNKVOProperty{
+class CNConstraintProperty: CNKVOProperty{
     var top: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
@@ -47,7 +47,10 @@ class CNLabelProperty: CNKVOProperty{
             }
         }
     }
-    
+}
+
+class CNLabelProperty: CNConstraintProperty{
+
     var textAlignment:NSTextAlignment = .Center{
         didSet{
             if self.propertyValueChanged != nil{
@@ -80,25 +83,21 @@ class CNLabelProperty: CNKVOProperty{
 
 ///标题
 class CNTitleProperty: CNLabelProperty{
-    var separatorEnable:Bool?{
-        didSet{
-            if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "separatorEnable")
-            }
-        }
-    }
+    ///分割线
+    let separator: CNSeparatorProperty = CNSeparatorProperty()
+}
+
+///按钮
+class CNMessageViewMessage: CNKVOProperty{
+    ///TopMessage
+    let topMessage: CNLabelProperty = CNLabelProperty()
     
-    var separatorColor:UIColor?{
-        didSet{
-            if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "separatorColor")
-            }
-        }
-    }
+    ///BottomMessage
+    let bottomMessage: CNLabelProperty = CNLabelProperty()
 }
 
 //分割线
-class CNSeparatorProperty: CNLabelProperty{
+class CNSeparatorProperty: CNConstraintProperty{
     var fillColor:UIColor?{
         didSet{
             if self.propertyValueChanged != nil{
@@ -174,6 +173,13 @@ class CNButtonProperty: CNKVOProperty{
     }
 }
 
+///按钮
+class CNMessageViewButton: CNKVOProperty{
+    let leftButton: CNButtonProperty = CNButtonProperty()
+    
+    let rightButton: CNButtonProperty = CNButtonProperty()
+}
+
 //struct MessageViewButtonStyle : OptionSetType{
 //    let rawValue: UInt
 //    
@@ -203,6 +209,12 @@ class MessageViewSwift: UIView {
     
     /// 下边的信息
     let bottomMessage = CNLabelProperty()
+    
+    ///信息
+    let messages: CNMessageViewMessage = CNMessageViewMessage()
+    
+    ///按钮
+    let buttons: CNMessageViewButton = CNMessageViewButton()
     
     /// 左边的Button
     let leftButton = CNButtonProperty()
@@ -271,17 +283,39 @@ class MessageViewSwift: UIView {
                 self.titleLabelControl.font = self.title.font
                 break
                 
-            case "separatorEnable":
-                self.titleSeperator.hidden = !self.title.separatorEnable!
-                break
-                
-            case "separatorColor":
-                self.titleSeperator.backgroundColor = self.title.separatorColor
-                break
-                
             default: break
             }
-            
+        }
+        
+        //Title的分割线
+        title.separator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "top":
+//                self.titlese?.constant = CGFloat(self.title.top)
+                break
+                
+            case "bottom":
+                self.titleSeperatorBottomConstraint?.constant = CGFloat(-self.title.bottom)
+                break
+                
+            case "leading":
+                self.titleLeadingConstraint?.constant = CGFloat(self.title.leading)
+                break
+                
+            case "trailing":
+                self.titleTrailingConstraint?.constant = CGFloat(-self.title.trailing)
+                break
+                
+            case "enable":
+                self.titleSeperator.hidden = !self.title.separator.enable!
+                break
+                
+            case "fillColor":
+                self.titleSeperator.backgroundColor = self.title.separator.fillColor
+                break
+
+            default: break
+            }
         }
         
         topMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
@@ -524,12 +558,20 @@ class MessageViewSwift: UIView {
         self.title.textColor = UIColor.blackColor()
         self.title.textAlignment = .Center
         self.title.font = UIFont.systemFontOfSize(20.0)
-        self.title.separatorEnable = false
-        self.title.separatorColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
+        
+        self.title.separator.top = 0
+        self.title.separator.bottom = 0
+        self.title.separator.leading = 8.0
+        self.title.separator.trailing = 8.0
+        self.title.separator.fillColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
+        self.title.separator.enable = false
+        
+//        self.title.separatorEnable = false
+//        self.title.separatorColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
         
         //TopMessage
         self.topMessage.top = 15.0
-        self.topMessage.bottom = 8.0
+        self.topMessage.bottom = 15.0
         self.topMessage.leading = 8.0
         self.topMessage.trailing = 8.0
         self.topMessage.text = nil
@@ -622,13 +664,17 @@ class MessageViewSwift: UIView {
             self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.top))
             self.titleTopConstraint?.active = true
             
-            //Trailing
-            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
-            self.titleTrailingConstraint?.active = true
+            //bottom
+            self.titleBottomConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.title.bottom))
+            self.titleBottomConstraint?.active = true
             
             //Leading
             self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
             self.titleLeadingConstraint?.active = true
+            
+            //Trailing
+            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabelControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
+            self.titleTrailingConstraint?.active = true
         }
     }
     private var titleLabelControl:UILabel{
@@ -648,35 +694,36 @@ class MessageViewSwift: UIView {
         }
     }
     var titleTopConstraint: NSLayoutConstraint?
+    var titleBottomConstraint: NSLayoutConstraint?
     var titleTrailingConstraint: NSLayoutConstraint?
     var titleLeadingConstraint: NSLayoutConstraint?
     
-    ///标题分割线
+    //MARK:标题分割线
     private var _titleSeperator:UIView!{
         didSet{
             //填充色
-            _titleSeperator.backgroundColor = self.title.separatorColor
+            _titleSeperator.backgroundColor = self.title.separator.fillColor
             _titleSeperator.tag = 1314
             _titleSeperator.hidden = true
             
             self.titlePanel.addSubview(_titleSeperator)
             _titleSeperator.translatesAutoresizingMaskIntoConstraints = false
             
-            //Top
-            self.titleSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabelControl, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.bottom))
-            self.titleSeperatorTopConstraint?.active = true
+//            //Top
+//            self.titleSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabelControl, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.separator.top))
+//            self.titleSeperatorTopConstraint?.active = true
             
             //Bottom
-            let bottomLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-            bottomLC.active = true
+            self.titleSeperatorBottomConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.separator.bottom))
+            self.titleSeperatorBottomConstraint!.active = true
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: 8.0)
-            leadigLC.active = true
+            self.titleSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.leading))
+            self.titleSeperatorLeadingConstraint!.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: -8.0)
-            trailingLC.active = true
+            self.titleSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(self.title.separator.trailing))
+            self.titleSeperatorTrailingConstraint!.active = true
             
             //高度
             let heightLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
@@ -688,14 +735,17 @@ class MessageViewSwift: UIView {
             if(_titleSeperator == nil){
                 _titleSeperator = UIView()
                 
-                self.title.separatorColor = self.title.separatorColor
-                self.title.separatorEnable = self.title.separatorEnable
+                self.title.separator.fillColor = self.title.separator.fillColor
+                self.title.separator.enable = self.title.separator.enable
             }
             
             return _titleSeperator
         }
     }
     var titleSeperatorTopConstraint: NSLayoutConstraint?
+    var titleSeperatorBottomConstraint: NSLayoutConstraint?
+    var titleSeperatorTrailingConstraint: NSLayoutConstraint?
+    var titleSeperatorLeadingConstraint: NSLayoutConstraint?
     
     //MARK: 更新标题分割线（主要是根据有木有“TopMessage、TextField、BottomMessage”来确定是否显示标题分割线）
     private func updateTitleSeparator(){
@@ -703,10 +753,10 @@ class MessageViewSwift: UIView {
             self.textField.enable ||
             (self.bottomMessage.text != nil && self.bottomMessage.text != "")){
             
-            self.title.separatorEnable = true
+            self.title.separator.enable = true
         }
         else{
-            self.title.separatorEnable = false
+            self.title.separator.enable = false
         }
     }
     
