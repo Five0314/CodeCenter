@@ -27,30 +27,31 @@
 
 
 - (IBAction)click:(UIButton *)sender{
-    MessageViewSwift * newUV = [MessageViewSwift new];
-    __weak MessageViewSwift * weakUV = newUV;
+    MessageView * newUV = [MessageView new];
+    __weak MessageView * weakUV = newUV;
     newUV.title.text = @"title";
-    newUV.title.textColor = [UIColor purpleColor];
+//    newUV.title.textColor = [UIColor purpleColor];
     newUV.title.font = [UIFont systemFontOfSize:20.0];
+//    newUV.title.separator.fillColor = [UIColor redColor];
 //    newUV.title.top = 10.0;
-//    newUV.title.bottom = 50.0;
-//
-    newUV.topMessage.text = @"德玛西亚";
-    newUV.topMessage.textColor = [UIColor cyanColor];
-    newUV.topMessage.top = 15.0;
-    newUV.topMessage.bottom = 15.0;
+//    newUV.title.bottom = 10.0;
 
-    newUV.textField.placeholder = @"textField";
-    newUV.textField.enable = true;
+//    newUV.messages.topMessage.text = @"陷阵之至";
+////    newUV.messages.topMessage.textColor = [UIColor cyanColor];
+////    newUV.messages.topMessage.top = 15.0;
+////    newUV.messages.topMessage.bottom = 15.0;
+//
+//    newUV.textField.placeholder = @"当有死无生";
+//    newUV.textField.enable = true;
 //    newUV.textField.top = 10.0;
 //    newUV.textField.bottom = 50.0;
 //
-    newUV.bottomMessage.text = @"bottomMessage";
-    newUV.bottomMessage.textColor = [UIColor orangeColor];
-//    newUV.bottomMessage.top = 10.0;
-//    newUV.bottomMessage.bottom = 50.0;
-//    newUV.bottomMessage.leading = 100;
-//    newUV.bottomMessage.trailing = 100;
+    newUV.messages.bottomMessage.text = @"bottomMessage";
+//    newUV.messages.bottomMessage.textColor = [UIColor orangeColor];
+//    newUV.messages.bottomMessage.top = 10.0;
+//    newUV.messages.bottomMessage.bottom = 50.0;
+//    newUV.messages.bottomMessage.leading = 100;
+//    newUV.messages.bottomMessage.trailing = 100;
 
     
 //    newUV.leftButton.title = @"LeftButton";
@@ -69,17 +70,17 @@
     };
     
     newUV.rightButtonClicked = ^(NSString * textValue) {
-        weakUV.topMessage.text = @"哎哟，你点击草泥马";
-        weakUV.bottomMessage.text = @"草泥马吐了你一脸口水";
+        weakUV.messages.topMessage.text = @"哎哟，你点击草泥马";
+        weakUV.messages.bottomMessage.text = @"草泥马吐了你一脸口水";
         weakUV.textField.placeholder = @"来打我啊，咩 ~ ~ ~";
     };
     
     [newUV setMaskClick:^{
-        weakUV.leftButton.title = @"取消";
-        weakUV.leftButton.titleColor = [UIColor lightGrayColor];
+        weakUV.buttons.leftButton.title = @"取消";
+        weakUV.buttons.leftButton.titleColor = [UIColor lightGrayColor];
         
-        weakUV.rightButton.title = @"德玛西亚";
-        weakUV.rightButton.titleColor = [UIColor colorWithRed:0 green:122 / 255.0 blue:1 alpha:1.0];
+        weakUV.buttons.rightButton.title = @"德玛西亚";
+        weakUV.buttons.rightButton.titleColor = [UIColor colorWithRed:0 green:122 / 255.0 blue:1 alpha:1.0];
     }];
     
     NSArray * cs = [newUV constraintsOC:self.view centerX:@0 centerY:@0 specifiedWidth:@250 specifiedHeight:nil];

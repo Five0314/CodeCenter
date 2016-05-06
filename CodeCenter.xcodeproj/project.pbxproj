@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0485B2121CDC3D1F001E4A51 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2111CDC3D1F001E4A51 /* MessageView.swift */; };
 		3C181C301CCCEDD80038D63F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C2F1CCCEDD80038D63F /* main.m */; };
 		3C181C331CCCEDD80038D63F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C321CCCEDD80038D63F /* AppDelegate.m */; };
 		3C181C361CCCEDD80038D63F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C351CCCEDD80038D63F /* ViewController.m */; };
@@ -21,10 +22,10 @@
 		3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C4D1CCCEDE90038D63F /* 约束OC.swift */; };
 		3C181C541CCCEDE90038D63F /* 自定义属性.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C4E1CCCEDE90038D63F /* 自定义属性.swift */; };
 		3C181C5A1CCCF1020038D63F /* EnumForShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C591CCCF1020038D63F /* EnumForShowView.m */; };
-		3CED6B361CD59E33006DD28C /* MessageViewSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED6B341CD59E33006DD28C /* MessageViewSwift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0485B2111CDC3D1F001E4A51 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		3C181C2B1CCCEDD80038D63F /* CodeCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C181C2F1CCCEDD80038D63F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C181C311CCCEDD80038D63F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		3C181C551CCCEE5F0038D63F /* CodeCenter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CodeCenter-Bridging-Header.h"; sourceTree = "<group>"; };
 		3C181C581CCCF1020038D63F /* EnumForShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumForShowView.h; sourceTree = "<group>"; };
 		3C181C591CCCF1020038D63F /* EnumForShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumForShowView.m; sourceTree = "<group>"; };
-		3CED6B341CD59E33006DD28C /* MessageViewSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewSwift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,7 @@
 		3CED6B331CD59E33006DD28C /* 信息提示 */ = {
 			isa = PBXGroup;
 			children = (
-				3CED6B341CD59E33006DD28C /* MessageViewSwift.swift */,
+				0485B2111CDC3D1F001E4A51 /* MessageView.swift */,
 			);
 			path = "信息提示";
 			sourceTree = "<group>";
@@ -157,6 +157,7 @@
 				TargetAttributes = {
 					3C181C2A1CCCEDD80038D63F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 8SDT32D4WS;
 					};
 				};
 			};
@@ -196,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0485B2121CDC3D1F001E4A51 /* MessageView.swift in Sources */,
 				3C181C541CCCEDE90038D63F /* 自定义属性.swift in Sources */,
 				3C181C521CCCEDE90038D63F /* 约束.swift in Sources */,
 				3C181C5A1CCCF1020038D63F /* EnumForShowView.m in Sources */,
@@ -206,7 +208,6 @@
 				3C181C301CCCEDD80038D63F /* main.m in Sources */,
 				3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */,
 				3C181C3C1CCCEDD80038D63F /* CodeCenter.xcdatamodeld in Sources */,
-				3CED6B361CD59E33006DD28C /* MessageViewSwift.swift in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,9 +320,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Five.CodeCenter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
 			};
@@ -331,9 +333,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Five.CodeCenter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
 			};
