@@ -36,9 +36,9 @@
 //    newUV.title.top = 10.0;
 //    newUV.title.bottom = 10.0;
 
-//    newUV.messages.topMessage.text = @"陷阵之至";
+    newUV.messages.topMessage.text = @"陷阵之至";
 ////    newUV.messages.topMessage.textColor = [UIColor cyanColor];
-////    newUV.messages.topMessage.top = 15.0;
+    newUV.messages.topMessage.top = 50.0;
 ////    newUV.messages.topMessage.bottom = 15.0;
 //
 //    newUV.textField.placeholder = @"当有死无生";
@@ -46,10 +46,10 @@
 //    newUV.textField.top = 10.0;
 //    newUV.textField.bottom = 50.0;
 //
-    newUV.messages.bottomMessage.text = @"bottomMessage";
+//    newUV.messages.bottomMessage.text = @"bottomMessage";
 //    newUV.messages.bottomMessage.textColor = [UIColor orangeColor];
 //    newUV.messages.bottomMessage.top = 10.0;
-//    newUV.messages.bottomMessage.bottom = 50.0;
+    newUV.messages.bottomMessage.bottom = 50.0;
 //    newUV.messages.bottomMessage.leading = 100;
 //    newUV.messages.bottomMessage.trailing = 100;
 

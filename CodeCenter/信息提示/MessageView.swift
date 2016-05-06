@@ -626,8 +626,11 @@ class MessageView: UIView {
             //背景色
             _titlePanel!.backgroundColor = UIColor.clearColor()
             
+            //超过边界不可见
+            _titlePanel?.clipsToBounds = true
+            
             self.addSubview(_titlePanel!)
-            _titlePanel!.translatesAutoresizingMaskIntoConstraints = false
+            _titlePanel?.translatesAutoresizingMaskIntoConstraints = false
 
             //Top
             let topCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
@@ -766,6 +769,9 @@ class MessageView: UIView {
             //背景色
             _topMessagePanel!.backgroundColor = UIColor.clearColor()
             
+            //超过边界不可见
+            _topMessagePanel?.clipsToBounds = true
+            
             self.addSubview(_topMessagePanel!)
             _topMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
             
@@ -847,7 +853,7 @@ class MessageView: UIView {
             //背景色
             _textFieldPanel!.backgroundColor = UIColor.clearColor()
             
-            //
+            //超过边界不可见
             _textFieldPanel?.clipsToBounds = true
             
             self.addSubview(_textFieldPanel!)
@@ -935,6 +941,9 @@ class MessageView: UIView {
         didSet{
             //背景色
             _bottomMessagePanel!.backgroundColor = UIColor.clearColor()
+            
+            //超过边界不可见
+            _bottomMessagePanel?.clipsToBounds = true
             
             self.addSubview(_bottomMessagePanel!)
             _bottomMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
