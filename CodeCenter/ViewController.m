@@ -25,35 +25,34 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+///MessageView
 - (IBAction)click:(UIButton *)sender{
     MessageView * newUV = [MessageView new];
     __weak MessageView * weakUV = newUV;
-    newUV.title.text = @"title";
+//    newUV.title.text = @"标题";
 //    newUV.title.textColor = [UIColor purpleColor];
-    newUV.title.font = [UIFont systemFontOfSize:20.0];
+//    newUV.title.font = [UIFont systemFontOfSize:20.0];
 //    newUV.title.separator.fillColor = [UIColor redColor];
 //    newUV.title.top = 10.0;
 //    newUV.title.bottom = 10.0;
-
+//
     newUV.messages.topMessage.text = @"陷阵之至";
-////    newUV.messages.topMessage.textColor = [UIColor cyanColor];
-    newUV.messages.topMessage.top = 50.0;
+//    newUV.messages.topMessage.textColor = [UIColor cyanColor];
+//    newUV.messages.topMessage.top = 50.0;
 ////    newUV.messages.topMessage.bottom = 15.0;
 //
-//    newUV.textField.placeholder = @"当有死无生";
+//    newUV.textField.placeholder = @"我是占位符";
 //    newUV.textField.enable = true;
 //    newUV.textField.top = 10.0;
 //    newUV.textField.bottom = 50.0;
 //
-//    newUV.messages.bottomMessage.text = @"bottomMessage";
+//    newUV.messages.bottomMessage.text = @"当有死无生";
 //    newUV.messages.bottomMessage.textColor = [UIColor orangeColor];
 //    newUV.messages.bottomMessage.top = 10.0;
-    newUV.messages.bottomMessage.bottom = 50.0;
+//    newUV.messages.bottomMessage.bottom = 50.0;
 //    newUV.messages.bottomMessage.leading = 100;
 //    newUV.messages.bottomMessage.trailing = 100;
 
-    
 //    newUV.leftButton.title = @"LeftButton";
 //    newUV.leftButton.titleColor = [UIColor blueColor];
 ////    newUV.leftButton.enable = false;
@@ -61,9 +60,6 @@
 ////    newUV.rightButton.enable = false;
 //    newUV.rightButton.title = @"RightButton";
 //    newUV.rightButton.titleColor = [UIColor redColor];
-    
-
-
     
     newUV.leftButtonClicked = ^(NSString * textValue) {
         [weakUV hideFromSuperView];
@@ -76,11 +72,11 @@
     };
     
     [newUV setMaskClick:^{
-        weakUV.buttons.leftButton.title = @"取消";
-        weakUV.buttons.leftButton.titleColor = [UIColor lightGrayColor];
+        weakUV.buttons.leftButton.title = @"雅蠛蝶";
+        weakUV.buttons.leftButton.titleColor = [UIColor brownColor];
         
         weakUV.buttons.rightButton.title = @"德玛西亚";
-        weakUV.buttons.rightButton.titleColor = [UIColor colorWithRed:0 green:122 / 255.0 blue:1 alpha:1.0];
+        weakUV.buttons.rightButton.titleColor = [UIColor redColor];
     }];
     
     NSArray * cs = [newUV constraintsOC:self.view centerX:@0 centerY:@0 specifiedWidth:@250 specifiedHeight:nil];

@@ -112,6 +112,13 @@ class CNSeparatorProperty: CNKVOProperty{
             }
         }
     }
+    var bottom: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "bottom")
+            }
+        }
+    }
     var fillColor:UIColor?{
         didSet{
             if self.propertyValueChanged != nil{
@@ -298,20 +305,16 @@ class MessageView: UIView {
         //Title的分割线
         title.separator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
-            case "top":
-//                self.titlese?.constant = CGFloat(self.title.top)
-                break
-                
             case "bottom":
-                self.titleSeperatorBottomConstraint?.constant = CGFloat(-self.title.bottom)
+                self.titleSeperatorBottomConstraint?.constant = CGFloat(-self.title.separator.bottom)
                 break
                 
             case "leading":
-                self.titleLeadingConstraint?.constant = CGFloat(self.title.leading)
+                self.titleLeadingConstraint?.constant = CGFloat(self.title.separator.leading)
                 break
                 
             case "trailing":
-                self.titleTrailingConstraint?.constant = CGFloat(-self.title.trailing)
+                self.titleTrailingConstraint?.constant = CGFloat(-self.title.separator.trailing)
                 break
                 
             case "enable":
@@ -411,14 +414,12 @@ class MessageView: UIView {
                 
             case "enable":
                 self.textFieldHeightConstraint?.constant = self.textField.enable ? 38.0 : 0
-                self.textFieldTopConstraint?.constant = self.textField.enable ? CGFloat(self.textField.top) : 0
                 
                 self.updateTitleSeparator()//更新标题分割线
                 break
                 
             default: break
             }
-            
         }
         
         self.messages.bottomMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
@@ -428,7 +429,7 @@ class MessageView: UIView {
                 break
                 
             case "bottom":
-                self.buttonPanelTopConstraint?.constant = CGFloat(-self.messages.bottomMessage.bottom)
+                self.bottomMessageBottomConstraint?.constant = CGFloat(-self.messages.bottomMessage.bottom)
                 break
                 
             case "leading":
@@ -459,7 +460,6 @@ class MessageView: UIView {
                 
             default: break
             }
-            
         }
         
         self.buttons.rightButton.propertyValueChanged = {[unowned self] (propertyName: NSString) in
@@ -512,11 +512,9 @@ class MessageView: UIView {
                 //只要有一个按钮可用，那么按钮容器的高度就得为44，否则为0
                 if (self.buttons.rightButton.enable || self.buttons.leftButton.enable){
                     self.buttonPanelHeightConstraint?.constant = 44
-//                    self.buttonPanelTopConstraint?.constant = 15.0
                 }
                 else{
                     self.buttonPanelHeightConstraint?.constant = 0
-//                    self.buttonPanelTopConstraint?.constant = 0.0
                 }
                 
                 break
