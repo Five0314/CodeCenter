@@ -22,6 +22,7 @@
 		3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C4D1CCCEDE90038D63F /* 约束OC.swift */; };
 		3C181C541CCCEDE90038D63F /* 自定义属性.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C4E1CCCEDE90038D63F /* 自定义属性.swift */; };
 		3C181C5A1CCCF1020038D63F /* EnumForShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C591CCCF1020038D63F /* EnumForShowView.m */; };
+		3CE9CF301CDF140F00C3E5DD /* 正则.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE9CF2F1CDF140F00C3E5DD /* 正则.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		3C181C551CCCEE5F0038D63F /* CodeCenter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CodeCenter-Bridging-Header.h"; sourceTree = "<group>"; };
 		3C181C581CCCF1020038D63F /* EnumForShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumForShowView.h; sourceTree = "<group>"; };
 		3C181C591CCCF1020038D63F /* EnumForShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumForShowView.m; sourceTree = "<group>"; };
+		3CE9CF2F1CDF140F00C3E5DD /* 正则.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "正则.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		3C181C2D1CCCEDD80038D63F /* CodeCenter */ = {
 			isa = PBXGroup;
 			children = (
+				3CE9CF2A1CDF105C00C3E5DD /* 正则 */,
 				3CED6B331CD59E33006DD28C /* 信息提示 */,
 				3C181C481CCCEDE90038D63F /* 扩展 */,
 				3C181C311CCCEDD80038D63F /* AppDelegate.h */,
@@ -116,6 +119,14 @@
 				3C181C591CCCF1020038D63F /* EnumForShowView.m */,
 			);
 			path = "扩展";
+			sourceTree = "<group>";
+		};
+		3CE9CF2A1CDF105C00C3E5DD /* 正则 */ = {
+			isa = PBXGroup;
+			children = (
+				3CE9CF2F1CDF140F00C3E5DD /* 正则.swift */,
+			);
+			path = "正则";
 			sourceTree = "<group>";
 		};
 		3CED6B331CD59E33006DD28C /* 信息提示 */ = {
@@ -209,6 +220,7 @@
 				3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */,
 				3C181C3C1CCCEDD80038D63F /* CodeCenter.xcdatamodeld in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
+				3CE9CF301CDF140F00C3E5DD /* 正则.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

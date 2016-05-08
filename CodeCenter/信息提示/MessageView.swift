@@ -232,7 +232,6 @@ class CNMessageViewButton: CNKVOProperty{
 //}
 
 class MessageView: UIView {
-    
     /// 标题
     let title = CNMessageViewTitleProperty()
     
