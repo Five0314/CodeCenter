@@ -79,6 +79,20 @@ class CNLabelProperty: CNConstraintProperty{
             }
         }
     }
+    var regularExpression:String?{//正则（高亮匹配到的字符串）
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "regularExpression")
+            }
+        }
+    }
+    var highlightColor:UIColor?{//高亮的颜色
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "highlightColor")
+            }
+        }
+    }
 }
 
 ///标题
@@ -283,7 +297,13 @@ class MessageView: UIView {
                 break
                 
             case "text":
-                self.titleLabelControl.text = self.title.text
+                if let atrributeText = self.stringWithRegular(self.title.text, regular: self.title.regularExpression, highlightColor: self.title.highlightColor){
+                    self.titleLabelControl.attributedText = atrributeText
+                }
+                else{
+                    self.titleLabelControl.attributedText = nil
+                    self.titleLabelControl.text = self.title.text
+                }
                 break
                 
             case "textColor":
@@ -296,6 +316,14 @@ class MessageView: UIView {
                 
             case "font":
                 self.titleLabelControl.font = self.title.font
+                break
+                
+            case "regularExpression":
+                self.title.text = self.title.text
+                break
+                
+            case "highlightColor":
+                self.title.text = self.title.text
                 break
                 
             default: break
@@ -349,8 +377,13 @@ class MessageView: UIView {
                 break
                 
             case "text":
-                self.topMessageLabelControl.text = self.messages.topMessage.text
-                self.updateTitleSeparator()//更新标题分割线
+                if let atrributeText = self.stringWithRegular(self.messages.topMessage.text, regular: self.messages.topMessage.regularExpression, highlightColor: self.messages.topMessage.highlightColor){
+                    self.topMessageLabelControl.attributedText = atrributeText
+                }
+                else{
+                    self.topMessageLabelControl.text = self.messages.topMessage.text
+                    self.updateTitleSeparator()//更新标题分割线
+                }
                 break
                 
             case "textColor":
@@ -363,6 +396,14 @@ class MessageView: UIView {
                 
             case "font":
                 self.topMessageLabelControl.font = self.messages.topMessage.font
+                break
+                
+            case "regularExpression":
+                self.messages.topMessage.text = self.messages.topMessage.text
+                break
+                
+            case "highlightColor":
+                self.messages.topMessage.text = self.messages.topMessage.text
                 break
                 
             default: break
@@ -441,9 +482,13 @@ class MessageView: UIView {
                 break
                 
             case "text":
-                self.bottomMessageLabelControl.text = self.messages.bottomMessage.text
-                
-                self.updateTitleSeparator()//更新标题分割线
+                if let atrributeText = self.stringWithRegular(self.messages.bottomMessage.text, regular: self.messages.bottomMessage.regularExpression, highlightColor: self.messages.bottomMessage.highlightColor){
+                    self.bottomMessageLabelControl.attributedText = atrributeText
+                }
+                else{
+                    self.bottomMessageLabelControl.text = self.messages.bottomMessage.text
+                    self.updateTitleSeparator()//更新标题分割线
+                }
                 break
                 
             case "textColor":
@@ -456,6 +501,14 @@ class MessageView: UIView {
                 
             case "font":
                 self.bottomMessageLabelControl.font = self.messages.bottomMessage.font
+                break
+                
+            case "regularExpression":
+                self.messages.bottomMessage.text = self.messages.bottomMessage.text
+                break
+                
+            case "highlightColor":
+                self.messages.bottomMessage.text = self.messages.bottomMessage.text
                 break
                 
             default: break
@@ -560,10 +613,11 @@ class MessageView: UIView {
         self.title.bottom = 10.0
         self.title.leading = 8.0
         self.title.trailing = 8.0
-        self.title.text = "提示"
         self.title.textColor = UIColor.blackColor()
         self.title.textAlignment = .Center
         self.title.font = UIFont.systemFontOfSize(20.0)
+//        self.title.highlightColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+//        self.title.regularExpression = "“((?!”.*“).)+”"
         
         self.title.separator.leading = 8.0
         self.title.separator.trailing = 8.0
@@ -614,7 +668,28 @@ class MessageView: UIView {
         self.buttons.rightButton.title = "确定"
         self.buttons.rightButton.titleColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
         self.buttons.rightButton.font = UIFont.systemFontOfSize(16.0)
+    }
+    
+    //MARK: - 高亮字符串
+    func stringWithRegular(text: String?, regular: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
+        if text == nil || regular == nil || highlightColor == nil{
+            return nil
+        }
         
+        do{
+            let regex = try NSRegularExpression(pattern: regular!, options: .CaseInsensitive)
+            let regularResult = regex.matchesInString(text!, options: .ReportCompletion, range: NSMakeRange(0, text!.characters.count))
+            
+            let attributedString = NSMutableAttributedString(string: text!)
+            for checkingResult in regularResult {
+                attributedString.addAttribute(NSForegroundColorAttributeName, value: highlightColor!, range: checkingResult.range)
+            }
+            
+            return attributedString
+        }
+        catch{
+            return nil
+        }
     }
     
     //MARK: - 标题
