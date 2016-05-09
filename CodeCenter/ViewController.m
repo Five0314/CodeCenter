@@ -33,8 +33,8 @@
 //    __weak MessageView * weakUV = newUV;
     
     newUV.title.text = @"标题“我就是标题”";
-    newUV.title.regularExpression = [NSString cnRegularWithBetween:@"我" and:@"标"];//高亮‘我’‘标’之间的字符
-    newUV.title.highlightColor = [UIColor redColor];
+//    newUV.title.regularExpression = [NSString cnRegularWithBetween:@"我" and:@"标"];//高亮‘我’‘标’之间的字符
+//    newUV.title.highlightColor = [UIColor redColor];
 //    newUV.title.textColor = [UIColor purpleColor];
 //    newUV.title.font = [UIFont systemFontOfSize:20.0];
 //    newUV.title.separator.fillColor = [UIColor redColor];
@@ -42,8 +42,8 @@
 //    newUV.title.bottom = 10.0;
 
     newUV.messages.topMessage.text = @"陷阵之至，当有死无生。“啦啦啦啦啦”";
-    newUV.messages.topMessage.regularExpression = [NSString cnRegular:@"啦"];//高亮‘啦’字
-    newUV.messages.topMessage.highlightColor = [UIColor redColor];
+//    newUV.messages.topMessage.regularExpression = [NSString cnRegular:@"啦"];//高亮‘啦’字
+//    newUV.messages.topMessage.highlightColor = [UIColor redColor];
 //    newUV.messages.topMessage.textColor = [UIColor cyanColor];
 //    newUV.messages.topMessage.top = 50.0;
 //    newUV.messages.topMessage.bottom = 15.0;
@@ -53,10 +53,10 @@
 //    newUV.textField.top = 10.0;
 //    newUV.textField.bottom = 50.0;
 
-    newUV.messages.bottomMessage.text = @"陷阵之至45678当有死无生";
-    newUV.messages.bottomMessage.regularExpression = @"\\d+";//高亮数字
+//    newUV.messages.bottomMessage.text = @"陷阵之至45678当有死无生";
+//    newUV.messages.bottomMessage.regularExpression = @"\\d+";//高亮数字
 //    newUV.messages.bottomMessage.regularExpression = @"[\u4e00-\u9fa5]+";//高亮汉字
-    newUV.messages.bottomMessage.highlightColor = [UIColor redColor];
+//    newUV.messages.bottomMessage.highlightColor = [UIColor redColor];
 //    newUV.messages.bottomMessage.textColor = [UIColor orangeColor];
 //    newUV.messages.bottomMessage.top = 10.0;
 //    newUV.messages.bottomMessage.bottom = 50.0;

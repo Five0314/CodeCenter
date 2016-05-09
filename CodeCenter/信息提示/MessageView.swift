@@ -233,8 +233,8 @@ class CNMessageViewButton: CNKVOProperty{
 
 class MessageView: UIView {
     
-    /// 单例
-    static let sharedInstance: MessageView = MessageView()
+//    /// 单例
+//    static let sharedInstance: MessageView = MessageView()
 
     
     /// 标题
