@@ -206,6 +206,13 @@ class CNButtonProperty: CNKVOProperty{
             }
         }
     }
+    var click: buttonClick?{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "click")
+            }
+        }
+    }
 }
 
 ///按钮
@@ -1302,10 +1309,9 @@ class MessageView: UIView {
     private var leftButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度的一半
     private var leftButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度
 
-    var leftButtonClicked: buttonClick?
     @objc private func leftButtonClick(sender: UIButton){
-        if (self.leftButtonClicked != nil){
-            self.leftButtonClicked!(textValue: self.textFieldControl.text ?? "")
+        if (self.buttons.leftButton.click != nil){
+            self.buttons.leftButton.click!(textValue: self.textFieldControl.text ?? "")
         }
         else{
             self .hideFromSuperView()
@@ -1363,10 +1369,9 @@ class MessageView: UIView {
     private var rightButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度的一半
     private var rightButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度
     
-    var rightButtonClicked: buttonClick?
     @objc private func rightButtonClick(sender: UIButton){
-        if (self.rightButtonClicked != nil){
-            self.rightButtonClicked!(textValue: self.textFieldControl.text ?? "")
+        if (self.buttons.rightButton.click != nil){
+            self.buttons.rightButton.click!(textValue: self.textFieldControl.text ?? "")
         }
         else{
             self .hideFromSuperView()

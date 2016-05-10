@@ -27,10 +27,8 @@
 
 // MARK: - MessageView
 - (IBAction)click:(UIButton *)sender{
-    __weak MessageView * newUV = [MessageView sharedInstance];
-    
-//    MessageView * newUV = [MessageView new];
-//    __weak MessageView * weakUV = newUV;
+    MessageView * newUV = [MessageView new];
+    __weak MessageView * weakUV = newUV;
     
     newUV.title.text = @"标题“我就是标题”";
 //    newUV.title.regularExpression = [NSString cnRegularWithBetween:@"我" and:@"标"];//高亮‘我’‘标’之间的字符
@@ -71,23 +69,23 @@
 //    newUV.rightButton.title = @"RightButton";
 //    newUV.rightButton.titleColor = [UIColor redColor];
 
-    newUV.leftButtonClicked = ^(NSString * textValue) {
-        [newUV hideFromSuperView];
+    newUV.buttons.leftButton.click = ^(NSString * textValue) {
+        [weakUV hideFromSuperView];
     };
     
-    newUV.rightButtonClicked = ^(NSString * textValue) {
-        newUV.messages.topMessage.text = @"哎哟，你点击草泥马";
-        newUV.messages.topMessage.regularExpression = @"[\u4e00-\u9fa5]+";//高亮汉字
-        newUV.messages.bottomMessage.text = @"草泥马吐了你一脸口水";
-        newUV.textField.placeholder = @"来打我啊，咩 ~ ~ ~";
+    newUV.buttons.rightButton.click = ^(NSString * textValue) {
+        weakUV.messages.topMessage.text = @"哎哟，你点击草泥马";
+        weakUV.messages.topMessage.regularExpression = @"[\u4e00-\u9fa5]+";//高亮汉字
+        weakUV.messages.bottomMessage.text = @"草泥马吐了你一脸口水";
+        weakUV.textField.placeholder = @"来打我啊，咩 ~ ~ ~";
     };
     
     [newUV setMaskClick:^{
-        newUV.buttons.leftButton.title = @"雅蠛蝶";
-        newUV.buttons.leftButton.titleColor = [UIColor brownColor];
+        weakUV.buttons.leftButton.title = @"雅蠛蝶";
+        weakUV.buttons.leftButton.titleColor = [UIColor brownColor];
         
-        newUV.buttons.rightButton.title = @"德玛西亚";
-        newUV.buttons.rightButton.titleColor = [UIColor redColor];
+        weakUV.buttons.rightButton.title = @"德玛西亚";
+        weakUV.buttons.rightButton.titleColor = [UIColor redColor];
     }];
     
     NSArray * cs = [newUV constraintsOC:self.view centerX:@0 centerY:@0 specifiedWidth:@250 specifiedHeight:nil];
