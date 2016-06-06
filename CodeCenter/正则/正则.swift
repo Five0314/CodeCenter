@@ -17,9 +17,9 @@ extension NSString{
     }
     
     ///匹配制定的字符
-    static func cnRegular(specifiedString: String) -> String{
+    static func cnRegular(specifiedString astring: String) -> String{
         //"“((?!”.*“).)+”"
         
-        return specifiedString + "+"
+        return astring + "+"
     }
 }

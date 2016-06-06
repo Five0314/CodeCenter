@@ -86,7 +86,7 @@ class CNLabelProperty: CNConstraintProperty{
             }
         }
     }
-    var highlightColor:UIColor?{//高亮的颜色
+    var highlightColor:UIColor = UIColor(red: 255 / 255.0, green: 68 / 255.0, blue: 0 / 255.0, alpha: 1.0){//高亮的颜色
         didSet{
             if self.propertyValueChanged != nil{
                 self.propertyValueChanged!(propertyName: "highlightColor")
@@ -255,13 +255,7 @@ class MessageView: UIView {
     
     ///按钮
     let buttons: CNMessageViewButton = CNMessageViewButton()
-    
-//    /// 左边的Button
-//    let leftButton = CNButtonProperty()
-    
-//    /// 右边的Button
-//    let rightButton = CNButtonProperty()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -308,8 +302,8 @@ class MessageView: UIView {
                 break
                 
             case "text":
-                if let atrributeText = self.stringWithRegular(self.title.text, regular: self.title.regularExpression, highlightColor: self.title.highlightColor){
-                    self.titleLabelControl.attributedText = atrributeText
+                if let attributedText = self.stringWithRegular(self.title.text, regular: self.title.regularExpression, highlightColor: self.title.highlightColor){
+                    self.titleLabelControl.attributedText = attributedText
                 }
                 else{
                     self.titleLabelControl.attributedText = nil
@@ -388,8 +382,8 @@ class MessageView: UIView {
                 break
                 
             case "text":
-                if let atrributeText = self.stringWithRegular(self.messages.topMessage.text, regular: self.messages.topMessage.regularExpression, highlightColor: self.messages.topMessage.highlightColor){
-                    self.topMessageLabelControl.attributedText = atrributeText
+                if let attributedText = self.stringWithRegular(self.messages.topMessage.text, regular: self.messages.topMessage.regularExpression, highlightColor: self.messages.topMessage.highlightColor){
+                    self.topMessageLabelControl.attributedText = attributedText
                 }
                 else{
                     self.topMessageLabelControl.text = self.messages.topMessage.text
@@ -493,8 +487,8 @@ class MessageView: UIView {
                 break
                 
             case "text":
-                if let atrributeText = self.stringWithRegular(self.messages.bottomMessage.text, regular: self.messages.bottomMessage.regularExpression, highlightColor: self.messages.bottomMessage.highlightColor){
-                    self.bottomMessageLabelControl.attributedText = atrributeText
+                if let attributedText = self.stringWithRegular(self.messages.bottomMessage.text, regular: self.messages.bottomMessage.regularExpression, highlightColor: self.messages.bottomMessage.highlightColor){
+                    self.bottomMessageLabelControl.attributedText = attributedText
                 }
                 else{
                     self.bottomMessageLabelControl.text = self.messages.bottomMessage.text
@@ -612,19 +606,19 @@ class MessageView: UIView {
     
     //MARK: - 重置控件
     func reset(){
-        //背景色
-        self.backgroundColor = UIColor.whiteColor()
+//        //背景色
+//        self.backgroundColor = UIColor.whiteColor()
         
-        //圆角
-        self.clipsToBounds = true
-        self.layer.cornerRadius = 5
+//        //圆角
+//        self.clipsToBounds = true
+//        self.layer.cornerRadius = 5
         
         //标题
         self.title.top = 10.0
         self.title.bottom = 10.0
         self.title.leading = 8.0
         self.title.trailing = 8.0
-        self.title.textColor = UIColor.blackColor()
+        self.title.textColor = UIColor(red: 23 / 255.0, green: 23 / 255.0, blue: 23 / 255.0, alpha: 1.0)
         self.title.textAlignment = .Center
         self.title.font = UIFont.systemFontOfSize(20.0)
 //        self.title.highlightColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
@@ -677,7 +671,7 @@ class MessageView: UIView {
         //RightButton
         self.buttons.rightButton.enable = true
         self.buttons.rightButton.title = "确定"
-        self.buttons.rightButton.titleColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+        self.buttons.rightButton.titleColor = UIColor(red: 255 / 255.0, green: 68 / 255.0, blue: 0 / 255.0, alpha: 1.0)
         self.buttons.rightButton.font = UIFont.systemFontOfSize(16.0)
     }
     
@@ -703,6 +697,47 @@ class MessageView: UIView {
         }
     }
     
+    private var _rootPanel: UIView?{
+        didSet{
+            //背景色
+            _rootPanel!.backgroundColor = UIColor.whiteColor()
+            
+            //超过边界不可见
+            _rootPanel?.clipsToBounds = true
+            
+            //圆角
+            _rootPanel?.layer.cornerRadius = 5;
+            
+            self.addSubview(_rootPanel!)
+            _rootPanel?.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Top
+            let topCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
+            topCS.active = true
+            
+            //Bottom
+            let bottomCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            bottomCS.active = true
+            
+            //Leading
+            let leadingCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            leadingCS.active = true
+            
+            //Trailing
+            let trailingCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            trailingCS.active = true
+        }
+    }
+    private var rootPanel: UIView{
+        get{
+            if _rootPanel == nil{
+                _rootPanel = UIView()
+            }
+            
+            return _rootPanel!
+        }
+    }
+    
     //MARK: - 标题
     
     private var _titlePanel:UIView?{
@@ -713,19 +748,19 @@ class MessageView: UIView {
             //超过边界不可见
             _titlePanel?.clipsToBounds = true
             
-            self.addSubview(_titlePanel!)
+            self.rootPanel.addSubview(_titlePanel!)
             _titlePanel?.translatesAutoresizingMaskIntoConstraints = false
 
             //Top
-            let topCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
+            let topCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Top, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Top, multiplier: 1.0, constant: 0)
             topCS.active = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            let leadingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
             leadingCS.active = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            let trailingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
             trailingCS.active = true
         }
     }
@@ -856,7 +891,7 @@ class MessageView: UIView {
             //超过边界不可见
             _topMessagePanel?.clipsToBounds = true
             
-            self.addSubview(_topMessagePanel!)
+            self.rootPanel.addSubview(_topMessagePanel!)
             _topMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
@@ -864,11 +899,11 @@ class MessageView: UIView {
             topCS.active = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            let leadingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
             leadingCS.active = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            let trailingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
             trailingCS.active = true
         }
     }
@@ -940,7 +975,7 @@ class MessageView: UIView {
             //超过边界不可见
             _textFieldPanel?.clipsToBounds = true
             
-            self.addSubview(_textFieldPanel!)
+            self.rootPanel.addSubview(_textFieldPanel!)
             _textFieldPanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
@@ -948,11 +983,11 @@ class MessageView: UIView {
             topCS.active = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            let leadingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
             leadingCS.active = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            let trailingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
             trailingCS.active = true
             
             //高度
@@ -1029,7 +1064,7 @@ class MessageView: UIView {
             //超过边界不可见
             _bottomMessagePanel?.clipsToBounds = true
             
-            self.addSubview(_bottomMessagePanel!)
+            self.rootPanel.addSubview(_bottomMessagePanel!)
             _bottomMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
@@ -1037,11 +1072,11 @@ class MessageView: UIView {
             topCS.active = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            let leadingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
             leadingCS.active = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            let trailingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
             trailingCS.active = true
         }
     }
@@ -1140,15 +1175,15 @@ class MessageView: UIView {
         didSet{
             _buttonPanel.clipsToBounds = true
             
-            self.addSubview(_buttonPanel)
+            self.rootPanel.addSubview(_buttonPanel)
             _buttonPanel.translatesAutoresizingMaskIntoConstraints = false
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+            let leadigLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
             leadigLC.active = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+            let trailingLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
             trailingLC.active = true
             
             //Top
@@ -1156,7 +1191,7 @@ class MessageView: UIView {
             self.buttonPanelTopConstraint?.active = true;
             
             //Bottom
-            let bottomLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            let bottomLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Bottom, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
             bottomLC.active = true
             
             //高度

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80D1CF6F42000405C6C /* CNLInechart.swift */; };
+		0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */; };
 		0485B2121CDC3D1F001E4A51 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2111CDC3D1F001E4A51 /* MessageView.swift */; };
 		3C181C301CCCEDD80038D63F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C2F1CCCEDD80038D63F /* main.m */; };
 		3C181C331CCCEDD80038D63F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C321CCCEDD80038D63F /* AppDelegate.m */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0437D80D1CF6F42000405C6C /* CNLInechart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLInechart.swift; sourceTree = "<group>"; };
+		0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLineChartTableViewCell.swift; sourceTree = "<group>"; };
 		0485B2111CDC3D1F001E4A51 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		3C181C2B1CCCEDD80038D63F /* CodeCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C181C2F1CCCEDD80038D63F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -61,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0437D8091CF6F3FE00405C6C /* 统计图 */ = {
+			isa = PBXGroup;
+			children = (
+				0437D80D1CF6F42000405C6C /* CNLInechart.swift */,
+				0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */,
+			);
+			path = "统计图";
+			sourceTree = "<group>";
+		};
 		3C181C221CCCEDD80038D63F = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +93,7 @@
 		3C181C2D1CCCEDD80038D63F /* CodeCenter */ = {
 			isa = PBXGroup;
 			children = (
+				0437D8091CF6F3FE00405C6C /* 统计图 */,
 				3CE9CF2A1CDF105C00C3E5DD /* 正则 */,
 				3CED6B331CD59E33006DD28C /* 信息提示 */,
 				3C181C481CCCEDE90038D63F /* 扩展 */,
@@ -168,7 +182,7 @@
 				TargetAttributes = {
 					3C181C2A1CCCEDD80038D63F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 8SDT32D4WS;
+						DevelopmentTeam = 9DKCK546Z5;
 					};
 				};
 			};
@@ -219,8 +233,10 @@
 				3C181C301CCCEDD80038D63F /* main.m in Sources */,
 				3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */,
 				3C181C3C1CCCEDD80038D63F /* CodeCenter.xcdatamodeld in Sources */,
+				0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
 				3CE9CF301CDF140F00C3E5DD /* 正则.swift in Sources */,
+				0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +351,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
 			};
@@ -348,7 +364,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
 			};
