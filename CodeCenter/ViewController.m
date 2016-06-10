@@ -59,6 +59,9 @@
     newUV.messages.topMessage.text = @"陷阵之至，当有死无生。“啦啦啦啦啦”";
     newUV.messages.bottomMessage.text = @"陷阵之至，当有死无生。“啦啦啦啦啦”";
 
+    weakUV.title.separator.bottomSeparator.hidden = false;
+    weakUV.messages.topMessage.separator.bottomSeparator.hidden = false;
+    
     newUV.buttons.leftButton.click = ^(NSString * textValue) {
         [weakUV hideFromSuperView];
     };
@@ -69,7 +72,7 @@
         weakUV.messages.bottomMessage.regularExpression = [NSString cnRegularWithSpecifiedString:@"草泥马"];
         weakUV.textField.placeholder = @"来打我啊，咩 ~ ~ ~";
         
-        weakUV.messages.topMessage.separator.enable = true;
+
     };
     
     [newUV setMaskClick:^{

@@ -2,7 +2,7 @@
 //  CNMessageViewProperty.swift
 //  CodeCenter
 //
-//  Created by mac on 16/6/10.
+//  Created by Five0314 on 16/6/10.
 //  Copyright © 2016年 Five. All rights reserved.
 //
 
@@ -18,15 +18,11 @@ typealias buttonClick = @convention(block) (textValue: NSString) -> Void
 //    var propertyValueChanged: propertyChange?{ get set}
 //}
 
-protocol CNEnableProtocol {
-    var enable: Bool{ get set}
-}
-
-
 class CNKVOProperty: NSObject {
     var propertyValueChanged: propertyChange?
 }
 
+//MARK: - 边距约束
 class CNConstraintProperty: CNKVOProperty{
     var top: Float = 0{
         didSet{
@@ -58,6 +54,7 @@ class CNConstraintProperty: CNKVOProperty{
     }
 }
 
+//MARK: - Label
 class CNLabelProperty: CNConstraintProperty{
     
     var textAlignment:NSTextAlignment = .Center{
@@ -104,31 +101,37 @@ class CNLabelProperty: CNConstraintProperty{
     }
 }
 
-/// 拥有分割线的Label(Title、TopMessage、BottomMessage)
-class CNMessageViewWithSeparator: CNLabelProperty{
-    ///分割线
-    let separator: CNSeparatorProperty = CNSeparatorProperty()
-}
-
-///按钮
-class CNMessageViewMessage: CNKVOProperty{
-    ///TopMessage
-    let topMessage: CNMessageViewWithSeparator = CNMessageViewWithSeparator()
-    
-    ///BottomMessage
-    let bottomMessage: CNMessageViewWithSeparator = CNMessageViewWithSeparator()
-}
-
-//分割线
-class CNSeparatorProperty: CNConstraintProperty, CNEnableProtocol{
-    var enable:Bool = false{
+//MARK: - 分割线
+class CNBaseSeparatorProperty: CNKVOProperty{
+    var leading: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "enable")
+                self.propertyValueChanged!(propertyName: "leading")
+            }
+        }
+    }
+    var trailing: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "trailing")
             }
         }
     }
     
+    var hidden:Bool = true{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "hidden")
+            }
+        }
+    }
+    var height:Float = 0.5{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "height")
+            }
+        }
+    }
     var fillColor: UIColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0){
         didSet{
             if self.propertyValueChanged != nil{
@@ -137,9 +140,50 @@ class CNSeparatorProperty: CNConstraintProperty, CNEnableProtocol{
         }
     }
 }
+class CNTopSeparatorProperty:CNBaseSeparatorProperty{
+    var top: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "top")
+            }
+        }
+    }
+}
+
+class CNBottomSeparatorProperty: CNBaseSeparatorProperty{
+    var bottom: Float = 0{
+        didSet{
+            if self.propertyValueChanged != nil{
+                self.propertyValueChanged!(propertyName: "bottom")
+            }
+        }
+    }
+}
+
+class CNSeparator: NSObject{
+    ///上方分割线
+    let topSeparator:CNTopSeparatorProperty = CNTopSeparatorProperty()
+    
+    ///下方分割线
+    let bottomSeparator:CNBottomSeparatorProperty = CNBottomSeparatorProperty()
+}
+
+///消息
+class CNMessageLabelWithSeparator: CNLabelProperty{
+    ///分割线
+    let separator: CNSeparator = CNSeparator()
+}
+
+class CNMessageContainsTopAndBottomMessage: NSObject{
+    ///上方的消息框
+    let topMessage: CNMessageLabelWithSeparator = CNMessageLabelWithSeparator()
+    
+    ///下方的消息框
+    let bottomMessage: CNMessageLabelWithSeparator = CNMessageLabelWithSeparator()
+}
 
 ///文本输入框
-class CNTextFieldProperty: CNLabelProperty, CNEnableProtocol{
+class CNTextFieldProperty: CNLabelProperty{
     var placeholder:String?{
         didSet{
             if self.propertyValueChanged != nil{
@@ -164,8 +208,8 @@ class CNTextFieldProperty: CNLabelProperty, CNEnableProtocol{
     }
 }
 
-///按钮
-class CNButtonProperty: CNKVOProperty, CNEnableProtocol{
+//MARK: - 按钮
+class CNButtonProperty: CNKVOProperty{
     var titleColor:UIColor?{
         didSet{
             if self.propertyValueChanged != nil{
@@ -203,9 +247,11 @@ class CNButtonProperty: CNKVOProperty, CNEnableProtocol{
     }
 }
 
-///按钮
 class CNMessageViewButton: CNKVOProperty{
     let leftButton: CNButtonProperty = CNButtonProperty()
     
     let rightButton: CNButtonProperty = CNButtonProperty()
 }
+
+
+

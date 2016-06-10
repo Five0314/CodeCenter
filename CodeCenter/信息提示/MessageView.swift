@@ -15,13 +15,13 @@ class MessageView: UIView {
 
     
     /// 标题
-    let title = CNMessageViewWithSeparator()
+    let title = CNMessageLabelWithSeparator()
     
     /// 输入框
     let textField = CNTextFieldProperty()
     
     ///信息
-    let messages: CNMessageViewMessage = CNMessageViewMessage()
+    let messages: CNMessageContainsTopAndBottomMessage = CNMessageContainsTopAndBottomMessage()
     
     ///按钮
     let buttons: CNMessageViewButton = CNMessageViewButton()
@@ -53,6 +53,7 @@ class MessageView: UIView {
     //MARK: - 添加KVO
     private func addCNKVO(){
         
+        //Title
         title.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
             case "top":
@@ -60,7 +61,7 @@ class MessageView: UIView {
                 break
                 
             case "bottom":
-                self.titleSeperatorTopConstraint?.constant = CGFloat(self.title.bottom + self.title.separator.top)
+                self.titleBottomConstraint?.constant = CGFloat(-self.title.bottom)
                 break
                 
             case "leading":
@@ -105,27 +106,60 @@ class MessageView: UIView {
             }
         }
         
-        //Title的分割线
-        title.separator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+        title.separator.topSeparator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
-            case "bottom":
-                self.titleSeperatorBottomConstraint?.constant = CGFloat(-self.title.separator.bottom)
+            case "top":
+                self.titleTopSeperatorTopConstraint?.constant = CGFloat(self.title.separator.topSeparator.top)
                 break
                 
             case "leading":
-                self.titleSeperatorLeadingConstraint?.constant = CGFloat(self.title.separator.leading)
+                self.titleTopSeperatorLeadingConstraint?.constant = CGFloat(self.title.separator.topSeparator.leading)
                 break
                 
             case "trailing":
-                self.titleSeperatorTrailingConstraint?.constant = CGFloat(-self.title.separator.trailing)
+                self.titleTopSeperatorTrailingConstraint?.constant = CGFloat(-self.title.separator.topSeparator.trailing)
                 break
                 
-            case "enable":
-                self.titleSeperator.hidden = !self.title.separator.enable
+            case "heigth":
+                self.titleTopSeperatorHeigthConstraint?.constant = CGFloat(self.title.separator.topSeparator.height)
+                break
+                
+            case "hidden":
+                self.titleTopSeperator.hidden = self.title.separator.topSeparator.hidden
                 break
                 
             case "fillColor":
-                self.titleSeperator.backgroundColor = self.title.separator.fillColor
+                self.titleTopSeperator.backgroundColor = self.title.separator.topSeparator.fillColor
+                break
+                
+            default: break
+            }
+        }
+        
+        title.separator.bottomSeparator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "bottom":
+                self.titleBottomSeperatorBottomConstraint?.constant = CGFloat(-self.title.separator.bottomSeparator.bottom)
+                break
+                
+            case "leading":
+                self.titleBottomSeperatorLeadingConstraint?.constant = CGFloat(self.title.separator.bottomSeparator.leading)
+                break
+                
+            case "trailing":
+                self.titleBottomSeperatorTrailingConstraint?.constant = CGFloat(-self.title.separator.bottomSeparator.trailing)
+                break
+                
+            case "height":
+                self.titleBottomSeperatorHeightConstraint?.constant = CGFloat(self.title.separator.bottomSeparator.height)
+                break
+                
+            case "hidden":
+                self.titleBottomSeperator.hidden = self.title.separator.bottomSeparator.hidden
+                break
+                
+            case "fillColor":
+                self.titleBottomSeperator.backgroundColor = self.title.separator.bottomSeparator.fillColor
                 break
                 
             default: break
@@ -134,7 +168,6 @@ class MessageView: UIView {
         
         //TopMessage
         self.messages.topMessage.propertyValueChanged = {[unowned self] (propertyName: NSString) in
-            
             switch propertyName {
             case "top":
                 self.topMessageTopConstraint?.constant = CGFloat(self.messages.topMessage.top)
@@ -158,7 +191,6 @@ class MessageView: UIView {
                 }
                 else{
                     self.topMessageLabel.text = self.messages.topMessage.text
-                    self.updateTitleSeparator()//更新标题分割线
                 }
                 break
                 
@@ -186,27 +218,60 @@ class MessageView: UIView {
             }
         }
         
-        //TopMessage的分割线
-        self.messages.topMessage.separator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+        self.messages.topMessage.separator.topSeparator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
-            case "bottom":
-                self.topMessageSeperatorBottomConstraint?.constant = CGFloat(-self.messages.topMessage.separator.bottom)
+            case "top":
+                self.topMessageTopSeperatorTopConstraint?.constant = CGFloat(self.messages.topMessage.separator.topSeparator.top)
                 break
                 
             case "leading":
-                self.topMessageSeperatorLeadingConstraint?.constant = CGFloat(self.messages.topMessage.separator.leading)
+                self.topMessageTopSeperatorLeadingConstraint?.constant = CGFloat(self.messages.topMessage.separator.topSeparator.leading)
                 break
                 
             case "trailing":
-                self.topMessageSeperatorTrailingConstraint?.constant = CGFloat(-self.messages.topMessage.separator.trailing)
+                self.topMessageTopSeperatorTrailingConstraint?.constant = CGFloat(-self.messages.topMessage.separator.topSeparator.trailing)
                 break
                 
-            case "enable":
-                self.topMessageSeperator.hidden = !self.messages.topMessage.separator.enable
+            case "height":
+                self.topMessageTopSeperatorHeightConstraint?.constant = CGFloat(self.messages.topMessage.separator.topSeparator.height)
+                break
+                
+            case "hidden":
+                self.topMessageTopSeperator.hidden = self.messages.topMessage.separator.topSeparator.hidden
                 break
                 
             case "fillColor":
-                self.topMessageSeperator.backgroundColor = self.messages.topMessage.separator.fillColor
+                self.topMessageTopSeperator.backgroundColor = self.messages.topMessage.separator.topSeparator.fillColor
+                break
+                
+            default: break
+            }
+        }
+        
+        self.messages.topMessage.separator.bottomSeparator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "top":
+                self.topMessageBottomSeperatorBottomConstraint?.constant = CGFloat(-self.messages.topMessage.separator.bottomSeparator.bottom)
+                break
+                
+            case "leading":
+                self.topMessageBottomSeperatorLeadingConstraint?.constant = CGFloat(self.messages.topMessage.separator.bottomSeparator.leading)
+                break
+                
+            case "trailing":
+                self.topMessageBottomSeperatorTrailingConstraint?.constant = CGFloat(-self.messages.topMessage.separator.bottomSeparator.trailing)
+                break
+                
+            case "height":
+                self.topMessageBottomSeperatorHeightConstraint?.constant = CGFloat(self.messages.topMessage.separator.bottomSeparator.height)
+                break
+                
+            case "hidden":
+                self.topMessageBottomSeperator.hidden = self.messages.topMessage.separator.bottomSeparator.hidden
+                break
+                
+            case "fillColor":
+                self.topMessageBottomSeperator.backgroundColor = self.messages.topMessage.separator.bottomSeparator.fillColor
                 break
                 
             default: break
@@ -258,8 +323,6 @@ class MessageView: UIView {
                 
             case "enable":
                 self.textFieldHeightConstraint?.constant = self.textField.enable ? 38.0 : 0
-                
-                self.updateTitleSeparator()//更新标题分割线
                 break
                 
             default: break
@@ -291,7 +354,6 @@ class MessageView: UIView {
                 }
                 else{
                     self.bottomMessageLabel.text = self.messages.bottomMessage.text
-                    self.updateTitleSeparator()//更新标题分割线
                 }
                 break
                 
@@ -319,27 +381,60 @@ class MessageView: UIView {
             }
         }
         
-        //BottomMessage的分割线
-        self.messages.bottomMessage.separator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+        self.messages.bottomMessage.separator.topSeparator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
-            case "bottom":
-                self.bottomMessageSeperatorBottomConstraint?.constant = CGFloat(-self.messages.bottomMessage.separator.bottom)
+            case "top":
+                self.bottomMessageTopSeperatorTopConstraint?.constant = CGFloat(self.messages.bottomMessage.separator.topSeparator.top)
                 break
                 
             case "leading":
-                self.bottomMessageSeperatorLeadingConstraint?.constant = CGFloat(self.messages.bottomMessage.separator.leading)
+                self.bottomMessageTopSeperatorLeadingConstraint?.constant = CGFloat(self.messages.bottomMessage.separator.topSeparator.leading)
                 break
                 
             case "trailing":
-                self.bottomMessageSeperatorTrailingConstraint?.constant = CGFloat(-self.messages.bottomMessage.separator.trailing)
+                self.bottomMessageTopSeperatorTrailingConstraint?.constant = CGFloat(-self.messages.bottomMessage.separator.topSeparator.trailing)
                 break
                 
-            case "enable":
-                self.bottomMessageSeperator.hidden = !self.messages.bottomMessage.separator.enable
+            case "height":
+                self.bottomMessageTopSeperatorHeightConstraint?.constant = CGFloat(self.messages.bottomMessage.separator.bottomSeparator.height)
+                break
+                
+            case "hidden":
+                self.bottomMessageTopSeperator.hidden = self.messages.bottomMessage.separator.topSeparator.hidden
                 break
                 
             case "fillColor":
-                self.bottomMessageSeperator.backgroundColor = self.messages.bottomMessage.separator.fillColor
+                self.bottomMessageTopSeperator.backgroundColor = self.messages.bottomMessage.separator.topSeparator.fillColor
+                break
+                
+            default: break
+            }
+        }
+        
+        self.messages.bottomMessage.separator.bottomSeparator.propertyValueChanged = {[unowned self] (propertyName: NSString) in
+            switch propertyName {
+            case "bottom":
+                self.bottomMessageBottomSeperatorBottomConstraint?.constant = CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.bottom)
+                break
+                
+            case "leading":
+                self.bottomMessageBottomSeperatorLeadingConstraint?.constant = CGFloat(self.messages.bottomMessage.separator.bottomSeparator.leading)
+                break
+                
+            case "trailing":
+                self.bottomMessageBottomSeperatorTrailingConstraint?.constant = CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.trailing)
+                break
+                
+            case "height":
+                self.bottomMessageBottomSeperatorHeightConstraint?.constant = CGFloat(self.messages.bottomMessage.separator.bottomSeparator.height)
+                break
+                
+            case "hidden":
+                self.bottomMessageBottomSeperator.hidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
+                break
+                
+            case "fillColor":
+                self.bottomMessageBottomSeperator.backgroundColor = self.messages.bottomMessage.separator.bottomSeparator.fillColor
                 break
                 
             default: break
@@ -450,10 +545,9 @@ class MessageView: UIView {
 //        self.title.highlightColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
 //        self.title.regularExpression = "“((?!”.*“).)+”"
         
-        self.title.separator.leading = 8.0
-        self.title.separator.trailing = 8.0
-//        self.title.separator.fillColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
-        self.title.separator.enable = false
+        self.title.separator.bottomSeparator.leading = 8.0
+        self.title.separator.bottomSeparator.trailing = 8.0
+        self.title.separator.bottomSeparator.hidden = false
         
         //TopMessage
         self.messages.topMessage.top = 25.0
@@ -619,6 +713,10 @@ class MessageView: UIView {
             self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.top))
             self.titleTopConstraint?.active = true
             
+            //Bottom
+            self.titleBottomConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.title.bottom))
+            self.titleBottomConstraint?.active = true
+            
             //Leading
             self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
             self.titleLeadingConstraint?.active = true
@@ -633,8 +731,8 @@ class MessageView: UIView {
             if(_titleLabel == nil){
                 _titleLabel = UILabel()
                 
-                if _titleSeperator == nil{
-                    self.titleSeperator
+                if _titleBottomSeperator == nil{
+                    self.titleBottomSeperator
                 }
             }
             
@@ -642,67 +740,106 @@ class MessageView: UIView {
         }
     }
     private var titleTopConstraint: NSLayoutConstraint?
+    private var titleBottomConstraint: NSLayoutConstraint?
     private var titleTrailingConstraint: NSLayoutConstraint?
     private var titleLeadingConstraint: NSLayoutConstraint?
     
     //MARK:标题分割线
-    private var _titleSeperator:UIView!{
+    private var _titleTopSeperator:UIView!{
         didSet{
             //填充色
-            _titleSeperator.backgroundColor = self.title.separator.fillColor
-            _titleSeperator.tag = 1314
-            _titleSeperator.hidden = !self.title.separator.enable
+            _titleTopSeperator.backgroundColor = self.title.separator.topSeparator.fillColor
+            _titleTopSeperator.tag = 1314
+            _titleTopSeperator.hidden = self.title.separator.topSeparator.hidden
             
-            self.titlePanel.addSubview(_titleSeperator)
-            _titleSeperator.translatesAutoresizingMaskIntoConstraints = false
+            self.titlePanel.addSubview(_titleTopSeperator)
+            _titleTopSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.titleSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titleLabel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.bottom + self.title.separator.top))
-            self.titleSeperatorTopConstraint!.active = true
-            
-            //Bottom
-            self.titleSeperatorBottomConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.separator.bottom))
-            self.titleSeperatorBottomConstraint!.active = true
+            self.titleTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.top))
+            self.titleTopSeperatorTopConstraint!.active = true
             
             //Leading
-            self.titleSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.leading))
-            self.titleSeperatorLeadingConstraint!.active = true
+            self.titleTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.leading))
+            self.titleTopSeperatorTrailingConstraint!.active = true
             
             //Trailing
-            self.titleSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.trailing))
-            self.titleSeperatorTrailingConstraint!.active = true
+            self.titleTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.topSeparator.trailing))
+            self.titleTopSeperatorLeadingConstraint!.active = true
             
             //高度
-            let heightLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
-            heightLC.active = true
+            self.titleTopSeperatorHeigthConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.height))
+            self.titleTopSeperatorHeigthConstraint!.active = true
         }
     }
-    private var titleSeperator:UIView!{
+    private var titleTopSeperator:UIView!{
         get{
-            if(_titleSeperator == nil){
-                _titleSeperator = UIView()
+            if(_titleTopSeperator == nil){
+                _titleTopSeperator = UIView()
             }
             
-            return _titleSeperator
+            return _titleTopSeperator
         }
     }
-    private var titleSeperatorTopConstraint: NSLayoutConstraint?
-    private var titleSeperatorBottomConstraint: NSLayoutConstraint?
-    private var titleSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var titleSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var titleTopSeperatorTopConstraint: NSLayoutConstraint?
+    private var titleTopSeperatorTrailingConstraint: NSLayoutConstraint?
+    private var titleTopSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var titleTopSeperatorHeigthConstraint: NSLayoutConstraint?
     
-    //MARK: 更新标题分割线（主要是根据有木有“TopMessage、TextField、BottomMessage”来确定是否显示标题分割线）
-    private func updateTitleSeparator(){
-        if((self.messages.topMessage.text != nil && self.messages.topMessage.text != "") ||
-            self.textField.enable ||
-            (self.messages.bottomMessage.text != nil && self.messages.bottomMessage.text != "")){
+    
+    private var _titleBottomSeperator:UIView!{
+        didSet{
+            //填充色
+            _titleBottomSeperator.backgroundColor = self.title.separator.bottomSeparator.fillColor
+            _titleBottomSeperator.tag = 1314
+            _titleBottomSeperator.hidden = self.title.separator.bottomSeparator.hidden
             
-            self.title.separator.enable = true
-        }
-        else{
-            self.title.separator.enable = false
+            self.titlePanel.addSubview(_titleBottomSeperator)
+            _titleBottomSeperator.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Bottom
+            self.titleBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.bottom))
+            self.titleBottomSeperatorBottomConstraint!.active = true
+            
+            //Leading
+            self.titleBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.leading))
+            self.titleBottomSeperatorLeadingConstraint!.active = true
+            
+            //Trailing
+            self.titleBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.topSeparator.trailing))
+            self.titleBottomSeperatorTrailingConstraint!.active = true
+            
+            //高度
+            self.titleBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.height))
+            self.titleBottomSeperatorHeightConstraint!.active = true
         }
     }
+    private var titleBottomSeperator:UIView!{
+        get{
+            if(_titleBottomSeperator == nil){
+                _titleBottomSeperator = UIView()
+            }
+            
+            return _titleBottomSeperator
+        }
+    }
+    private var titleBottomSeperatorBottomConstraint: NSLayoutConstraint?
+    private var titleBottomSeperatorTrailingConstraint: NSLayoutConstraint?
+    private var titleBottomSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var titleBottomSeperatorHeightConstraint: NSLayoutConstraint?
+    
+//    //MARK: 更新标题分割线（主要是根据有木有“TopMessage、TextField、BottomMessage”来确定是否显示标题分割线）
+//    private func updateTitleSeparator(){
+//        if((self.messages.topMessage.text != nil && self.messages.topMessage.text != "") ||
+//            self.textField.enable ||
+//            (self.messages.bottomMessage.text != nil && self.messages.bottomMessage.text != "")){
+//            
+//            self.title.separator.enable = true
+//        }
+//        else{
+//            self.title.separator.enable = false
+//        }
+//    }
     
     //MARK: - TopMessage
     
@@ -776,10 +913,6 @@ class MessageView: UIView {
         get{
             if(_topMessageLabel == nil){
                 _topMessageLabel = UILabel()
-                
-                if _topMessageSeperator == nil{
-                    self.topMessageSeperator
-                }
             }
             
             return _topMessageLabel
@@ -791,48 +924,92 @@ class MessageView: UIView {
     private var topMessageTrailingConstraint:NSLayoutConstraint?
     
     //MARK: TopMessage分隔线
-    private var _topMessageSeperator:UIView!{
+    private var _topMessageTopSeperator:UIView!{
         didSet{
-            _topMessageSeperator.superview?.bringSubviewToFront(_topMessageSeperator)
+            _topMessageTopSeperator.superview?.bringSubviewToFront(_topMessageTopSeperator)
             
             //填充色
-            _topMessageSeperator.backgroundColor = self.messages.topMessage.separator.fillColor
-            _topMessageSeperator.tag = 1314
-            _topMessageSeperator.hidden = !self.messages.topMessage.separator.enable
+            _topMessageTopSeperator.backgroundColor = self.messages.topMessage.separator.topSeparator.fillColor
+            _topMessageTopSeperator.tag = 1314
+            _topMessageTopSeperator.hidden = self.messages.topMessage.separator.topSeparator.hidden
             
-            self.topMessagePanel.addSubview(_topMessageSeperator)
-            _topMessageSeperator.translatesAutoresizingMaskIntoConstraints = false
+            self.topMessagePanel.addSubview(_topMessageTopSeperator)
+            _topMessageTopSeperator.translatesAutoresizingMaskIntoConstraints = false
             
-            //Bottom
-            self.topMessageSeperatorBottomConstraint = NSLayoutConstraint.init(item: _topMessageSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.bottom))
-            self.topMessageSeperatorBottomConstraint!.active = true
+            //Top
+            self.topMessageTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.topSeparator.top))
+            self.topMessageTopSeperatorTopConstraint!.active = true
             
             //Leading
-            self.topMessageSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.leading))
-            self.topMessageSeperatorLeadingConstraint!.active = true
+            self.topMessageTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.topSeparator.leading))
+            self.topMessageTopSeperatorLeadingConstraint!.active = true
             
             //Trailing
-            self.topMessageSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.trailing))
-            self.topMessageSeperatorTrailingConstraint!.active = true
+            self.topMessageTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.topSeparator.trailing))
+            self.topMessageTopSeperatorTrailingConstraint!.active = true
             
             //高度
-            let heightLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
-            heightLC.active = true
+            self.topMessageTopSeperatorHeightConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.topSeparator.height))
+            self.topMessageTopSeperatorHeightConstraint!.active = true
         }
     }
-    private var topMessageSeperator:UIView!{
+    private var topMessageTopSeperator:UIView!{
         get{
-            if(_topMessageSeperator == nil){
-                _topMessageSeperator = UIView()
+            if(_topMessageTopSeperator == nil){
+                _topMessageTopSeperator = UIView()
             }
             
-            return _topMessageSeperator
+            return _topMessageTopSeperator
         }
     }
-    private var topMessageSeperatorBottomConstraint: NSLayoutConstraint?
-    private var topMessageSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var topMessageSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var topMessageTopSeperatorTopConstraint: NSLayoutConstraint?
+    private var topMessageTopSeperatorTrailingConstraint: NSLayoutConstraint?
+    private var topMessageTopSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var topMessageTopSeperatorHeightConstraint: NSLayoutConstraint?
     
+    //MARK: TopMessage分隔线
+    private var _topMessageBottomSeperator:UIView!{
+        didSet{
+            _topMessageBottomSeperator.superview?.bringSubviewToFront(_topMessageBottomSeperator)
+            
+            //填充色
+            _topMessageBottomSeperator.backgroundColor = self.messages.topMessage.separator.bottomSeparator.fillColor
+            _topMessageBottomSeperator.tag = 1314
+            _topMessageBottomSeperator.hidden = self.messages.topMessage.separator.bottomSeparator.hidden
+            
+            self.topMessagePanel.addSubview(_topMessageBottomSeperator)
+            _topMessageBottomSeperator.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Bottom
+            self.topMessageBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.bottomSeparator.bottom))
+            self.topMessageBottomSeperatorBottomConstraint!.active = true
+            
+            //Leading
+            self.topMessageBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.bottomSeparator.leading))
+            self.topMessageBottomSeperatorLeadingConstraint!.active = true
+            
+            //Trailing
+            self.topMessageBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.bottomSeparator.trailing))
+            self.topMessageBottomSeperatorTrailingConstraint!.active = true
+            
+            //高度
+            self.topMessageBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.bottomSeparator.height))
+            self.topMessageBottomSeperatorHeightConstraint!.active = true
+        }
+    }
+    private var topMessageBottomSeperator:UIView!{
+        get{
+            if(_topMessageBottomSeperator == nil){
+                _topMessageBottomSeperator = UIView()
+            }
+            
+            return _topMessageBottomSeperator
+        }
+    }
+    private var topMessageBottomSeperatorBottomConstraint: NSLayoutConstraint?
+    private var topMessageBottomSeperatorTrailingConstraint: NSLayoutConstraint?
+    private var topMessageBottomSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var topMessageBottomSeperatorHeightConstraint: NSLayoutConstraint?
     
     //MARK: - TextField
     
@@ -1003,45 +1180,87 @@ class MessageView: UIView {
     private var bottomMessageTrailingConstraint:NSLayoutConstraint?
     
     //MARK: BottomMessage分隔线
-    private var _bottomMessageSeperator:UIView!{
+    private var _bottomMessageTopSeperator:UIView!{
         didSet{
             //填充色
-            _bottomMessageSeperator.backgroundColor = self.messages.bottomMessage.separator.fillColor
-            _bottomMessageSeperator.tag = 1314
-            _bottomMessageSeperator.hidden = !self.messages.bottomMessage.separator.enable
+            _bottomMessageTopSeperator.backgroundColor = self.messages.bottomMessage.separator.bottomSeparator.fillColor
+            _bottomMessageTopSeperator.tag = 1314
+            _bottomMessageTopSeperator.hidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
             
-            self.bottomMessagePanel.addSubview(_bottomMessageSeperator)
-            _bottomMessageSeperator.translatesAutoresizingMaskIntoConstraints = false
+            self.bottomMessagePanel.addSubview(_bottomMessageTopSeperator)
+            _bottomMessageTopSeperator.translatesAutoresizingMaskIntoConstraints = false
             
-            //Bottom
-            self.bottomMessageSeperatorBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            self.bottomMessageSeperatorBottomConstraint!.active = true
+            //Top
+            self.bottomMessageTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.topSeparator.top))
+            self.bottomMessageTopSeperatorTopConstraint!.active = true
             
             //Leading
-            self.bottomMessageSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.leading))
-            self.bottomMessageSeperatorLeadingConstraint!.active = true
+            self.bottomMessageTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.topSeparator.leading))
+            self.bottomMessageTopSeperatorLeadingConstraint!.active = true
             
             //Trailing
-            self.bottomMessageSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.trailing))
-            self.bottomMessageSeperatorTrailingConstraint!.active = true
+            self.bottomMessageTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.topSeparator.trailing))
+            self.bottomMessageTopSeperatorTrailingConstraint!.active = true
             
             //高度
-            let heightLC = NSLayoutConstraint.init(item: _titleSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
-            heightLC.active = true
+            self.bottomMessageTopSeperatorHeightConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.topSeparator.height))
+            self.bottomMessageTopSeperatorHeightConstraint!.active = true
         }
     }
-    private var bottomMessageSeperator:UIView!{
+    private var bottomMessageTopSeperator:UIView!{
         get{
-            if(_bottomMessageSeperator == nil){
-                _bottomMessageSeperator = UIView()
+            if(_bottomMessageTopSeperator == nil){
+                _bottomMessageTopSeperator = UIView()
             }
             
-            return _bottomMessageSeperator
+            return _bottomMessageTopSeperator
         }
     }
-    private var bottomMessageSeperatorBottomConstraint: NSLayoutConstraint?
-    private var bottomMessageSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var bottomMessageSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var bottomMessageTopSeperatorTopConstraint: NSLayoutConstraint?
+    private var bottomMessageTopSeperatorTrailingConstraint: NSLayoutConstraint?
+    private var bottomMessageTopSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var bottomMessageTopSeperatorHeightConstraint: NSLayoutConstraint?
+    
+    private var _bottomMessageBottomSeperator:UIView!{
+        didSet{
+            //填充色
+            _bottomMessageBottomSeperator.backgroundColor = self.messages.bottomMessage.separator.bottomSeparator.fillColor
+            _bottomMessageBottomSeperator.tag = 1314
+            _bottomMessageBottomSeperator.hidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
+            
+            self.bottomMessagePanel.addSubview(_bottomMessageBottomSeperator)
+            _bottomMessageBottomSeperator.translatesAutoresizingMaskIntoConstraints = false
+            
+            //Bottom
+            self.bottomMessageBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.bottom))
+            self.bottomMessageBottomSeperatorBottomConstraint!.active = true
+            
+            //Leading
+            self.bottomMessageBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.bottomSeparator.leading))
+            self.bottomMessageBottomSeperatorLeadingConstraint!.active = true
+            
+            //Trailing
+            self.bottomMessageBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.trailing))
+            self.bottomMessageBottomSeperatorTrailingConstraint!.active = true
+            
+            //高度
+            self.bottomMessageBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.bottomSeparator.height))
+            self.bottomMessageBottomSeperatorHeightConstraint!.active = true
+        }
+    }
+    private var bottomMessageBottomSeperator:UIView!{
+        get{
+            if(_bottomMessageBottomSeperator == nil){
+                _bottomMessageBottomSeperator = UIView()
+            }
+            
+            return _bottomMessageBottomSeperator
+        }
+    }
+    private var bottomMessageBottomSeperatorBottomConstraint: NSLayoutConstraint?
+    private var bottomMessageBottomSeperatorTrailingConstraint: NSLayoutConstraint?
+    private var bottomMessageBottomSeperatorLeadingConstraint: NSLayoutConstraint?
+    private var bottomMessageBottomSeperatorHeightConstraint: NSLayoutConstraint?
     
 //    //MARK: - 不再提醒
 //    private var _noLongerRemindPanel: UIView!{
