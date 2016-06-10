@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0404538A1D0525C0006B761A /* UIColor扩展.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040453891D0525C0006B761A /* UIColor扩展.swift */; };
 		0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80D1CF6F42000405C6C /* CNLInechart.swift */; };
 		0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */; };
 		0485B2121CDC3D1F001E4A51 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2111CDC3D1F001E4A51 /* MessageView.swift */; };
+		049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CB4091D08173900902F23 /* CNNavigationController.swift */; };
+		04B3D2971D0A61020015BA96 /* CNMessageViewProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */; };
 		3C181C301CCCEDD80038D63F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C2F1CCCEDD80038D63F /* main.m */; };
 		3C181C331CCCEDD80038D63F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C321CCCEDD80038D63F /* AppDelegate.m */; };
 		3C181C361CCCEDD80038D63F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C351CCCEDD80038D63F /* ViewController.m */; };
@@ -28,9 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040453891D0525C0006B761A /* UIColor扩展.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor扩展.swift"; sourceTree = "<group>"; };
 		0437D80D1CF6F42000405C6C /* CNLInechart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLInechart.swift; sourceTree = "<group>"; };
 		0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLineChartTableViewCell.swift; sourceTree = "<group>"; };
 		0485B2111CDC3D1F001E4A51 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		049CB4091D08173900902F23 /* CNNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNavigationController.swift; sourceTree = "<group>"; };
+		04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMessageViewProperty.swift; sourceTree = "<group>"; };
 		3C181C2B1CCCEDD80038D63F /* CodeCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C181C2F1CCCEDD80038D63F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C181C311CCCEDD80038D63F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040453881D0525AD006B761A /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				040453891D0525C0006B761A /* UIColor扩展.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
 		0437D8091CF6F3FE00405C6C /* 统计图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +116,7 @@
 				3C181C341CCCEDD80038D63F /* ViewController.h */,
 				3C181C351CCCEDD80038D63F /* ViewController.m */,
 				3C181C371CCCEDD80038D63F /* Main.storyboard */,
+				049CB4091D08173900902F23 /* CNNavigationController.swift */,
 				3C181C3D1CCCEDD80038D63F /* Assets.xcassets */,
 				3C181C3F1CCCEDD80038D63F /* LaunchScreen.storyboard */,
 				3C181C421CCCEDD80038D63F /* Info.plist */,
@@ -123,6 +138,7 @@
 		3C181C481CCCEDE90038D63F /* 扩展 */ = {
 			isa = PBXGroup;
 			children = (
+				040453881D0525AD006B761A /* UIColor */,
 				3C181C491CCCEDE90038D63F /* 宏定义.swift */,
 				3C181C4A1CCCEDE90038D63F /* 弹出隐藏视图.swift */,
 				3C181C4B1CCCEDE90038D63F /* 弹出隐藏视图OC.swift */,
@@ -147,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				0485B2111CDC3D1F001E4A51 /* MessageView.swift */,
+				04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */,
 			);
 			path = "信息提示";
 			sourceTree = "<group>";
@@ -182,7 +199,7 @@
 				TargetAttributes = {
 					3C181C2A1CCCEDD80038D63F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 9DKCK546Z5;
+						DevelopmentTeam = 8SDT32D4WS;
 					};
 				};
 			};
@@ -224,9 +241,11 @@
 			files = (
 				0485B2121CDC3D1F001E4A51 /* MessageView.swift in Sources */,
 				3C181C541CCCEDE90038D63F /* 自定义属性.swift in Sources */,
+				04B3D2971D0A61020015BA96 /* CNMessageViewProperty.swift in Sources */,
 				3C181C521CCCEDE90038D63F /* 约束.swift in Sources */,
 				3C181C5A1CCCF1020038D63F /* EnumForShowView.m in Sources */,
 				3C181C361CCCEDD80038D63F /* ViewController.m in Sources */,
+				0404538A1D0525C0006B761A /* UIColor扩展.swift in Sources */,
 				3C181C4F1CCCEDE90038D63F /* 宏定义.swift in Sources */,
 				3C181C331CCCEDD80038D63F /* AppDelegate.m in Sources */,
 				3C181C501CCCEDE90038D63F /* 弹出隐藏视图.swift in Sources */,
@@ -234,6 +253,7 @@
 				3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */,
 				3C181C3C1CCCEDD80038D63F /* CodeCenter.xcdatamodeld in Sources */,
 				0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */,
+				049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
 				3CE9CF301CDF140F00C3E5DD /* 正则.swift in Sources */,
 				0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */,
@@ -351,7 +371,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
 			};
@@ -364,7 +384,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
 			};

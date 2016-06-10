@@ -12,4 +12,6 @@
 #import <UIKit/UIKit.h>
 #import "EnumForShowView.h"
 
+#import "AppDelegate.h"
+
 #endif /* CodeCenter_Bridging_Header_h */

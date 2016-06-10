@@ -29,13 +29,13 @@
 
 //-(BOOL)shouldAutorotate
 //{
-////    NSLog(@"shouldAutorotate");
+//    NSLog(@" ====================================== shouldAutorotate");
 //    return YES;
 //}
-
+//
 //-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 //{
-////    NSLog(@"supportedInterfaceOrientations");
+//    NSLog(@" ====================================== supportedInterfaceOrientations");
 //    return UIInterfaceOrientationMaskLandscapeRight;
 //}
 //
@@ -57,17 +57,19 @@
     
     newUV.title.text = @"标题“我就是标题”";
     newUV.messages.topMessage.text = @"陷阵之至，当有死无生。“啦啦啦啦啦”";
+    newUV.messages.bottomMessage.text = @"陷阵之至，当有死无生。“啦啦啦啦啦”";
 
     newUV.buttons.leftButton.click = ^(NSString * textValue) {
         [weakUV hideFromSuperView];
     };
     
     newUV.buttons.rightButton.click = ^(NSString * textValue) {
-        weakUV.messages.topMessage.text = @"哎哟，你点击草泥马";
-        weakUV.messages.topMessage.regularExpression = @"[\u4e00-\u9fa5]+";//高亮汉字
-        weakUV.messages.bottomMessage.text = @"草泥马吐了你一脸口水";
+        weakUV.messages.topMessage.text = @"哎哟，你点击草泥马，123";
+        weakUV.messages.topMessage.regularExpression = @"[\u4e00-\u9fa50-9]+";//高亮汉字、数字essages.bottomMessage.text = @"草泥马吐了你一脸口水";
         weakUV.messages.bottomMessage.regularExpression = [NSString cnRegularWithSpecifiedString:@"草泥马"];
         weakUV.textField.placeholder = @"来打我啊，咩 ~ ~ ~";
+        
+        weakUV.messages.topMessage.separator.enable = true;
     };
     
     [newUV setMaskClick:^{
