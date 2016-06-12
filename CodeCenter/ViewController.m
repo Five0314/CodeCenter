@@ -47,13 +47,13 @@
 
 // MARK: - MessageView
 - (IBAction)click:(UIButton *)sender{
-    MessageView * newUV = [MessageView new];
+    CNMessageView * newUV = [CNMessageView new];
     newUV.layer.shadowColor = [UIColor blackColor].CGColor;
     newUV.layer.shadowOpacity = 0.5;
     newUV.layer.shadowRadius = 5;
     newUV.layer.shadowOffset = CGSizeMake(0, 0);
     
-    __weak MessageView * weakUV = newUV;
+    __weak CNMessageView * weakUV = newUV;
     
     newUV.title.text = @"标题“我就是标题”";
     weakUV.title.regularExpression = [NSString cnRegularWithSpecifiedString:@"我就是标题"];
