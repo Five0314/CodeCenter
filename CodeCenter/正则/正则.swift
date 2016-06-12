@@ -13,13 +13,13 @@ extension NSString{
     static func cnRegular(between between: String, and: String) -> String{
         //"“((?!”.*“).)+”"
         
-        return between + "((?!" + between + ".*" + and + ").)+" + and
+        return between + "(((?!" + between + ".*" + and + ").)+)" + and
     }
     
     ///匹配制定的字符
     static func cnRegular(specifiedString astring: String) -> String{
         //"“((?!”.*“).)+”"
         
-        return astring + "+"
+        return "((" + astring + ")+)"
     }
 }

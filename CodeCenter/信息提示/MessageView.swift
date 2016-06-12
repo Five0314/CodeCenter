@@ -11,8 +11,15 @@ import UIKit
 class MessageView: UIView {
     
 //    /// 单例
-//    static let sharedInstance: MessageView = MessageView()
-
+//    private static let _sharedInstance: MessageView = MessageView()
+//    static var sharedInstance: MessageView{
+//        get{
+//            
+//            _sharedInstance.reset()
+//            
+//            return _sharedInstance
+//        }
+//    }
     
     /// 标题
     let title = CNMessageLabelWithSeparator()
