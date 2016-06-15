@@ -264,11 +264,11 @@ class CNMessageView: UIView {
             self.titleBottomSeperatorBottomConstraint!.active = true
             
             //Leading
-            self.titleBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.leading))
+            self.titleBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.leading))
             self.titleBottomSeperatorLeadingConstraint!.active = true
             
             //Trailing
-            self.titleBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.topSeparator.trailing))
+            self.titleBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.bottomSeparator.trailing))
             self.titleBottomSeperatorTrailingConstraint!.active = true
             
             //高度
