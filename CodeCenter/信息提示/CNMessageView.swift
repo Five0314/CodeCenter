@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CNMessageView: UIView {
+public class CNMessageView: UIView {
     
 //    /// 单例
 //    private static let _sharedInstance: CNMessageView = CNMessageView()
@@ -42,7 +42,7 @@ class CNMessageView: UIView {
         self.rightButtonControl//只要实例化任何一个Button，会以为关联调用而全部被初始化
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.reset()//重置控件
@@ -53,31 +53,31 @@ class CNMessageView: UIView {
 //        fatalError("init(coder:) has not been implemented")
     }
     
-    deinit{
-        print("deinit")
-    }
+//    deinit{
+//        print("deinit")
+//    }
     
-    //MARK: - 高亮字符串
-    func stringWithRegular(text: String?, regular: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
-        if text == nil || regular == nil || highlightColor == nil{
-            return nil
-        }
-        
-        do{
-            let regex = try NSRegularExpression(pattern: regular!, options: .CaseInsensitive)
-            let regularResult = regex.matchesInString(text!, options: .ReportCompletion, range: NSMakeRange(0, text!.characters.count))
-            
-            let attributedString = NSMutableAttributedString(string: text!)
-            for checkingResult in regularResult {
-                attributedString.addAttribute(NSForegroundColorAttributeName, value: highlightColor!, range: checkingResult.range)
-            }
-            
-            return attributedString
-        }
-        catch{
-            return nil
-        }
-    }
+//    //MARK: - 高亮字符串
+//    func stringWithRegular(text: String?, regular: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
+//        if text == nil || regular == nil || highlightColor == nil{
+//            return nil
+//        }
+//        
+//        do{
+//            let regex = try NSRegularExpression(pattern: regular!, options: .CaseInsensitive)
+//            let regularResult = regex.matchesInString(text!, options: .ReportCompletion, range: NSMakeRange(0, text!.characters.count))
+//            
+//            let attributedString = NSMutableAttributedString(string: text!)
+//            for checkingResult in regularResult {
+//                attributedString.addAttribute(NSForegroundColorAttributeName, value: highlightColor!, range: checkingResult.range)
+//            }
+//            
+//            return attributedString
+//        }
+//        catch{
+//            return nil
+//        }
+//    }
     
     private var _rootPanel: UIView?{
         didSet{
@@ -1011,7 +1011,7 @@ class CNMessageView: UIView {
 
 //MARK: - KVO
 extension CNMessageView{
-    //MARK: - 添加KVO
+    //MARK: 添加KVO
     private func addCNKVO(){
         
         //Title
@@ -1034,7 +1034,7 @@ extension CNMessageView{
                 break
                 
             case "text":
-                if let attributedText = self.stringWithRegular(self.title.text, regular: self.title.regularExpression, highlightColor: self.title.highlightColor){
+                if let attributedText = NSMutableAttributedString.stringWithRegular(self.title.text, regular: self.title.regularExpression, highlightColor: self.title.highlightColor){
                     self.titleLabel.attributedText = attributedText
                 }
                 else{
@@ -1147,7 +1147,7 @@ extension CNMessageView{
                 break
                 
             case "text":
-                if let attributedText = self.stringWithRegular(self.messages.topMessage.text, regular: self.messages.topMessage.regularExpression, highlightColor: self.messages.topMessage.highlightColor){
+                if let attributedText = NSMutableAttributedString.stringWithRegular(self.messages.topMessage.text, regular: self.messages.topMessage.regularExpression, highlightColor: self.messages.topMessage.highlightColor){
                     self.topMessageLabel.attributedText = attributedText
                 }
                 else{
@@ -1310,7 +1310,7 @@ extension CNMessageView{
                 break
                 
             case "text":
-                if let attributedText = self.stringWithRegular(self.messages.bottomMessage.text, regular: self.messages.bottomMessage.regularExpression, highlightColor: self.messages.bottomMessage.highlightColor){
+                if let attributedText = NSMutableAttributedString.stringWithRegular(self.messages.bottomMessage.text, regular: self.messages.bottomMessage.regularExpression, highlightColor: self.messages.bottomMessage.highlightColor){
                     self.bottomMessageLabel.attributedText = attributedText
                 }
                 else{

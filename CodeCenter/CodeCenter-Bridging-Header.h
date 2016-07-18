@@ -10,7 +10,10 @@
 #define CodeCenter_Bridging_Header_h
 
 #import <UIKit/UIKit.h>
+//#import <objc/runtime.h>
+//#import <objc/message.h>
 #import "EnumForShowView.h"
+#import <CommonCrypto/CommonDigest.h>//MD5需要
 
 #import "AppDelegate.h"
 

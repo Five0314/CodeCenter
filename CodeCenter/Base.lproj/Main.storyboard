@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-ev-Htn">
-                                <rect key="frame" x="20" y="40" width="335" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-ev-Htn">
+                                <rect key="frame" x="15" y="84" width="345" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="svE-TE-2BV"/>
@@ -31,8 +30,8 @@
                                     <action selector="click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hxt-6g-i1k"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CfN-oO-yYS">
-                                <rect key="frame" x="16" y="99" width="343" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CfN-oO-yYS">
+                                <rect key="frame" x="15" y="143" width="345" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2uX-vy-LT3"/>
@@ -44,15 +43,31 @@
                                     <segue destination="gmD-2R-QdY" kind="push" id="Rbz-bq-sqM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cB-9n-crw">
+                                <rect key="frame" x="15" y="202" width="345" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="UoL-nR-Zct"/>
+                                </constraints>
+                                <state key="normal" title="左对齐CollectionView">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ToX-g2-dFo" kind="push" id="YwD-MJ-tUs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CfN-oO-yYS" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2aA-lw-qPI"/>
-                            <constraint firstItem="Hhb-ev-Htn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="5sG-4m-T59"/>
-                            <constraint firstAttribute="trailing" secondItem="Hhb-ev-Htn" secondAttribute="trailing" constant="20" id="6jK-wj-yT2"/>
+                            <constraint firstItem="Hhb-ev-Htn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="5sG-4m-T59"/>
+                            <constraint firstAttribute="trailing" secondItem="Hhb-ev-Htn" secondAttribute="trailing" constant="15" id="6jK-wj-yT2"/>
+                            <constraint firstAttribute="trailing" secondItem="5cB-9n-crw" secondAttribute="trailing" constant="15" id="6xc-5b-0TH"/>
+                            <constraint firstItem="5cB-9n-crw" firstAttribute="top" secondItem="CfN-oO-yYS" secondAttribute="bottom" constant="15" id="Nez-wG-8Tp"/>
                             <constraint firstItem="CfN-oO-yYS" firstAttribute="top" secondItem="Hhb-ev-Htn" secondAttribute="bottom" constant="15" id="R8F-ph-PgJ"/>
-                            <constraint firstItem="CfN-oO-yYS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YYo-wf-EBM"/>
+                            <constraint firstItem="5cB-9n-crw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="cSI-nj-Mwc"/>
                             <constraint firstItem="Hhb-ev-Htn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="dm9-mD-YUl"/>
+                            <constraint firstItem="CfN-oO-yYS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="hAR-gp-khc"/>
+                            <constraint firstAttribute="trailing" secondItem="CfN-oO-yYS" secondAttribute="trailing" constant="15" id="ipG-nB-M5b"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l17-OS-wBC"/>
@@ -79,25 +94,82 @@
             </objects>
             <point key="canvasLocation" x="26.5" y="628.5"/>
         </scene>
-        <!--View Controller-->
+        <!--LineChart-->
         <scene sceneID="guo-w4-hqa">
             <objects>
-                <viewController id="gmD-2R-QdY" sceneMemberID="viewController">
+                <viewController id="gmD-2R-QdY" userLabel="LineChart" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ste-sK-d6h"/>
                         <viewControllerLayoutGuide type="bottom" id="fsW-21-kYQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bAT-Sl-tWm" customClass="CNLInechart" customModule="CodeCenter" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="VNd-1L-SvH"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGk-DP-ScF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921.5" y="628.5"/>
+            <point key="canvasLocation" x="917" y="535"/>
+        </scene>
+        <!--左对齐CollectionView-->
+        <scene sceneID="EFm-xi-Jpl">
+            <objects>
+                <viewController storyboardIdentifier="LeftCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ToX-g2-dFo" userLabel="左对齐CollectionView" customClass="LeftCollectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rmw-sM-dnB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mtf-NX-sKu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vEg-dJ-Tyd">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dYw-2b-ZCq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="uE3-FB-8IK" customClass="CNCollectionViewLeftFlowLayout">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UICollectionViewCell" id="CDZ-nc-EzJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ToX-g2-dFo" id="Nth-uk-uBZ"/>
+                                    <outlet property="delegate" destination="ToX-g2-dFo" id="woJ-pd-jwT"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dYw-2b-ZCq" firstAttribute="top" secondItem="vEg-dJ-Tyd" secondAttribute="top" id="CZT-92-NJJ"/>
+                            <constraint firstAttribute="trailing" secondItem="dYw-2b-ZCq" secondAttribute="trailing" id="Ga4-3y-mMV"/>
+                            <constraint firstItem="dYw-2b-ZCq" firstAttribute="leading" secondItem="vEg-dJ-Tyd" secondAttribute="leading" id="aP4-eY-MH3"/>
+                            <constraint firstAttribute="bottom" secondItem="dYw-2b-ZCq" secondAttribute="bottom" id="wg5-H7-SaM"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="Fy3-Zc-URc"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="cnCollectionView" destination="dYw-2b-ZCq" id="dWg-xw-cDf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dGe-Mv-1H1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="1077"/>
         </scene>
     </scenes>
 </document>
