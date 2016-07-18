@@ -7,6 +7,7 @@
 //
 
 #import "LeftCollectionViewController.h"
+#import "CNCollectionViewCell.h"
 
 @interface LeftCollectionViewController ()
 
@@ -32,21 +33,21 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 150;
+    return 50;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat w = arc4random() % 88 + 36;
+//    CGFloat w = arc4random() % 88 + 36;
+//    NSInteger h = collectionView.bounds.size.height / 2;
+//    return CGSizeMake(v, h);
     
-    NSInteger h = collectionView.bounds.size.height / 6;
-    
-    return CGSizeMake(w, h);
+    return collectionView.bounds.size;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    
-    newCell.backgroundColor = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1.0];
+    CNCollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CNCollectionViewCell" forIndexPath:indexPath];
+    newCell.idx = indexPath.row;
+    [newCell reshow];
     
     return newCell;
 }

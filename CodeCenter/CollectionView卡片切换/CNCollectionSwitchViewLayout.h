@@ -1,5 +1,5 @@
 //
-//  CNCollectionViewLeftFlowLayout.h
+//  CNCollectionSwitchViewLayout.h
 //  CodeCenter
 //
 //  Created by mac on 16/7/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CNCollectionViewLeftFlowLayout : UICollectionViewFlowLayout
+@interface CNCollectionSwitchViewLayout : UICollectionViewFlowLayout
 
 @end

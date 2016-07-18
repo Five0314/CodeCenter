@@ -12,6 +12,13 @@
 
 @interface ViewController ()
 
+@property(weak, nonatomic) IBOutlet UIView * topView;
+
+@property(weak, nonatomic) IBOutlet UIView * leftView;
+
+@property(weak, nonatomic) IBOutlet UIView * rightView;
+@property(weak, nonatomic) IBOutlet UIView * rightView2;
+
 @end
 
 @implementation ViewController
@@ -19,13 +26,56 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+//    UIView * maskView = [[UIView alloc] initWithFrame:_leftView.frame];
+    
+//    _rightView2.maskView = maskView;
+    
+    _topView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _topView.layer.borderWidth = 2;
+    
+    _leftView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _leftView.layer.borderWidth = 2;
+    
+    _rightView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _rightView.layer.borderWidth = 2;
+    
+    _rightView2.layer.borderColor = [UIColor whiteColor].CGColor;
+    _rightView2.layer.borderWidth = 2;
+
+
+    UIBezierPath * path1 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-24, 0, _leftView.bounds.size.width + 2, _leftView.bounds.size.height + 2) cornerRadius:_leftView.bounds.size.width / 2 + 1];
+    
+    UIBezierPath * path2 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-12, -24, _leftView.bounds.size.width + 2, _leftView.bounds.size.height + 2) cornerRadius:_leftView.bounds.size.width / 2 + 1];
+    [path1 appendPath:path2];
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [path1 bezierPathByReversingPath].CGPath;
+    
+    [_rightView2.layer setMask:shapeLayer];
 }
+
+//+ (UIBezierPath *)cutCorner:(CGRect)originalFrame length:(CGFloat)length
+//{
+//    CGRect rect = originalFrame;
+//    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+//    
+//    [bezierPath moveToPoint:CGPointMake(0, length)];
+//    [bezierPath addLineToPoint:CGPointMake(length, 0)];
+//    [bezierPath addLineToPoint:CGPointMake(rect.size.width - length, 0)];
+//    [bezierPath addLineToPoint:CGPointMake(rect.size.width, length)];
+//    [bezierPath addLineToPoint:CGPointMake(rect.size.width, rect.size.height - length)];
+//    [bezierPath addLineToPoint:CGPointMake(rect.size.width - length, rect.size.height)];
+//    [bezierPath addLineToPoint:CGPointMake(length, rect.size.height)];
+//    [bezierPath addLineToPoint:CGPointMake(0, rect.size.height - length)];
+//    [bezierPath closePath];
+//    return bezierPath;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 //-(BOOL)shouldAutorotate
 //{

@@ -10,18 +10,6 @@
 
 @implementation CNCollectionViewLeftFlowLayout
 
-//- (instancetype)init{
-//    self = [super init];
-//    if (self){
-//        _maximumInteritemSpacing = 0;
-//    }
-//    return self;
-//}
-//
-//- (void)awakeFromNib{
-//    _maximumInteritemSpacing = 0;
-//}
-
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
     //使用系统帮我们计算好的结果。

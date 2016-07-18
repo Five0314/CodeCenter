@@ -17,6 +17,8 @@
 		04E2264E1D3C6575000FFEA9 /* LeftCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2264D1D3C6575000FFEA9 /* LeftCollectionViewController.m */; };
 		04E226501D3C713A000FFEA9 /* StringEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2264F1D3C713A000FFEA9 /* StringEncryption.swift */; };
 		04E226521D3C724A000FFEA9 /* CNMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E226511D3C724A000FFEA9 /* CNMutableAttributedString.swift */; };
+		04E2265C1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2265B1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m */; };
+		04FE0B5C1D3CB42700F84C2F /* CNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0B5B1D3CB42700F84C2F /* CNCollectionViewCell.m */; };
 		3C181C301CCCEDD80038D63F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C2F1CCCEDD80038D63F /* main.m */; };
 		3C181C331CCCEDD80038D63F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C321CCCEDD80038D63F /* AppDelegate.m */; };
 		3C181C361CCCEDD80038D63F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C181C351CCCEDD80038D63F /* ViewController.m */; };
@@ -47,6 +49,10 @@
 		04E2264D1D3C6575000FFEA9 /* LeftCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftCollectionViewController.m; sourceTree = "<group>"; };
 		04E2264F1D3C713A000FFEA9 /* StringEncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringEncryption.swift; sourceTree = "<group>"; };
 		04E226511D3C724A000FFEA9 /* CNMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMutableAttributedString.swift; sourceTree = "<group>"; };
+		04E2265A1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionSwitchViewLayout.h; sourceTree = "<group>"; };
+		04E2265B1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionSwitchViewLayout.m; sourceTree = "<group>"; };
+		04FE0B5A1D3CB42700F84C2F /* CNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewCell.h; sourceTree = "<group>"; };
+		04FE0B5B1D3CB42700F84C2F /* CNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewCell.m; sourceTree = "<group>"; };
 		3C181C2B1CCCEDD80038D63F /* CodeCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C181C2F1CCCEDD80038D63F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C181C311CCCEDD80038D63F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,8 +111,19 @@
 				04E2264A1D3C6396000FFEA9 /* CNCollectionViewLeftFlowLayout.m */,
 				04E2264C1D3C6575000FFEA9 /* LeftCollectionViewController.h */,
 				04E2264D1D3C6575000FFEA9 /* LeftCollectionViewController.m */,
+				04FE0B5A1D3CB42700F84C2F /* CNCollectionViewCell.h */,
+				04FE0B5B1D3CB42700F84C2F /* CNCollectionViewCell.m */,
 			);
 			path = "CollectionView左对齐";
+			sourceTree = "<group>";
+		};
+		04E226531D3C9DB0000FFEA9 /* CollectionView卡片切换 */ = {
+			isa = PBXGroup;
+			children = (
+				04E2265A1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.h */,
+				04E2265B1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m */,
+			);
+			path = "CollectionView卡片切换";
 			sourceTree = "<group>";
 		};
 		3C181C221CCCEDD80038D63F = {
@@ -128,6 +145,7 @@
 		3C181C2D1CCCEDD80038D63F /* CodeCenter */ = {
 			isa = PBXGroup;
 			children = (
+				04E226531D3C9DB0000FFEA9 /* CollectionView卡片切换 */,
 				04E226461D3C633E000FFEA9 /* CollectionView左对齐 */,
 				0437D8091CF6F3FE00405C6C /* 统计图 */,
 				3CE9CF2A1CDF105C00C3E5DD /* 正则 */,
@@ -275,11 +293,13 @@
 				04E2264B1D3C6396000FFEA9 /* CNCollectionViewLeftFlowLayout.m in Sources */,
 				3C181C331CCCEDD80038D63F /* AppDelegate.m in Sources */,
 				3C181C501CCCEDE90038D63F /* 弹出隐藏视图.swift in Sources */,
+				04FE0B5C1D3CB42700F84C2F /* CNCollectionViewCell.m in Sources */,
 				04E2264E1D3C6575000FFEA9 /* LeftCollectionViewController.m in Sources */,
 				3C181C301CCCEDD80038D63F /* main.m in Sources */,
 				3C181C531CCCEDE90038D63F /* 约束OC.swift in Sources */,
 				3C181C3C1CCCEDD80038D63F /* CodeCenter.xcdatamodeld in Sources */,
 				0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */,
+				04E2265C1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m in Sources */,
 				049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */,
 				04E226521D3C724A000FFEA9 /* CNMutableAttributedString.swift in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
