@@ -14,8 +14,8 @@
     _cnLabel.backgroundColor = [UIColor colorWithRed:(255 / (_idx % 3) + 50) / 255.0 green:125 / 255.0 blue:125 / 255.0 alpha:1];
     
     NSMutableString * text = [NSMutableString new];
-    for (NSUInteger idx = 0; idx < 100; idx++) {
-        [text appendString:[NSString stringWithFormat:@"%ld", (unsigned long)_idx]];
+    for (NSUInteger idx = 0; idx < 10; idx++) {
+        [text appendString:[NSString stringWithFormat:@"%@%ld%@", idx == 0 ? @"" : @"   ", (unsigned long)_idx, idx == 10 ? @"" : @"   "]];
     }
     _cnLabel.text = text;
     

@@ -27,7 +27,8 @@
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{
 
     //使用系统帮我们计算好的结果。
-    NSArray * attributes = [super layoutAttributesForElementsInRect:rect];
+    CGRect newRect = CGRectMake(rect.origin.x - rect.size.width, rect.origin.y, rect.size.width * 3, rect.size.height);
+    NSArray * attributes = [super layoutAttributesForElementsInRect:newRect];
 
     NSLog(@"---------------------------------------------------------------");
     
@@ -38,31 +39,25 @@
     double cvW = cUV.bounds.size.width;
     
     [attributes enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(UICollectionViewLayoutAttributes * cellAttributes, NSUInteger idx, BOOL * _Nonnull stop) {
-        cellAttributes.zIndex = 1000 - fabs(os - CGRectGetMinX(cellAttributes.frame));//层级，防止被遮盖
         
-        CGFloat scale = 1 - fabs(os + cvHW - cellAttributes.center.x) * 2 / cUV.bounds.size.width * 0.2;//缩放比例
-        if (scale < 0.8){
-            scale = 0.8;
-        }
-        CGAffineTransform cellTransform = CGAffineTransformMakeScale(scale, scale);
         
         CGFloat cTC = os + cvHW - cellAttributes.center.x;//Cell的中心到屏幕中心的距离
         CGFloat uCTC = fabs(cTC);//Cell的中心到屏幕中心的距离的绝对值
         
         if (uCTC - cvW >= cvHW){
-//            if (uCTC - cvW >= cvW){
-                cellAttributes.alpha = 0;
-//            }
-//            else{
-//                cellAttributes.alpha = 1;
-//            }
-            //            else{
-            //                cellAttributes.alpha = 1 - (uCTC - cvW - 20) / 20;
-            //            }
+            cellAttributes.alpha = 0;
             NSLog(@"******************偏移量%f 中心间距%f 索引：%ld", cTC, uCTC, (long)cellAttributes.indexPath.row);
         }
         else {
             cellAttributes.alpha = 1;
+            
+            cellAttributes.zIndex = 1000 - fabs(os - CGRectGetMinX(cellAttributes.frame));//层级，防止被遮盖
+            
+            CGFloat scale = 1 - fabs(os + cvHW - cellAttributes.center.x) * 2 / cUV.bounds.size.width * 0.2;//缩放比例
+            if (scale < 0.8){
+                scale = 0.8;
+            }
+            CGAffineTransform cellTransform = CGAffineTransformMakeScale(scale, scale);
             
             if (uCTC >= cvHW){
                 if (cTC < 0){//右边的
@@ -79,9 +74,10 @@
             else{
                 NSLog(@"------------------偏移量%f 中心间距%f 索引：%ld", cTC, uCTC, (long)cellAttributes.indexPath.row);
             }
+            
+            cellAttributes.transform = cellTransform;
         }
         
-        cellAttributes.transform = cellTransform;
     }];
     
     return attributes;
