@@ -9,15 +9,20 @@
 #import "ViewController.h"
 #import "CodeCenter-Swift.h"
 #import "AppDelegate.h"
+#import "RMJTeamInformation.h"
+#import "CNCoderCenter.h"
 
 @interface ViewController ()
 
 @property(weak, nonatomic) IBOutlet UIView * topView;
+@property(weak, nonatomic) IBOutlet UIImageView * topImageView;
 
 @property(weak, nonatomic) IBOutlet UIView * leftView;
+@property(weak, nonatomic) IBOutlet UIImageView * leftImageView;
 
 @property(weak, nonatomic) IBOutlet UIView * rightView;
-@property(weak, nonatomic) IBOutlet UIView * rightView2;
+@property(weak, nonatomic) IBOutlet UIImageView * rightImageView;
+//@property(weak, nonatomic) IBOutlet UIView * rightView2;
 
 @end
 
@@ -25,52 +30,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-//    UIView * maskView = [[UIView alloc] initWithFrame:_leftView.frame];
-    
-//    _rightView2.maskView = maskView;
     
     _topView.layer.borderColor = [UIColor whiteColor].CGColor;
     _topView.layer.borderWidth = 2;
     
+    _topImageView.layer.cornerRadius = _topImageView.bounds.size.width / 2;
+    _topImageView.layer.masksToBounds = true;
+    _topImageView.image = [UIImage imageNamed:@"1.jpg"];
+//    http://img3.duitang.com/uploads/item/201412/31/20141231080254_2zvEH.thumb.700_0.jpeg
+    
     _leftView.layer.borderColor = [UIColor whiteColor].CGColor;
     _leftView.layer.borderWidth = 2;
+    
+    _leftImageView.layer.cornerRadius = _leftImageView.bounds.size.width / 2;
+    _leftImageView.layer.masksToBounds = true;
+    _leftImageView.image = [UIImage imageNamed:@"2.jpg"];
     
     _rightView.layer.borderColor = [UIColor whiteColor].CGColor;
     _rightView.layer.borderWidth = 2;
     
-    _rightView2.layer.borderColor = [UIColor whiteColor].CGColor;
-    _rightView2.layer.borderWidth = 2;
+    _rightImageView.layer.cornerRadius = _rightImageView.bounds.size.width / 2;
+    _rightImageView.layer.masksToBounds = true;
+    _rightImageView.image = [UIImage imageNamed:@"3.jpg"];
 
-
-    UIBezierPath * path1 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-24, 0, _leftView.bounds.size.width + 2, _leftView.bounds.size.height + 2) cornerRadius:_leftView.bounds.size.width / 2 + 1];
+    CGFloat radius = _leftView.bounds.size.width * 0.5;
     
-    UIBezierPath * path2 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-12, -24, _leftView.bounds.size.width + 2, _leftView.bounds.size.height + 2) cornerRadius:_leftView.bounds.size.width / 2 + 1];
-    [path1 appendPath:path2];
+    CGFloat angle = acosf((_leftView.superview.bounds.size.width - _leftView.bounds.size.width) * 0.5 / radius);
+    
+    UIBezierPath * path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(radius, sqrtf(pow(radius, 2) - pow(_leftView.superview.bounds.size.width * 0.5 - radius, 2)))];
+    [path addArcWithCenter:CGPointMake((_leftView.superview.bounds.size.width - radius), radius) radius:radius startAngle:M_PI + angle endAngle:M_PI - angle clockwise:false];
+    [path addArcWithCenter:CGPointMake(radius, radius) radius:radius startAngle:angle endAngle:-angle clockwise:true];
+    [path closePath];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    shapeLayer.path = [path1 bezierPathByReversingPath].CGPath;
+    shapeLayer.path = path.CGPath;
     
-    [_rightView2.layer setMask:shapeLayer];
+    [_leftView.layer setMask:shapeLayer];
 }
 
-//+ (UIBezierPath *)cutCorner:(CGRect)originalFrame length:(CGFloat)length
-//{
-//    CGRect rect = originalFrame;
-//    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-//    
-//    [bezierPath moveToPoint:CGPointMake(0, length)];
-//    [bezierPath addLineToPoint:CGPointMake(length, 0)];
-//    [bezierPath addLineToPoint:CGPointMake(rect.size.width - length, 0)];
-//    [bezierPath addLineToPoint:CGPointMake(rect.size.width, length)];
-//    [bezierPath addLineToPoint:CGPointMake(rect.size.width, rect.size.height - length)];
-//    [bezierPath addLineToPoint:CGPointMake(rect.size.width - length, rect.size.height)];
-//    [bezierPath addLineToPoint:CGPointMake(length, rect.size.height)];
-//    [bezierPath addLineToPoint:CGPointMake(0, rect.size.height - length)];
-//    [bezierPath closePath];
-//    return bezierPath;
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -148,6 +146,14 @@
 // MARK: - Chart
 - (IBAction)chart:(UIButton *)sender{
     
+}
+
+// MARK: - 左对齐
+- (IBAction)leftCollectionView:(UIButton *)sender{
+    RMJTeamInformation * newUV = [RMJTeamInformation new];
+    
+    NSArray * cs = [newUV constraintsOC:APPDELEGATE.window relatedWidth:@(0) relatedHeight:@(-250) centerX:@(0) centerY:@(10)];
+    [newUV showInViewOC:APPDELEGATE.window showStyle:CNShowOrHideStyleOCLeft hideStyle:CNShowOrHideStyleOCLeft options:cs maskStyle:CNMaskStyleOCClickEnable | CNMaskStyleOCShow];
 }
 
 @end

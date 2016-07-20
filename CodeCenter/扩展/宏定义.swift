@@ -14,7 +14,7 @@ import Foundation
  *
  *  AppDelegate
  */
-func APPDelegate() -> AppDelegate{
+func APPDELEGATE() -> AppDelegate{
     return UIApplication.sharedApplication().delegate as! AppDelegate
 }
 

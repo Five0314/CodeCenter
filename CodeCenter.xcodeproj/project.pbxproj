@@ -10,6 +10,11 @@
 		0404538A1D0525C0006B761A /* UIColor扩展.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040453891D0525C0006B761A /* UIColor扩展.swift */; };
 		0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80D1CF6F42000405C6C /* CNLInechart.swift */; };
 		0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */; };
+		04441A841D3F07410073108E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04441A831D3F07410073108E /* 1.jpg */; };
+		04441A871D3F0A0B0073108E /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04441A851D3F0A0B0073108E /* 2.jpg */; };
+		04441A881D3F0A0B0073108E /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04441A861D3F0A0B0073108E /* 3.jpg */; };
+		04441A8B1D3F4F240073108E /* RMJTeamInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04441A8A1D3F4F240073108E /* RMJTeamInformation.m */; };
+		04441A8E1D3F53EB0073108E /* CNCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04441A8D1D3F53EB0073108E /* CNCollectionViewCell.xib */; };
 		0485B2121CDC3D1F001E4A51 /* CNMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2111CDC3D1F001E4A51 /* CNMessageView.swift */; };
 		049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CB4091D08173900902F23 /* CNNavigationController.swift */; };
 		04B3D2971D0A61020015BA96 /* CNMessageViewProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */; };
@@ -40,6 +45,13 @@
 		040453891D0525C0006B761A /* UIColor扩展.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor扩展.swift"; sourceTree = "<group>"; };
 		0437D80D1CF6F42000405C6C /* CNLInechart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLInechart.swift; sourceTree = "<group>"; };
 		0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLineChartTableViewCell.swift; sourceTree = "<group>"; };
+		04441A831D3F07410073108E /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		04441A851D3F0A0B0073108E /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		04441A861D3F0A0B0073108E /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		04441A891D3F4F240073108E /* RMJTeamInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMJTeamInformation.h; sourceTree = "<group>"; };
+		04441A8A1D3F4F240073108E /* RMJTeamInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMJTeamInformation.m; sourceTree = "<group>"; };
+		04441A8C1D3F51500073108E /* CNCoderCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNCoderCenter.h; sourceTree = "<group>"; };
+		04441A8D1D3F53EB0073108E /* CNCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CNCollectionViewCell.xib; sourceTree = "<group>"; };
 		0485B2111CDC3D1F001E4A51 /* CNMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMessageView.swift; sourceTree = "<group>"; };
 		049CB4091D08173900902F23 /* CNNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNavigationController.swift; sourceTree = "<group>"; };
 		04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMessageViewProperty.swift; sourceTree = "<group>"; };
@@ -113,6 +125,7 @@
 				04E2264D1D3C6575000FFEA9 /* LeftCollectionViewController.m */,
 				04FE0B5A1D3CB42700F84C2F /* CNCollectionViewCell.h */,
 				04FE0B5B1D3CB42700F84C2F /* CNCollectionViewCell.m */,
+				04441A8D1D3F53EB0073108E /* CNCollectionViewCell.xib */,
 			);
 			path = "CollectionView左对齐";
 			sourceTree = "<group>";
@@ -122,6 +135,8 @@
 			children = (
 				04E2265A1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.h */,
 				04E2265B1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m */,
+				04441A891D3F4F240073108E /* RMJTeamInformation.h */,
+				04441A8A1D3F4F240073108E /* RMJTeamInformation.m */,
 			);
 			path = "CollectionView卡片切换";
 			sourceTree = "<group>";
@@ -145,6 +160,10 @@
 		3C181C2D1CCCEDD80038D63F /* CodeCenter */ = {
 			isa = PBXGroup;
 			children = (
+				04441A8C1D3F51500073108E /* CNCoderCenter.h */,
+				04441A851D3F0A0B0073108E /* 2.jpg */,
+				04441A861D3F0A0B0073108E /* 3.jpg */,
+				04441A831D3F07410073108E /* 1.jpg */,
 				04E226531D3C9DB0000FFEA9 /* CollectionView卡片切换 */,
 				04E226461D3C633E000FFEA9 /* CollectionView左对齐 */,
 				0437D8091CF6F3FE00405C6C /* 统计图 */,
@@ -269,6 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C181C411CCCEDD80038D63F /* LaunchScreen.storyboard in Resources */,
+				04441A8E1D3F53EB0073108E /* CNCollectionViewCell.xib in Resources */,
+				04441A841D3F07410073108E /* 1.jpg in Resources */,
+				04441A871D3F0A0B0073108E /* 2.jpg in Resources */,
+				04441A881D3F0A0B0073108E /* 3.jpg in Resources */,
 				3C181C3E1CCCEDD80038D63F /* Assets.xcassets in Resources */,
 				3C181C391CCCEDD80038D63F /* Main.storyboard in Resources */,
 			);
@@ -301,6 +324,7 @@
 				0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */,
 				04E2265C1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m in Sources */,
 				049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */,
+				04441A8B1D3F4F240073108E /* RMJTeamInformation.m in Sources */,
 				04E226521D3C724A000FFEA9 /* CNMutableAttributedString.swift in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
 				3CE9CF301CDF140F00C3E5DD /* 正则.swift in Sources */,

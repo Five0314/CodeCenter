@@ -9,6 +9,9 @@
 #import "CNCollectionSwitchViewLayout.h"
 
 @implementation CNCollectionSwitchViewLayout
+- (void)awakeFromNib{
+//    self.estimatedItemSize = CGSizeMake(375, 100);
+}
 
 // 确保能实时更新布局
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
@@ -16,63 +19,69 @@
     return YES;
 }
 
-- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewLayoutAttributes * attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-    
-    NSLog(@"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%ld", (long)indexPath.row);
-    
-    return attributes;
-}
+//- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    UICollectionViewLayoutAttributes * attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+//    
+//    NSLog(@"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%ld", (long)indexPath.row);
+//    
+//    return attributes;
+//}
+
+//- (CGSize)estimatedItemSize
+
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{
+//        NSLog(@"---------------------------------------------------------------");
+//    
+//    NSLog(@"%s", __func__);
 
     //使用系统帮我们计算好的结果。
-    CGRect newRect = CGRectMake(rect.origin.x - rect.size.width, rect.origin.y, rect.size.width * 3, rect.size.height);
-    NSArray * attributes = [super layoutAttributesForElementsInRect:newRect];
+//    CGRect newRect = CGRectMake(rect.origin.x - rect.size.width, rect.origin.y, rect.size.width * 3, rect.size.height);
+//    NSArray * attributes = [super layoutAttributesForElementsInRect:newRect];
 
-    NSLog(@"---------------------------------------------------------------");
+    NSArray * attributes = [super layoutAttributesForElementsInRect:rect];
     
     UICollectionView * cUV = super.collectionView;
     double os = cUV.contentOffset.x;
     
     double cvHW = cUV.bounds.size.width * 0.5;
     double cvW = cUV.bounds.size.width;
-    
+
     [attributes enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(UICollectionViewLayoutAttributes * cellAttributes, NSUInteger idx, BOOL * _Nonnull stop) {
         
         
         CGFloat cTC = os + cvHW - cellAttributes.center.x;//Cell的中心到屏幕中心的距离
         CGFloat uCTC = fabs(cTC);//Cell的中心到屏幕中心的距离的绝对值
-        
-        if (uCTC - cvW >= cvHW){
+
+        if (uCTC - cvW >= 30){
             cellAttributes.alpha = 0;
-            NSLog(@"******************偏移量%f 中心间距%f 索引：%ld", cTC, uCTC, (long)cellAttributes.indexPath.row);
+//            NSLog(@"******************偏移量%f 中心间距%f 索引：%ld", cTC, uCTC, (long)cellAttributes.indexPath.row);
         }
         else {
             cellAttributes.alpha = 1;
             
             cellAttributes.zIndex = 1000 - fabs(os - CGRectGetMinX(cellAttributes.frame));//层级，防止被遮盖
             
-            CGFloat scale = 1 - fabs(os + cvHW - cellAttributes.center.x) * 2 / cUV.bounds.size.width * 0.2;//缩放比例
-            if (scale < 0.8){
-                scale = 0.8;
+            CGFloat scale = 1 - fabs(os + cvHW - cellAttributes.center.x) * 2 / cUV.bounds.size.width * 0.1;//缩放比例
+            if (scale < 0.9){
+                scale = 0.9;
             }
             CGAffineTransform cellTransform = CGAffineTransformMakeScale(scale, scale);
             
             if (uCTC >= cvHW){
                 if (cTC < 0){//右边的
-                    CGFloat xtransform = (cTC + cvHW) * (cUV.bounds.size.width + 20) * 2 / cUV.bounds.size.width;
-                    NSLog(@"==================偏移量%f 右的偏移量%f 索引：%ld", cTC, xtransform, (long)cellAttributes.indexPath.row);
+                    CGFloat xtransform = (cTC + cvHW) * (cUV.bounds.size.width + 15) * 2 / cUV.bounds.size.width;
+//                    NSLog(@"==================偏移量%f 右的偏移量%f 索引：%ld", cTC, xtransform, (long)cellAttributes.indexPath.row);
                     cellTransform = CGAffineTransformTranslate(cellTransform, xtransform, 0);
                 }
                 else{//左边的
-                    CGFloat xtransform = (cTC - cvHW) * (cUV.bounds.size.width + 20) * 2 / cUV.bounds.size.width;
-                    NSLog(@"==================偏移量%f 左的偏移量%f 索引：%ld", cTC, xtransform, (long)cellAttributes.indexPath.row);
+                    CGFloat xtransform = (cTC - cvHW) * (cUV.bounds.size.width + 15) * 2 / cUV.bounds.size.width;
+//                    NSLog(@"==================偏移量%f 左的偏移量%f 索引：%ld", cTC, xtransform, (long)cellAttributes.indexPath.row);
                     cellTransform = CGAffineTransformTranslate(cellTransform, xtransform, 0);
                 }
             }
             else{
-                NSLog(@"------------------偏移量%f 中心间距%f 索引：%ld", cTC, uCTC, (long)cellAttributes.indexPath.row);
+//                NSLog(@"------------------偏移量%f 中心间距%f 索引：%ld", cTC, uCTC, (long)cellAttributes.indexPath.row);
             }
             
             cellAttributes.transform = cellTransform;

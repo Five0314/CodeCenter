@@ -420,7 +420,7 @@ extension UIView{
             
             // 遮罩层颜色
             if options.maskStyle.contains(.Show){
-                mb.backgroundColor = RGB(85, green: 85, blue: 85, alpha: 0.6)
+                mb.backgroundColor = RGB(160, green: 160, blue: 160, alpha: 0.6)
             }
             else{
                 mb.backgroundColor = UIColor.clearColor()

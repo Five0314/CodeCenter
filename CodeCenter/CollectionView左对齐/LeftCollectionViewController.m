@@ -23,11 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [_cnCollectionView reloadData];
-//    [_cnCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:10000 / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//    [_cnCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2500 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//    [_cnCollectionView scrollRectToVisible:CGRectMake(2500 * _cnCollectionView.bounds.size.width, 0, _cnCollectionView.bounds.size.width, _cnCollectionView.bounds.size.height) animated:false];
-    
     [_cnCollectionView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -72,6 +67,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CNCollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CNCollectionViewCell" forIndexPath:indexPath];
+    newCell.cnCollectionView = _cnCollectionView;
     newCell.idx = indexPath.row;
     [newCell reshow];
     
