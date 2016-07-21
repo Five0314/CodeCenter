@@ -12,11 +12,16 @@
 
 @end
 
+/**AppDelegate*/
+AppDelegate * APPDELEGATE;
+
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    APPDELEGATE = self;
+    
     return YES;
 }
 

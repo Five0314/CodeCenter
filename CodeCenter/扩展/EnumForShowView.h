@@ -8,6 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+////屏幕尺寸
+//#define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
+//#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+//
+////RGB
+//#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(1)]
+//#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+//
+////NSLOG
+//#ifdef DEBUG
+//
+//#define Log_0314(...) NSLog(__VA_ARGS__)
+//#define Method_0314() NSLog(@"%s", __func__)
+//#define Error_0314(error) [NSString stringWithFormat:@"网络异常：%@", error]
+//
+//#else
+//
+//#define Log_0314(...)
+//#define Method_0314()
+//#define Error_0314(error) [NSString stringWithFormat:@"网络异常：%ld %@", error.code, error.localizedDescription]
+//
+//#endif
+
 #pragma 遮罩层样式
 /**遮罩层样式*/
 typedef NS_OPTIONS(NSUInteger, CNMaskStyleOC) {

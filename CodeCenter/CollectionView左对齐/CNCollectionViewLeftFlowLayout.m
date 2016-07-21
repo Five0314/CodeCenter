@@ -10,6 +10,10 @@
 
 @implementation CNCollectionViewLeftFlowLayout
 
+- (void)awakeFromNib{
+    self.scrollDirection = UICollectionViewScrollDirectionVertical;
+}
+
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
     //使用系统帮我们计算好的结果。

@@ -12,6 +12,8 @@
 
 @property(weak, nonatomic) IBOutlet UILabel * cnLabel;
 
+@property(weak, nonatomic) UICollectionView * cnCollectionView;
+
 @property(nonatomic) NSUInteger idx;
 
 - (void)reshow;

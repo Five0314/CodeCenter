@@ -23,30 +23,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [_cnCollectionView reloadData];
-//    [_cnCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:10000 / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//    [_cnCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2500 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//    [_cnCollectionView scrollRectToVisible:CGRectMake(2500 * _cnCollectionView.bounds.size.width, 0, _cnCollectionView.bounds.size.width, _cnCollectionView.bounds.size.height) animated:false];
-    
-    [_cnCollectionView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)dealloc{
-    [_cnCollectionView removeObserver:self forKeyPath:@"contentOffset"];
+    //注册Cell
+    [_cnCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-//    [_cnCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:10000 / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    if (!_isFirstShow && [keyPath isEqualToString:@"contentOffset"] && _cnCollectionView.contentOffset.x == 0){
-//        NSLog(@" ========== %f", _cnCollectionView.contentOffset.x);
-        _isFirstShow = true;
-        [_cnCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:10000 / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,17 +45,15 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    CGFloat w = arc4random() % 88 + 36;
-//    NSInteger h = collectionView.bounds.size.height / 2;
-//    return CGSizeMake(v, h);
-    
-    return collectionView.bounds.size;
+    CGFloat w = arc4random() % 88 + 36;
+    NSInteger h = collectionView.bounds.size.height / 6;
+    return CGSizeMake(w, h);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CNCollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CNCollectionViewCell" forIndexPath:indexPath];
-    newCell.idx = indexPath.row;
-    [newCell reshow];
+    UICollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+
+    newCell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
     
     return newCell;
 }
