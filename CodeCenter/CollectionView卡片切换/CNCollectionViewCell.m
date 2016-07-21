@@ -39,45 +39,14 @@
 //    self.contentView.backgroundColor = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:0.3];
 }
 
-//- (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize{
-//    
-//    return targetSize;
-//}
-
-//- (void)sizeToFit{
-//    NSLog(@"%s", __func__);
-//}
-
-// Override point.
-// Called by the collection view before the instance is returned from the reuse queue.
-// Subclassers must call super.
-- (void)prepareForReuse{
-//    NSLog(@"%s %ld", __func__, (unsigned long)_idx);
-}
-
-// Classes that want to support custom layout attributes specific to a given UICollectionViewLayout subclass can apply them here.
-// This allows the view to work in conjunction with a layout class that returns a custom subclass of UICollectionViewLayoutAttributes from -layoutAttributesForItem: or the corresponding layoutAttributesForHeader/Footer methods.
-// -applyLayoutAttributes: is then called after the view is added to the collection view and just before the view is returned from the reuse queue.
-// Note that -applyLayoutAttributes: is only called when attributes change, as defined by -isEqual:.
-- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
-//    NSLog(@"%s %ld", __func__, (unsigned long)_idx);
-}
-
-// Override these methods to provide custom UI for specific layouts.
-- (void)willTransitionFromLayout:(UICollectionViewLayout *)oldLayout toLayout:(UICollectionViewLayout *)newLayout{
-//    NSLog(@"%s %ld", __func__, (unsigned long)_idx);
-}
-- (void)didTransitionFromLayout:(UICollectionViewLayout *)oldLayout toLayout:(UICollectionViewLayout *)newLayout{
-//    NSLog(@"%s %ld", __func__, (unsigned long)_idx);
-}
-
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
     
     double os = _cnCollectionView.contentOffset.x;
     double cvHW = _cnCollectionView.bounds.size.width * 0.5;
     CGFloat uCTC = fabs(os + cvHW - layoutAttributes.center.x);//Cell的中心到屏幕中心的距离的绝对值
 
-    _headPortraitImageView.superview.superview.alpha = 1 - uCTC / 272;
+    _headPortraitImageView.superview.superview.alpha = 1 - uCTC / (_cnCollectionView.bounds.size.width * 0.9);
+//    _headPortraitImageView.superview.superview.alpha = 1 - uCTC / cvHW;
 
     return layoutAttributes;
 }

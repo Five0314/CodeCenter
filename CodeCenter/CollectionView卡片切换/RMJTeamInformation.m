@@ -86,10 +86,6 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    //    CGFloat w = arc4random() % 88 + 36;
-    //    NSInteger h = collectionView.bounds.size.height / 2;
-    //    return CGSizeMake(v, h);
-    
     return collectionView.bounds.size;
 }
 
