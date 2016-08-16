@@ -37,7 +37,7 @@
                                                     <action selector="click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0k8-k5-oXG"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFu-YJ-3uD">
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFu-YJ-3uD">
                                                 <rect key="frame" x="15" y="74" width="345" height="44"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -58,6 +58,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="leftCollectionView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bLR-ua-ZRo"/>
+                                                    <segue destination="GDb-8I-nj4" kind="push" id="jxK-LS-G8N"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZP-Zc-QiR">
@@ -255,11 +256,11 @@
                         <viewControllerLayoutGuide type="bottom" id="p47-8d-KIL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y24-aq-UgT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qf0-4O-mOt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="e33-Ph-TVt" customClass="CNCollectionViewLeftFlowLayout">
                                     <size key="itemSize" width="320" height="416"/>

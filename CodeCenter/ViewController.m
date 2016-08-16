@@ -150,10 +150,7 @@
 
 // MARK: - 左对齐
 - (IBAction)leftCollectionView:(UIButton *)sender{
-//    RMJTeamInformation * newUV = [RMJTeamInformation new];
-//    
-//    NSArray * cs = [newUV constraintsOC:APPDELEGATE.window relatedWidth:@(0) relatedHeight:@(-250) centerX:@(0) centerY:@(10)];
-//    [newUV showInViewOC:APPDELEGATE.window showStyle:CNShowOrHideStyleOCLeft hideStyle:CNShowOrHideStyleOCLeft options:cs maskStyle:CNMaskStyleOCClickEnable | CNMaskStyleOCShow];
+    
 }
 
 // MARK: - 切换效果
