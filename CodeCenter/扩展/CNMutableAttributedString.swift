@@ -24,7 +24,12 @@ extension NSMutableAttributedString{
      - returns: NSMutableAttributedString
      */
     static func stringWithRegular(text: String?, regular: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
-        return NSMutableAttributedString.stringWithRegular(text, regular: regular, highlightColor: highlightColor, range: NSMakeRange(0, text!.characters.count))
+        if text == nil{
+            return nil
+        }
+        else{
+            return NSMutableAttributedString.stringWithRegular(text, regular: regular, highlightColor: highlightColor, range: NSMakeRange(0, text!.characters.count))
+        }
     }
     
     /**
