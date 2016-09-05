@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -347,7 +348,41 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="eXV-9h-nuA"/>
+                    <navigationItem key="navigationItem" id="eXV-9h-nuA">
+                        <nil key="title"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="lMb-dE-HQd">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4AT-7v-cJT">
+                                    <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Reload"/>
+                                    <connections>
+                                        <action selector="reload:" destination="6S7-OL-vbP" eventType="touchUpInside" id="gEk-9t-rjS"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="dPD-84-hIe">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bci-aS-lDH">
+                                    <rect key="frame" x="154" y="7" width="71" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="删除"/>
+                                    <connections>
+                                        <action selector="delete:" destination="6S7-OL-vbP" eventType="touchUpInside" id="xes-5l-Wys"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="5ts-0A-081">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fC5-ai-sW6">
+                                    <rect key="frame" x="75" y="7" width="71" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="添加"/>
+                                    <connections>
+                                        <action selector="add:" destination="6S7-OL-vbP" eventType="touchUpInside" id="wgJ-dH-eOK"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="cnCollectionView" destination="5Fn-h7-wyh" id="k7E-ih-VBY"/>

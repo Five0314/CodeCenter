@@ -13,6 +13,12 @@
 
 @property(weak, nonatomic) IBOutlet UICollectionView * cnCollectionView;
 
+///数据
+@property(nonatomic) NSMutableArray * cnData;
+
+///Header的高度
+@property(nonatomic) NSMutableDictionary * headerHeight;
+
 @end
 
 @implementation SectionSuspensionCollectionView
@@ -25,6 +31,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    _headerHeight = [NSMutableDictionary new];
+    
     //注册Cell
     [_cnCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     
@@ -34,14 +42,53 @@
     
     CNCollectionViewFlowLayout * layout = (CNCollectionViewFlowLayout *)_cnCollectionView.collectionViewLayout;
     layout.dataSource = self;
+    
+    //初始化数据源
+    _cnData = [NSMutableArray new];
+    for (NSInteger idx = 0; idx < 100; idx++) {
+        NSMutableArray * sectionData = [NSMutableArray new];
+        
+        NSInteger cellCount = arc4random() % 10 + 1;
+        for (NSInteger cellIdx = 0; cellIdx < cellCount; cellIdx++) {
+            [sectionData addObject:@(cellIdx)];
+        }
+        
+        [_cnData addObject:sectionData];
+    }
+    
+    [_cnCollectionView reloadData];
 }
 
+#pragma mark - 点击事件
+
+- (IBAction)add:(UIButton *)sender{
+//    NSInteger section = arc4random() % _cnData.count;
+    NSInteger section =0;
+    
+    NSMutableArray * cellDatas = _cnData[section];
+    
+    [cellDatas addObject:@(cellDatas.count)];
+    
+    [_cnCollectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:cellDatas.count - 1 inSection:section]]];
+}
+
+- (IBAction)delete:(UIButton *)sender{
+    
+}
+
+- (IBAction)reload:(UIButton *)sender{
+    [_cnCollectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+}
+
+#pragma mark - CollectionViewDataSource
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 100;
+    return _cnData.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+    NSArray * cellDatas = _cnData[section];
+    return cellDatas.count;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
@@ -53,7 +100,13 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(collectionView.bounds.size.width, [self headerStickyHeight:section] + (arc4random() % 50 + 50));
+    NSNumber * h = _headerHeight[@(section)];
+    if (h == nil){
+        h = @([self headerStickyHeight:section] + (arc4random() % 50 + 50));
+        _headerHeight[@(section)] = h;
+    }
+    
+    return CGSizeMake(collectionView.bounds.size.width, h.integerValue);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -121,17 +174,22 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat w = arc4random() % 88 + 36;
-//    NSInteger h = collectionView.bounds.size.height / 6;
-    return CGSizeMake(w, 150);
+    return CGSizeMake(collectionView.bounds.size.width, 44);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
     
-    newCell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
+    newCell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:0.25];
     
     return newCell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableArray * cellDatas = _cnData[indexPath.section];
+    [cellDatas removeObjectAtIndex:indexPath.row];
+    
+    [_cnCollectionView deleteItemsAtIndexPaths:@[indexPath]];
 }
 
 #pragma mark - CNCollectionViewFlowLayoutDataSource
