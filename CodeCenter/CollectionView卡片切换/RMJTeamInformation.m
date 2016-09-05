@@ -95,6 +95,9 @@
     newCell.idx = indexPath.row;
     [newCell reshow];
     
+//    NSInteger r = 255 / (indexPath.row % 255 % 3) + 50;
+//    newCell.cnLabel.backgroundColor = [UIColor colorWithRed:r / 255.0 green:125 / 255.0 blue:125 / 255.0 alpha:1];
+    
     return newCell;
 }
 
