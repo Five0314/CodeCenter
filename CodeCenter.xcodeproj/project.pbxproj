@@ -17,8 +17,10 @@
 		04441A881D3F0A0B0073108E /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04441A861D3F0A0B0073108E /* 3.jpg */; };
 		04441A8B1D3F4F240073108E /* RMJTeamInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04441A8A1D3F4F240073108E /* RMJTeamInformation.m */; };
 		0485B2121CDC3D1F001E4A51 /* CNMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485B2111CDC3D1F001E4A51 /* CNMessageView.swift */; };
+		0498F8F51D7D16A9003EFF47 /* CNCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0498F8F41D7D16A9003EFF47 /* CNCollectionViewFlowLayout.m */; };
 		049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CB4091D08173900902F23 /* CNNavigationController.swift */; };
 		04B3D2971D0A61020015BA96 /* CNMessageViewProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */; };
+		04D258F91D7BF60E00C7BE6F /* SectionSuspensionCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D258F81D7BF60E00C7BE6F /* SectionSuspensionCollectionView.m */; };
 		04E2264B1D3C6396000FFEA9 /* CNCollectionViewLeftFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2264A1D3C6396000FFEA9 /* CNCollectionViewLeftFlowLayout.m */; };
 		04E2264E1D3C6575000FFEA9 /* LeftCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2264D1D3C6575000FFEA9 /* LeftCollectionViewController.m */; };
 		04E226501D3C713A000FFEA9 /* StringEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2264F1D3C713A000FFEA9 /* StringEncryption.swift */; };
@@ -55,8 +57,12 @@
 		04441A8A1D3F4F240073108E /* RMJTeamInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMJTeamInformation.m; sourceTree = "<group>"; };
 		04441A8C1D3F51500073108E /* CNCoderCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNCoderCenter.h; sourceTree = "<group>"; };
 		0485B2111CDC3D1F001E4A51 /* CNMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMessageView.swift; sourceTree = "<group>"; };
+		0498F8F31D7D16A9003EFF47 /* CNCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		0498F8F41D7D16A9003EFF47 /* CNCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		049CB4091D08173900902F23 /* CNNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNavigationController.swift; sourceTree = "<group>"; };
 		04B3D2961D0A61020015BA96 /* CNMessageViewProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMessageViewProperty.swift; sourceTree = "<group>"; };
+		04D258F71D7BF60E00C7BE6F /* SectionSuspensionCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionSuspensionCollectionView.h; sourceTree = "<group>"; };
+		04D258F81D7BF60E00C7BE6F /* SectionSuspensionCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionSuspensionCollectionView.m; sourceTree = "<group>"; };
 		04E226491D3C6396000FFEA9 /* CNCollectionViewLeftFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewLeftFlowLayout.h; sourceTree = "<group>"; };
 		04E2264A1D3C6396000FFEA9 /* CNCollectionViewLeftFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewLeftFlowLayout.m; sourceTree = "<group>"; };
 		04E2264C1D3C6575000FFEA9 /* LeftCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCollectionViewController.h; sourceTree = "<group>"; };
@@ -116,6 +122,17 @@
 			path = "统计图";
 			sourceTree = "<group>";
 		};
+		04D258ED1D7BF4C700C7BE6F /* CollectionViewHeader、Footer悬浮 */ = {
+			isa = PBXGroup;
+			children = (
+				04D258F71D7BF60E00C7BE6F /* SectionSuspensionCollectionView.h */,
+				04D258F81D7BF60E00C7BE6F /* SectionSuspensionCollectionView.m */,
+				0498F8F31D7D16A9003EFF47 /* CNCollectionViewFlowLayout.h */,
+				0498F8F41D7D16A9003EFF47 /* CNCollectionViewFlowLayout.m */,
+			);
+			path = "CollectionViewHeader、Footer悬浮";
+			sourceTree = "<group>";
+		};
 		04E226461D3C633E000FFEA9 /* CollectionView左对齐 */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +183,7 @@
 				04441A831D3F07410073108E /* 1.jpg */,
 				04E226531D3C9DB0000FFEA9 /* CollectionView卡片切换 */,
 				04E226461D3C633E000FFEA9 /* CollectionView左对齐 */,
+				04D258ED1D7BF4C700C7BE6F /* CollectionViewHeader、Footer悬浮 */,
 				0437D8091CF6F3FE00405C6C /* 统计图 */,
 				3CE9CF2A1CDF105C00C3E5DD /* 正则 */,
 				3CED6B331CD59E33006DD28C /* 信息提示 */,
@@ -308,6 +326,7 @@
 				3C181C541CCCEDE90038D63F /* 自定义属性.swift in Sources */,
 				04B3D2971D0A61020015BA96 /* CNMessageViewProperty.swift in Sources */,
 				3C181C521CCCEDE90038D63F /* 约束.swift in Sources */,
+				0498F8F51D7D16A9003EFF47 /* CNCollectionViewFlowLayout.m in Sources */,
 				04E226501D3C713A000FFEA9 /* StringEncryption.swift in Sources */,
 				3C181C5A1CCCF1020038D63F /* EnumForShowView.m in Sources */,
 				3C181C361CCCEDD80038D63F /* ViewController.m in Sources */,
@@ -323,6 +342,7 @@
 				3C181C3C1CCCEDD80038D63F /* CodeCenter.xcdatamodeld in Sources */,
 				0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */,
 				04E2265C1D3CAC03000FFEA9 /* CNCollectionSwitchViewLayout.m in Sources */,
+				04D258F91D7BF60E00C7BE6F /* SectionSuspensionCollectionView.m in Sources */,
 				049CB40A1D08173900902F23 /* CNNavigationController.swift in Sources */,
 				04441A8B1D3F4F240073108E /* RMJTeamInformation.m in Sources */,
 				04E226521D3C724A000FFEA9 /* CNMutableAttributedString.swift in Sources */,

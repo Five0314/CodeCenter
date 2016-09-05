@@ -28,7 +28,16 @@
 }
 
 - (void)reshow{
-    _cnLabel.backgroundColor = [UIColor colorWithRed:(255 / (_idx % 3) + 50) / 255.0 green:125 / 255.0 blue:125 / 255.0 alpha:1];
+//    _cnLabel.backgroundColor = [UIColor colorWithRed:(255 / (_idx % 3) + 50) / 255.0 green:125 / 255.0 blue:125 / 255.0 alpha:1];
+    if (_idx % 3 == 0){
+        _cnLabel.backgroundColor = [UIColor redColor];
+    }
+    else if (_idx % 3 == 1){
+        _cnLabel.backgroundColor = [UIColor brownColor];
+    }
+    else{
+        _cnLabel.backgroundColor = [UIColor greenColor];
+    }
     
 //    NSMutableString * text = [NSMutableString new];
 //    for (NSUInteger idx = 0; idx < 10; idx++) {

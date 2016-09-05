@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHU-Pc-ALf" userLabel="contnetView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jW8-UH-4vP">
                                                 <rect key="frame" x="15" y="15" width="345" height="44"/>
@@ -61,8 +61,21 @@
                                                     <segue destination="GDb-8I-nj4" kind="push" id="jxK-LS-G8N"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZP-Zc-QiR">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0C-0j-O51" userLabel="悬浮 CollecitonView">
                                                 <rect key="frame" x="15" y="192" width="345" height="44"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="TOp-5A-y0q"/>
+                                                </constraints>
+                                                <state key="normal" title="悬浮 CollecitonView">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="6S7-OL-vbP" kind="push" id="eEo-MF-5AO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZP-Zc-QiR">
+                                                <rect key="frame" x="15" y="251" width="345" height="44"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="0rT-Ak-qO5"/>
@@ -75,7 +88,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrq-Ya-JYm">
-                                                <rect key="frame" x="157" y="271" width="60" height="60"/>
+                                                <rect key="frame" x="157" y="330" width="60" height="60"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gf0-G9-9i9" userLabel="right">
                                                         <rect key="frame" x="26" y="26" width="34" height="34"/>
@@ -162,18 +175,21 @@
                                             <constraint firstItem="JZP-Zc-QiR" firstAttribute="leading" secondItem="qHU-Pc-ALf" secondAttribute="leading" constant="15" id="3cb-jy-S0K"/>
                                             <constraint firstAttribute="trailing" secondItem="wvB-0V-2Op" secondAttribute="trailing" constant="15" id="84V-EM-zDO"/>
                                             <constraint firstItem="jW8-UH-4vP" firstAttribute="leading" secondItem="qHU-Pc-ALf" secondAttribute="leading" constant="15" id="859-36-S1P"/>
+                                            <constraint firstItem="Z0C-0j-O51" firstAttribute="leading" secondItem="qHU-Pc-ALf" secondAttribute="leading" constant="15" id="9Pl-dI-Y5e"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z0C-0j-O51" secondAttribute="trailing" constant="15" id="Ae2-qu-Mp7"/>
                                             <constraint firstAttribute="trailing" secondItem="EFu-YJ-3uD" secondAttribute="trailing" constant="15" id="D99-wc-SwQ"/>
                                             <constraint firstAttribute="bottom" secondItem="rrq-Ya-JYm" secondAttribute="bottom" constant="15" id="KYo-lR-5oa"/>
                                             <constraint firstItem="rrq-Ya-JYm" firstAttribute="centerX" secondItem="qHU-Pc-ALf" secondAttribute="centerX" id="OOm-Od-pES"/>
                                             <constraint firstItem="rrq-Ya-JYm" firstAttribute="top" secondItem="JZP-Zc-QiR" secondAttribute="bottom" constant="35" id="QG4-dd-SjS"/>
                                             <constraint firstAttribute="trailing" secondItem="jW8-UH-4vP" secondAttribute="trailing" constant="15" id="Xca-ix-QuO"/>
                                             <constraint firstItem="wvB-0V-2Op" firstAttribute="top" secondItem="EFu-YJ-3uD" secondAttribute="bottom" constant="15" id="aTn-mW-TLw"/>
-                                            <constraint firstItem="JZP-Zc-QiR" firstAttribute="top" secondItem="wvB-0V-2Op" secondAttribute="bottom" constant="15" id="dJs-vH-eFK"/>
                                             <constraint firstItem="EFu-YJ-3uD" firstAttribute="leading" secondItem="qHU-Pc-ALf" secondAttribute="leading" constant="15" id="hcI-r1-IvL"/>
+                                            <constraint firstItem="Z0C-0j-O51" firstAttribute="top" secondItem="wvB-0V-2Op" secondAttribute="bottom" constant="15" id="jD5-hy-wnO"/>
                                             <constraint firstItem="EFu-YJ-3uD" firstAttribute="top" secondItem="jW8-UH-4vP" secondAttribute="bottom" constant="15" id="jva-iY-XvS"/>
                                             <constraint firstAttribute="trailing" secondItem="JZP-Zc-QiR" secondAttribute="trailing" constant="15" id="lfe-jD-0Lg"/>
                                             <constraint firstItem="jW8-UH-4vP" firstAttribute="top" secondItem="qHU-Pc-ALf" secondAttribute="top" constant="15" id="mM0-m7-ef8"/>
                                             <constraint firstItem="wvB-0V-2Op" firstAttribute="leading" secondItem="qHU-Pc-ALf" secondAttribute="leading" constant="15" id="zqs-J5-0MU"/>
+                                            <constraint firstItem="JZP-Zc-QiR" firstAttribute="top" secondItem="Z0C-0j-O51" secondAttribute="bottom" constant="15" id="zwj-U0-qde"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -293,6 +309,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjw-x1-lEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="917" y="1077"/>
+        </scene>
+        <!--CollectionView 悬浮-->
+        <scene sceneID="mtA-Ns-nMP">
+            <objects>
+                <viewController storyboardIdentifier="SectionSuspensionCollectionView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6S7-OL-vbP" userLabel="CollectionView 悬浮" customClass="SectionSuspensionCollectionView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pgz-Eu-z0D"/>
+                        <viewControllerLayoutGuide type="bottom" id="43a-hr-5Yg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rGl-EH-ogv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Fn-h7-wyh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="vaR-TM-iM4" customClass="CNCollectionViewFlowLayout">
+                                    <size key="itemSize" width="320" height="416"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6S7-OL-vbP" id="i0r-9Z-qK3"/>
+                                    <outlet property="delegate" destination="6S7-OL-vbP" id="fkj-Vv-vA3"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Fn-h7-wyh" firstAttribute="top" secondItem="rGl-EH-ogv" secondAttribute="top" id="7Jd-TF-r9E"/>
+                            <constraint firstItem="5Fn-h7-wyh" firstAttribute="leading" secondItem="rGl-EH-ogv" secondAttribute="leading" id="DAZ-mj-74j"/>
+                            <constraint firstAttribute="bottom" secondItem="5Fn-h7-wyh" secondAttribute="bottom" id="JcW-h4-5X9"/>
+                            <constraint firstAttribute="trailing" secondItem="5Fn-h7-wyh" secondAttribute="trailing" id="w3X-JW-A3a"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="eXV-9h-nuA"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="cnCollectionView" destination="5Fn-h7-wyh" id="k7E-ih-VBY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sR1-Dy-Q6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320" y="1077"/>
         </scene>
     </scenes>
 </document>
