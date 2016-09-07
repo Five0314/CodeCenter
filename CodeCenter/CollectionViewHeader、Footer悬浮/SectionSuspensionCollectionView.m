@@ -8,6 +8,8 @@
 
 #import "SectionSuspensionCollectionView.h"
 #import "CNCollectionViewFlowLayout.h"
+#import "SectionSuspensionCollectionReusableView.h"
+#import "SectionSuspensionCollectionReusableView2.h"
 
 @interface SectionSuspensionCollectionView ()
 
@@ -36,12 +38,19 @@
     //注册Cell
     [_cnCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     
-    [_cnCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionElementKindSectionHeader"];
+    [_cnCollectionView registerNib:[UINib nibWithNibName:@"SectionSuspensionCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:@"parallaxHeader" withReuseIdentifier:@"parallaxHeader"];
     
-    [_cnCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionElementKindSectionFooter"];
+    [_cnCollectionView registerNib:[UINib nibWithNibName:@"SectionSuspensionCollectionReusableView2" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionElementKindSectionHeader];
+    
+    [_cnCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:UICollectionElementKindSectionFooter];
+    
+//    _cnCollectionView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     
     CNCollectionViewFlowLayout * layout = (CNCollectionViewFlowLayout *)_cnCollectionView.collectionViewLayout;
     layout.dataSource = self;
+    layout.parallaxHeaderHeight = 180;
+    layout.parallaxHeaderMaxHeight = 350;
+    layout.parallaxHeaderStickyHeight = 100;
     
     //初始化数据源
     _cnData = [NSMutableArray new];
@@ -57,6 +66,7 @@
     }
     
     [_cnCollectionView reloadData];
+    
 }
 
 #pragma mark - 点击事件
@@ -107,6 +117,8 @@
     }
     
     return CGSizeMake(collectionView.bounds.size.width, h.integerValue);
+    
+//    return CGSizeMake(collectionView.bounds.size.width, 100);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -114,34 +126,29 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    if ([kind isEqualToString:@"parallaxHeader"]) {
+        SectionSuspensionCollectionReusableView * cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                             withReuseIdentifier:@"parallaxHeader"
+                                                                                    forIndexPath:indexPath];
         
-        UICollectionReusableView * cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                            withReuseIdentifier:@"UICollectionElementKindSectionHeader"
+        cell.backgroundColor = [UIColor brownColor];
+        
+        return cell;
+    }
+    else if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        
+        SectionSuspensionCollectionReusableView2 * cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                            withReuseIdentifier:UICollectionElementKindSectionHeader
                                                                                    forIndexPath:indexPath];
-        UILabel * lbl = [cell viewWithTag:1234];
-        if (lbl == nil){
-            lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
-            lbl.tag = 1234;
-            [cell addSubview:lbl];
-            
-            lbl.translatesAutoresizingMaskIntoConstraints = false;
-            NSLayoutConstraint * top = [NSLayoutConstraint constraintWithItem:lbl attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-            NSLayoutConstraint * bottom = [NSLayoutConstraint constraintWithItem:lbl attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-            NSLayoutConstraint * left = [NSLayoutConstraint constraintWithItem:lbl attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-            NSLayoutConstraint * right = [NSLayoutConstraint constraintWithItem:lbl attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-            [cell addConstraints:@[top, bottom, left, right]];
-        }
-        
-        cell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
         
         NSInteger h = [self headerStickyHeight:indexPath.section];
         if(h > 0){
-            lbl.text = [NSString stringWithFormat:@"    %ld     行高 %f      悬浮高度 %ld", indexPath.section, cell.bounds.size.height, h];
+            cell.messageLabel.text = [NSString stringWithFormat:@"    %ld     行高 %f      悬浮高度 %ld", indexPath.section, cell.bounds.size.height, h];
         }
         else{
-            lbl.text = [NSString stringWithFormat:@"    %ld", indexPath.section];
+            cell.messageLabel.text = [NSString stringWithFormat:@"    %ld", indexPath.section];
         }
+        cell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
         
         return cell;
     }
@@ -180,7 +187,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell * newCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
     
-    newCell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:0.25];
+    newCell.backgroundColor = [UIColor colorWithRed: arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:0.18];
     
     return newCell;
 }

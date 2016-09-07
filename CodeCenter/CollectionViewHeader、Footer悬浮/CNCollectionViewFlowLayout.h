@@ -13,13 +13,38 @@
 /**
  *  @author Five, 16-09-05 11:09:10
  *
- *  Header的最小高度，高度 > 0 才有悬浮效果
+ *  Header的悬浮高度，高度 > 0 才有悬浮效果
  *
  *  @param section Header的索引
  *
  *  @return 悬浮高度
  */
 - (CGFloat)headerStickyHeight:(NSInteger)section;
+//
+//#pragma mark - parallaxHeader
+//
+///**
+// *  @author Five, 16-09-05 11:09:10
+// *
+// *  视差Header的高度
+// *
+// *  @param section Header的索引
+// *
+// *  @return 高度
+// */
+//- (CGFloat)parallaxHeaderHeight:(NSInteger)section;
+//
+///**
+// *  @author Five, 16-09-05 11:09:10
+// *
+// *  视差Header的悬浮高度，高度 > 0 才有悬浮效果
+// *
+// *  @param section Header的索引
+// *
+// *  @return 悬浮高度
+// */
+//- (CGFloat)parallaxHeaderStickyHeight:(NSInteger)section;
+
 
 @end
 
@@ -28,22 +53,25 @@
 
 @property(nonatomic) id<CNCollectionViewFlowLayoutDataSource> dataSource;
 
+/**
+ *  @author Five, 16-09-07 11:09:24
+ *
+ *  视差视图的高度
+ */
+@property(nonatomic) CGFloat parallaxHeaderHeight;
 
-//@property(nonatomic) CGFloat headerMinHeight;
-//
-///**
-// *  @author Five, 16-09-05 09:09:50
-// *
-// *  参考高度
-// */
-//@property(nonatomic) CGFloat parallaxHeaderReferenHeight;
-//
-///**
-// *  @author Five, 16-09-05 09:09:58
-// *
-// *  最小高度
-// */
-//@property(nonatomic) CGFloat parallaxHeaderMinHeight;
+/**
+ *  @author Five, 16-09-07 11:09:11
+ *
+ *  视差视图的悬浮高度
+ */
+@property(nonatomic) CGFloat parallaxHeaderStickyHeight;
 
+/**
+ *  @author Five, 16-09-07 11:09:54
+ *
+ *  视差视图的最大高度(CollectionView一直下拉，视察视图会被拉伸，此参数就是限制拉伸的最大高度)
+ */
+@property(nonatomic) CGFloat parallaxHeaderMaxHeight;
 
 @end

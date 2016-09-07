@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0404538A1D0525C0006B761A /* UIColor扩展.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040453891D0525C0006B761A /* UIColor扩展.swift */; };
+		0411A4571D7FC02800DB500A /* SectionSuspensionCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411A4551D7FC02800DB500A /* SectionSuspensionCollectionReusableView.m */; };
+		0411A4581D7FC02800DB500A /* SectionSuspensionCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A4561D7FC02800DB500A /* SectionSuspensionCollectionReusableView.xib */; };
+		0411A45C1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411A45A1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.m */; };
+		0411A45D1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A45B1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.xib */; };
 		0437D80E1CF6F42000405C6C /* CNLInechart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80D1CF6F42000405C6C /* CNLInechart.swift */; };
 		0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */; };
 		044048AD1D407DFB007AC851 /* CNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044048AB1D407DFB007AC851 /* CNCollectionViewCell.m */; };
@@ -45,6 +49,12 @@
 
 /* Begin PBXFileReference section */
 		040453891D0525C0006B761A /* UIColor扩展.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor扩展.swift"; sourceTree = "<group>"; };
+		0411A4541D7FC02800DB500A /* SectionSuspensionCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionSuspensionCollectionReusableView.h; sourceTree = "<group>"; };
+		0411A4551D7FC02800DB500A /* SectionSuspensionCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionSuspensionCollectionReusableView.m; sourceTree = "<group>"; };
+		0411A4561D7FC02800DB500A /* SectionSuspensionCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionSuspensionCollectionReusableView.xib; sourceTree = "<group>"; };
+		0411A4591D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionSuspensionCollectionReusableView2.h; sourceTree = "<group>"; };
+		0411A45A1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionSuspensionCollectionReusableView2.m; sourceTree = "<group>"; };
+		0411A45B1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionSuspensionCollectionReusableView2.xib; sourceTree = "<group>"; };
 		0437D80D1CF6F42000405C6C /* CNLInechart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLInechart.swift; sourceTree = "<group>"; };
 		0437D80F1CF6F75000405C6C /* CNLineChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLineChartTableViewCell.swift; sourceTree = "<group>"; };
 		044048AA1D407DFB007AC851 /* CNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewCell.h; sourceTree = "<group>"; };
@@ -129,6 +139,12 @@
 				04D258F81D7BF60E00C7BE6F /* SectionSuspensionCollectionView.m */,
 				0498F8F31D7D16A9003EFF47 /* CNCollectionViewFlowLayout.h */,
 				0498F8F41D7D16A9003EFF47 /* CNCollectionViewFlowLayout.m */,
+				0411A4541D7FC02800DB500A /* SectionSuspensionCollectionReusableView.h */,
+				0411A4551D7FC02800DB500A /* SectionSuspensionCollectionReusableView.m */,
+				0411A4561D7FC02800DB500A /* SectionSuspensionCollectionReusableView.xib */,
+				0411A4591D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.h */,
+				0411A45A1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.m */,
+				0411A45B1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.xib */,
 			);
 			path = "CollectionViewHeader、Footer悬浮";
 			sourceTree = "<group>";
@@ -307,11 +323,13 @@
 			files = (
 				3C181C411CCCEDD80038D63F /* LaunchScreen.storyboard in Resources */,
 				044048AE1D407DFB007AC851 /* CNCollectionViewCell.xib in Resources */,
+				0411A4581D7FC02800DB500A /* SectionSuspensionCollectionReusableView.xib in Resources */,
 				04441A841D3F07410073108E /* 1.jpg in Resources */,
 				04441A871D3F0A0B0073108E /* 2.jpg in Resources */,
 				04441A881D3F0A0B0073108E /* 3.jpg in Resources */,
 				3C181C3E1CCCEDD80038D63F /* Assets.xcassets in Resources */,
 				3C181C391CCCEDD80038D63F /* Main.storyboard in Resources */,
+				0411A45D1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0485B2121CDC3D1F001E4A51 /* CNMessageView.swift in Sources */,
+				0411A45C1D7FE88400DB500A /* SectionSuspensionCollectionReusableView2.m in Sources */,
 				3C181C541CCCEDE90038D63F /* 自定义属性.swift in Sources */,
 				04B3D2971D0A61020015BA96 /* CNMessageViewProperty.swift in Sources */,
 				3C181C521CCCEDE90038D63F /* 约束.swift in Sources */,
@@ -348,6 +367,7 @@
 				04E226521D3C724A000FFEA9 /* CNMutableAttributedString.swift in Sources */,
 				3C181C511CCCEDE90038D63F /* 弹出隐藏视图OC.swift in Sources */,
 				3CE9CF301CDF140F00C3E5DD /* 正则.swift in Sources */,
+				0411A4571D7FC02800DB500A /* SectionSuspensionCollectionReusableView.m in Sources */,
 				0437D8101CF6F75000405C6C /* CNLineChartTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
