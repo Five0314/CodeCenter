@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="K5t-dt-jlw">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="K5t-dt-jlw">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,7 +19,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqG-Fg-pcH">
@@ -26,12 +30,12 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jW8-UH-4vP">
                                                 <rect key="frame" x="15" y="15" width="345" height="44"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="REH-78-niw"/>
                                                 </constraints>
                                                 <state key="normal" title="MessageView">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0k8-k5-oXG"/>
@@ -39,35 +43,36 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFu-YJ-3uD">
                                                 <rect key="frame" x="15" y="74" width="345" height="44"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="224-aY-3hg"/>
                                                 </constraints>
                                                 <state key="normal" title="LineChart">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvB-0V-2Op">
                                                 <rect key="frame" x="15" y="133" width="345" height="44"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Gxi-FL-ElB"/>
                                                 </constraints>
                                                 <state key="normal" title="左对齐CollectionView">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="leftCollectionView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bLR-ua-ZRo"/>
+                                                    <segue destination="GDb-8I-nj4" kind="push" id="33h-Om-kxz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZP-Zc-QiR">
                                                 <rect key="frame" x="15" y="192" width="345" height="44"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="0rT-Ak-qO5"/>
                                                 </constraints>
                                                 <state key="normal" title="切换 CollecitonView">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="switchCollectionView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4uz-tC-qAY"/>
@@ -83,7 +88,7 @@
                                                                 <rect key="frame" x="1" y="1" width="32" height="32"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="GOp-X3-Trk" firstAttribute="leading" secondItem="Gf0-G9-9i9" secondAttribute="leading" constant="1" id="7FZ-em-yus"/>
                                                             <constraint firstAttribute="bottom" secondItem="GOp-X3-Trk" secondAttribute="bottom" constant="1" id="EcW-id-HE6"/>
@@ -105,7 +110,7 @@
                                                                 <rect key="frame" x="1" y="1" width="32" height="32"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="ync-XH-2gj" secondAttribute="bottom" constant="1" id="HJF-aL-Duf"/>
                                                             <constraint firstAttribute="width" secondItem="zHs-3S-lel" secondAttribute="height" multiplier="1:1" id="bKF-Ji-9my"/>
@@ -126,7 +131,7 @@
                                                                 <rect key="frame" x="1" y="1" width="32" height="32"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Dw3-7b-Xqk" secondAttribute="height" multiplier="1:1" id="Fdc-sT-hHY"/>
                                                             <constraint firstAttribute="bottom" secondItem="YFM-Zt-7zO" secondAttribute="bottom" constant="1" id="Tpw-SR-FNi"/>
@@ -141,7 +146,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.32156862749999998" green="0.76862745099999996" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.32156862749999998" green="0.76862745099999996" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="Dw3-7b-Xqk" firstAttribute="leading" secondItem="rrq-Ya-JYm" secondAttribute="leading" id="31P-I3-Obh"/>
                                                     <constraint firstAttribute="bottom" secondItem="Dw3-7b-Xqk" secondAttribute="bottom" id="DuX-pC-UjA"/>
@@ -156,7 +161,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="JZP-Zc-QiR" firstAttribute="leading" secondItem="qHU-Pc-ALf" secondAttribute="leading" constant="15" id="3cb-jy-S0K"/>
                                             <constraint firstAttribute="trailing" secondItem="wvB-0V-2Op" secondAttribute="trailing" constant="15" id="84V-EM-zDO"/>
@@ -185,7 +190,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XqG-Fg-pcH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T23-Q8-eJE"/>
                             <constraint firstItem="XqG-Fg-pcH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bKw-pM-f7g"/>
@@ -195,7 +200,6 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="l17-OS-wBC"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="leftImageView" destination="YFM-Zt-7zO" id="9Ja-Dy-fZp"/>
                         <outlet property="leftView" destination="Dw3-7b-Xqk" id="oVo-x5-qz9"/>
@@ -207,15 +211,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="466.5" y="628.5"/>
+            <point key="canvasLocation" x="506" y="627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bSo-s9-5AE">
             <objects>
                 <navigationController id="K5t-dt-jlw" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WEp-L7-GY1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -224,7 +227,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ju8-6y-tfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="26.5" y="628.5"/>
+            <point key="canvasLocation" x="-342" y="628"/>
         </scene>
         <!--LineChart-->
         <scene sceneID="guo-w4-hqa">
@@ -235,16 +238,15 @@
                         <viewControllerLayoutGuide type="bottom" id="fsW-21-kYQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bAT-Sl-tWm" customClass="CNLInechart" customModule="CodeCenter" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="VNd-1L-SvH"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGk-DP-ScF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="535"/>
+            <point key="canvasLocation" x="1252" y="322"/>
         </scene>
         <!--左对齐CollectionView-->
         <scene sceneID="tVs-sL-9Xy">
@@ -255,12 +257,12 @@
                         <viewControllerLayoutGuide type="bottom" id="p47-8d-KIL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y24-aq-UgT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qf0-4O-mOt">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qf0-4O-mOt">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="e33-Ph-TVt" customClass="CNCollectionViewLeftFlowLayout">
                                     <size key="itemSize" width="320" height="416"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -274,7 +276,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Qf0-4O-mOt" firstAttribute="leading" secondItem="Y24-aq-UgT" secondAttribute="leading" id="Jxx-fz-AOP"/>
                             <constraint firstItem="Qf0-4O-mOt" firstAttribute="top" secondItem="Y24-aq-UgT" secondAttribute="top" id="NZX-sO-MRp"/>
@@ -284,14 +286,13 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="WHQ-BG-sDM"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="cnCollectionView" destination="Qf0-4O-mOt" id="ECZ-il-1iz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjw-x1-lEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="1077"/>
+            <point key="canvasLocation" x="1252" y="1098"/>
         </scene>
     </scenes>
 </document>

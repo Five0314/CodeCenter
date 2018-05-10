@@ -260,7 +260,8 @@
 				TargetAttributes = {
 					3C181C2A1CCCEDD80038D63F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 8SDT32D4WS;
+						DevelopmentTeam = HG98QWK6CH;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -441,11 +442,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = HG98QWK6CH;
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.five.codecenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -454,11 +457,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = HG98QWK6CH;
 				INFOPLIST_FILE = CodeCenter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.line365.BusinessTimeQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.five.codecenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CodeCenter/CodeCenter-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

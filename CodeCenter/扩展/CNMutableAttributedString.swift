@@ -23,7 +23,7 @@ extension NSMutableAttributedString{
      
      - returns: NSMutableAttributedString
      */
-    static func stringWithRegular(text: String?, regular: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
+    static func stringWithRegular(_ text: String?, regular: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
         if text == nil{
             return nil
         }
@@ -42,14 +42,14 @@ extension NSMutableAttributedString{
      
      - returns: NSMutableAttributedString
      */
-    static func stringWithRegular(text: String?, regular: String?, highlightColor: UIColor?, range: NSRange) -> NSMutableAttributedString?{
+    static func stringWithRegular(_ text: String?, regular: String?, highlightColor: UIColor?, range: NSRange) -> NSMutableAttributedString?{
         if text == nil || regular == nil || highlightColor == nil{
             return nil
         }
         
         do{
-            let regex = try NSRegularExpression(pattern: regular!, options: .CaseInsensitive)
-            let regularResult = regex.matchesInString(text!, options: .ReportCompletion, range: range)
+            let regex = try NSRegularExpression(pattern: regular!, options: .caseInsensitive)
+            let regularResult = regex.matches(in: text!, options: .reportCompletion, range: range)
             
             let attributedString = NSMutableAttributedString(string: text!)
             for checkingResult in regularResult {
@@ -73,7 +73,7 @@ extension NSMutableAttributedString{
      
      - returns: NSMutableAttributedString
      */
-    static func stringWithRegular(text: String?, between: String?, and: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
+    static func stringWithRegular(_ text: String?, between: String?, and: String?, highlightColor: UIColor?) -> NSMutableAttributedString?{
         if text == nil || between == nil || and == nil || highlightColor == nil{
             return nil
         }
@@ -81,8 +81,8 @@ extension NSMutableAttributedString{
         do{
 //             "“((?!”.*“).)+”";
             let regularString = between! + "((?!" + between! + ".*" + and! + ").)+" + and!
-            let regex = try NSRegularExpression(pattern: regularString, options: .CaseInsensitive)
-            let regularResult = regex.matchesInString(text!, options: .ReportCompletion, range: NSMakeRange(0, text!.characters.count))
+            let regex = try NSRegularExpression(pattern: regularString, options: .caseInsensitive)
+            let regularResult = regex.matches(in: text!, options: .reportCompletion, range: NSMakeRange(0, text!.characters.count))
             
             let attributedString = NSMutableAttributedString(string: text!)
             for checkingResult in regularResult {

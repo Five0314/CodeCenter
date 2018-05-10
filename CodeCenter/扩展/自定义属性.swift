@@ -14,13 +14,13 @@ extension NSObject{
      *
      *  扩展属性Key
      */
-    private struct AssociatedKeysForNSObject {
+    fileprivate struct AssociatedKeysForNSObject {
         static var loadProgress = "loadProgress"//进度
     }
     
     //MARK: - 进度标签
     class CNLoadProgressPanel{
-        var cnlp: CNLoadProgress = .UnLoad
+        var cnlp: CNLoadProgress = .unLoad
         
         init(lp: CNLoadProgress){
             self.cnlp = lp
@@ -33,7 +33,7 @@ extension NSObject{
                 return (v as! CNLoadProgressPanel).cnlp
             }
             else{
-                return .UnLoad
+                return .unLoad
             }
         }
         set{

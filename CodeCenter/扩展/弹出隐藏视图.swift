@@ -11,11 +11,11 @@ import UIKit
 //MARK: - 枚举 视图弹出、隐藏方向
 /// 显示、隐藏 类型
 enum CNShowStyle: UInt{
-    case None = 0
-    case Top = 1
-    case Bottom = 2
-    case Left = 3
-    case Right = 4
+    case none = 0
+    case top = 1
+    case bottom = 2
+    case left = 3
+    case right = 4
     
     func ocValue() -> CNShowOrHideStyleOC{
         return CNShowOrHideStyleOC(rawValue: self.rawValue)
@@ -23,11 +23,11 @@ enum CNShowStyle: UInt{
 }
 
 enum CNHideStyle: UInt{
-    case None = 0
-    case Top = 1
-    case Bottom = 2
-    case Left = 3
-    case Right = 4
+    case none = 0
+    case top = 1
+    case bottom = 2
+    case left = 3
+    case right = 4
     
     func ocValue() -> CNShowOrHideStyleOC{
         return CNShowOrHideStyleOC(rawValue: self.rawValue)
@@ -42,13 +42,13 @@ enum CNHideStyle: UInt{
  - LineAnimation: 线性动画
  */
 enum CNShowAnimationStyle{
-    case SpringAnimation
-    case LineAnimation
+    case springAnimation
+    case lineAnimation
 }
 
 //MARK: - 结构体 遮罩层类型
 /// 遮罩层类型
-public struct CNMaskStyle: OptionSetType{
+public struct CNMaskStyle: OptionSet{
     public var rawValue: Int
     
     public init(rawValue: Int){
@@ -82,13 +82,13 @@ private class ViewOptionsForShowAndHide{
 struct ViewShowAndHideOptions{
 //MARK: 进入方向
     /// 进入方向
-    var showStyle: CNShowStyle = .Right
+    var showStyle: CNShowStyle = .right
     
 //    var showAnimationStyle: 
     
 //MARK: 隐藏方向
     /// 隐藏方向
-    var hideStyle: CNHideStyle = .Right
+    var hideStyle: CNHideStyle = .right
 //    var asd: MaskType_0314
 //MARK: 约束
     /// 显示自己的父容器
@@ -141,34 +141,34 @@ struct ViewShowAndHideOptions{
         self.maskStyle = masktype
         
         for lc in cs {
-            if lc.firstAttribute == .Top{
+            if lc.firstAttribute == .top{
                 self.top = lc
             }
-            else if lc.firstAttribute == .Bottom{
+            else if lc.firstAttribute == .bottom{
                 self.bottom = lc
             }
-            else if lc.firstAttribute == .Leading{
+            else if lc.firstAttribute == .leading{
                 self.leading = lc
             }
-            else if lc.firstAttribute == .Trailing{
+            else if lc.firstAttribute == .trailing{
                 self.tralling = lc
             }
-            else if lc.firstAttribute == .CenterX{
+            else if lc.firstAttribute == .centerX{
                 self.centerX = lc
             }
-            else if lc.firstAttribute == .CenterY{
+            else if lc.firstAttribute == .centerY{
                 self.centerY = lc
             }
-            else if lc.firstAttribute == .Width{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .width{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedWidth = lc
                 }
                 else{
                     self.relativeWidth = lc
                 }
             }
-            else if lc.firstAttribute == .Height{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .height{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedHeight = lc
                 }
                 else{
@@ -180,34 +180,34 @@ struct ViewShowAndHideOptions{
     
     init(cs : [NSLayoutConstraint]){
         for lc in cs {
-            if lc.firstAttribute == .Top{
+            if lc.firstAttribute == .top{
                 self.top = lc
             }
-            else if lc.firstAttribute == .Bottom{
+            else if lc.firstAttribute == .bottom{
                 self.bottom = lc
             }
-            else if lc.firstAttribute == .Leading{
+            else if lc.firstAttribute == .leading{
                 self.leading = lc
             }
-            else if lc.firstAttribute == .Trailing{
+            else if lc.firstAttribute == .trailing{
                 self.tralling = lc
             }
-            else if lc.firstAttribute == .CenterX{
+            else if lc.firstAttribute == .centerX{
                 self.centerX = lc
             }
-            else if lc.firstAttribute == .CenterY{
+            else if lc.firstAttribute == .centerY{
                 self.centerY = lc
             }
-            else if lc.firstAttribute == .Width{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .width{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedWidth = lc
                 }
                 else{
                     self.relativeWidth = lc
                 }
             }
-            else if lc.firstAttribute == .Height{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .height{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedHeight = lc
                 }
                 else{
@@ -223,31 +223,31 @@ struct ViewShowAndHideOptions{
 //        self.showStyle = ocOptions.showStyle.rawValue
         //显示样式
         switch ocOptions.showStyle {
-        case CNShowOrHideStyleOC.None:
-            self.showStyle = .None
-        case CNShowOrHideStyleOC.Top:
-            self.showStyle = .Top
-        case CNShowOrHideStyleOC.Bottom:
-            self.showStyle = .Bottom
-        case CNShowOrHideStyleOC.Left:
-            self.showStyle = .Left
-        case CNShowOrHideStyleOC.Right:
-            self.showStyle = .Right
+        case CNShowOrHideStyleOC():
+            self.showStyle = .none
+        case CNShowOrHideStyleOC.top:
+            self.showStyle = .top
+        case CNShowOrHideStyleOC.bottom:
+            self.showStyle = .bottom
+        case CNShowOrHideStyleOC.left:
+            self.showStyle = .left
+        case CNShowOrHideStyleOC.right:
+            self.showStyle = .right
         default:break
         }
         
         //隐藏样式
         switch ocOptions.hideStyle {
-        case CNShowOrHideStyleOC.None:
-            self.hideStyle = .None
-        case CNShowOrHideStyleOC.Top:
-            self.hideStyle = .Top
-        case CNShowOrHideStyleOC.Bottom:
-            self.hideStyle = .Bottom
-        case CNShowOrHideStyleOC.Left:
-            self.hideStyle = .Left
-        case CNShowOrHideStyleOC.Right:
-            self.hideStyle = .Right
+        case CNShowOrHideStyleOC():
+            self.hideStyle = .none
+        case CNShowOrHideStyleOC.top:
+            self.hideStyle = .top
+        case CNShowOrHideStyleOC.bottom:
+            self.hideStyle = .bottom
+        case CNShowOrHideStyleOC.left:
+            self.hideStyle = .left
+        case CNShowOrHideStyleOC.right:
+            self.hideStyle = .right
         default:break
         }
         
@@ -275,7 +275,7 @@ extension UIView{
      *
      *  扩展属性Key
      */
-    private struct AssociatedKeysForUIView {
+    fileprivate struct AssociatedKeysForUIView {
         static var showAndHideOptions = "showAndHideOptions"//视图弹出、隐藏参数
         
         static var isShowing = "isShowing"//是否正在显示
@@ -311,7 +311,7 @@ extension UIView{
     var hasBeDisplayedFromShowInView: Bool{
         get{
             if let v = objc_getAssociatedObject(self, &AssociatedKeysForUIView.isShowing){
-                return v.boolValue
+                return (v as AnyObject).boolValue
             }
             else{
                 return false
@@ -328,37 +328,38 @@ extension UIView{
             objc_setAssociatedObject(self, &AssociatedKeysForUIView.maskButton, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get{
-            return unsafeBitCast(objc_getAssociatedObject(self, &AssociatedKeysForUIView.maskButton), UIButton.self)
+            return objc_getAssociatedObject(self, &AssociatedKeysForUIView.maskButton) as? UIButton
+//            return unsafeBitCast(objc_getAssociatedObject(self, &AssociatedKeysForUIView.maskButton), to: UIButton.self)
         }
     }
     
     /// 隐藏完毕回调
     var hideCompleted: noParamNoReturn?{
         set{
-            objc_setAssociatedObject(self, &AssociatedKeysForUIView.hideCompleted, unsafeBitCast(newValue, AnyObject.self), .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &AssociatedKeysForUIView.hideCompleted, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get{
-            return unsafeBitCast(objc_getAssociatedObject(self, &AssociatedKeysForUIView.hideCompleted), noParamNoReturn.self)
+            return objc_getAssociatedObject(self, &AssociatedKeysForUIView.hideCompleted) as? noParamNoReturn
         }
     }
     
     /// 显示完毕回调
     var showCompleted: noParamNoReturn?{
         set{
-            objc_setAssociatedObject(self, &AssociatedKeysForUIView.showCompeleted, unsafeBitCast(newValue, AnyObject.self), .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &AssociatedKeysForUIView.showCompeleted, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get{
-            return unsafeBitCast(objc_getAssociatedObject(self, &AssociatedKeysForUIView.showCompeleted), noParamNoReturn.self)
+            return objc_getAssociatedObject(self, &AssociatedKeysForUIView.showCompeleted) as? noParamNoReturn
         }
     }
     
     /// 显示完毕回调
     var maskClick: noParamNoReturn?{
         set{
-            objc_setAssociatedObject(self, &AssociatedKeysForUIView.maskClick, unsafeBitCast(newValue, AnyObject.self), .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &AssociatedKeysForUIView.maskClick, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get{
-            return unsafeBitCast(objc_getAssociatedObject(self, &AssociatedKeysForUIView.maskClick), noParamNoReturn.self)
+            return objc_getAssociatedObject(self, &AssociatedKeysForUIView.maskClick) as? noParamNoReturn
         }
     }
 }
@@ -379,7 +380,7 @@ extension UIView{
      
      - returns: 成功与否
      */
-    func showInView(superUV: UIView, showStyle: CNShowStyle, hideStyle: CNHideStyle, options: [NSLayoutConstraint]) -> Bool{
+    func showInView(_ superUV: UIView, showStyle: CNShowStyle, hideStyle: CNHideStyle, options: [NSLayoutConstraint]) -> Bool{
         var op = ViewShowAndHideOptions(cs : options);
         op.superUV = superUV
         op.showStyle = showStyle
@@ -395,7 +396,7 @@ extension UIView{
      
      - returns: 成功与否
      */
-    func showInView(options: ViewShowAndHideOptions) -> Bool{
+    func showInView(_ options: ViewShowAndHideOptions) -> Bool{
         if options.superUV == nil{//没有父容器，返回false
             return false
         }
@@ -423,12 +424,12 @@ extension UIView{
                 mb.backgroundColor = RGB(160, green: 160, blue: 160, alpha: 0.6)
             }
             else{
-                mb.backgroundColor = UIColor.clearColor()
+                mb.backgroundColor = UIColor.clear
             }
             
             // 遮罩层点击事件
             if options.maskStyle.contains(.ClickEnable){
-                mb.addTarget(self, action: #selector(self.cnMaskButtonClicked(_:)), forControlEvents: .TouchUpInside)
+                mb.addTarget(self, action: #selector(self.cnMaskButtonClicked(_:)), for: .touchUpInside)
 //                mb.addTarget(self, action: #selector(cnMaskButtonClicked), forControlEvents: .TouchUpInside)
             }
         }
@@ -446,16 +447,16 @@ extension UIView{
         }
         
         //约束
-        options.top?.active = true
-        options.bottom?.active = true
-        options.leading?.active = true
-        options.tralling?.active = true
-        options.relativeWidth?.active = true
-        options.relativeHeight?.active = true
-        options.centerX?.active = true
-        options.centerY?.active = true
-        options.specifiedWidth?.active = true
-        options.specifiedHeight?.active = true
+        options.top?.isActive = true
+        options.bottom?.isActive = true
+        options.leading?.isActive = true
+        options.tralling?.isActive = true
+        options.relativeWidth?.isActive = true
+        options.relativeHeight?.isActive = true
+        options.centerX?.isActive = true
+        options.centerY?.isActive = true
+        options.specifiedWidth?.isActive = true
+        options.specifiedHeight?.isActive = true
         
         //执行约束
         self.layoutIfNeeded()
@@ -463,30 +464,30 @@ extension UIView{
         
         //初始偏移量
         switch options.showStyle {
-        case .Top:
-            self.transform = CGAffineTransformMakeTranslation(0, self.transform.ty - self.bounds.size.height - self.frame.origin.y);
-        case .Bottom:
+        case .top:
+            self.transform = CGAffineTransform(translationX: 0, y: self.transform.ty - self.bounds.size.height - self.frame.origin.y);
+        case .bottom:
             if options.superUV != nil{
-                self.transform = CGAffineTransformMakeTranslation(0, self.transform.ty + options.superUV!.bounds.size.height - self.frame.origin.y);
+                self.transform = CGAffineTransform(translationX: 0, y: self.transform.ty + options.superUV!.bounds.size.height - self.frame.origin.y);
             }
-        case .Left:
-            self.transform = CGAffineTransformMakeTranslation(self.transform.tx - self.bounds.size.width - self.frame.size.width, 0);
-        case .Right:
+        case .left:
+            self.transform = CGAffineTransform(translationX: self.transform.tx - self.bounds.size.width - self.frame.size.width, y: 0);
+        case .right:
             if options.superUV != nil{
-                self.transform = CGAffineTransformMakeTranslation(self.transform.tx + options.superUV!.bounds.size.width - self.bounds.origin.x - self.transform.tx, 0);
+                self.transform = CGAffineTransform(translationX: self.transform.tx + options.superUV!.bounds.size.width - self.bounds.origin.x - self.transform.tx, y: 0);
             }
         default: break
         }
         
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             if self.maskButton != nil{
                 self.maskButton?.alpha = 1.0
             }
             }, completion: nil)
         
         //动画
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.68, initialSpringVelocity: 0.0, options: [.BeginFromCurrentState, .AllowUserInteraction], animations: {
-            self.transform =  CGAffineTransformMakeTranslation(0, 0);
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.68, initialSpringVelocity: 0.0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+            self.transform =  CGAffineTransform(translationX: 0, y: 0);
         }) {(finished) in
             
             //显示中
@@ -502,7 +503,7 @@ extension UIView{
     }
     
     // MARK: 遮罩层点击事件
-    @objc private func cnMaskButtonClicked(sender: UIButton){
+    @objc fileprivate func cnMaskButtonClicked(_ sender: UIButton){
         if self.maskClick != nil{
             self.maskClick!()
         }
@@ -523,7 +524,7 @@ extension UIView{
             self.hideFromSuperView(self.showAndHideOptions?.hideStyle, animated: true, removeAfterComplete: true, complete: nil)
         }
         else{
-            self.hideFromSuperView(.Right, animated: true, removeAfterComplete: true, complete: nil)
+            self.hideFromSuperView(.right, animated: true, removeAfterComplete: true, complete: nil)
         }
     }
     
@@ -532,12 +533,12 @@ extension UIView{
      
      - parameter complete: 隐藏完毕回调
      */
-    func hideFromSuperView(complete: noParamNoReturn){
+    func hideFromSuperView(_ complete: @escaping noParamNoReturn){
         if self.showAndHideOptions != nil{
             self.hideFromSuperView(self.showAndHideOptions?.hideStyle, animated: true, removeAfterComplete: true, complete: complete)
         }
         else{
-            self.hideFromSuperView(.Right, animated: true, removeAfterComplete: true, complete: complete)
+            self.hideFromSuperView(.right, animated: true, removeAfterComplete: true, complete: complete)
         }
     }
     
@@ -549,9 +550,9 @@ extension UIView{
      - parameter removeAfterComplet: 动画结束，是否从父容器中移除自己
      - parameter complete:           隐藏完毕回调
      */
-    func hideFromSuperView(hideStyle: CNHideStyle?, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
+    func hideFromSuperView(_ hideStyle: CNHideStyle?, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
         var duration = 0.25
-        if hideStyle == nil || hideStyle == .None{
+        if hideStyle == nil || hideStyle == .none{
             duration = 0.5
         }
         
@@ -560,7 +561,7 @@ extension UIView{
         }
         
         //动画
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
 //        UIView.animateWithDuration(animated ? 0.68 : 0, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.BeginFromCurrentState, .AllowUserInteraction], animations: {
             /**
              *  遮罩层
@@ -572,7 +573,7 @@ extension UIView{
             //偏移量
             if hideStyle != nil{
                 switch hideStyle! {
-                case .None:
+                case .none:
                     self.layer.zPosition = 1000
                     
                     var transform3D = CATransform3DMakeRotation(CGFloat(M_PI), 0.0, -1.0, 0.0)
@@ -583,17 +584,17 @@ extension UIView{
                     self.layer.transform = transform3D
                     
                     self.alpha = 0
-                case .Top:
-                    self.transform = CGAffineTransformMakeTranslation(0, 0 - self.bounds.size.height - self.frame.origin.y);
-                case .Bottom:
+                case .top:
+                    self.transform = CGAffineTransform(translationX: 0, y: 0 - self.bounds.size.height - self.frame.origin.y);
+                case .bottom:
                     if self.superview != nil{
-                        self.transform = CGAffineTransformMakeTranslation(0, self.superview!.bounds.size.height - self.frame.origin.y);
+                        self.transform = CGAffineTransform(translationX: 0, y: self.superview!.bounds.size.height - self.frame.origin.y);
                     }
-                case .Left:
-                    self.transform = CGAffineTransformMakeTranslation(0 - self.bounds.size.width - self.frame.size.width, 0);
-                case .Right:
+                case .left:
+                    self.transform = CGAffineTransform(translationX: 0 - self.bounds.size.width - self.frame.size.width, y: 0);
+                case .right:
                     if self.superview != nil{
-                        self.transform = CGAffineTransformMakeTranslation(self.superview!.bounds.size.width - self.bounds.origin.x, 0);
+                        self.transform = CGAffineTransform(translationX: self.superview!.bounds.size.width - self.bounds.origin.x, y: 0);
                     }
                 }
             }
@@ -610,7 +611,7 @@ extension UIView{
                 self.alpha = 0
             }
             
-        }) {(finished) in
+        }, completion: {(finished) in
             
             if self.maskButton != nil{
                 self.maskButton?.removeFromSuperview()
@@ -620,7 +621,7 @@ extension UIView{
                 self.removeFromSuperview()
             }
             else{
-                self.superview?.sendSubviewToBack(self)
+                self.superview?.sendSubview(toBack: self)
             }
             
             //还原缩放、偏移、旋转...
@@ -637,6 +638,6 @@ extension UIView{
             if self.hideCompleted != nil{
                 self.hideCompleted!()
             }
-        }
+        }) 
     }
 }

@@ -13,7 +13,7 @@ extension NSString{
      去除首位空格
      */
     func trim() -> NSString {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces) as NSString
     }
     
     /**
@@ -32,12 +32,12 @@ extension NSString{
      
      - returns: MD5加密结果（CC_MD5_DIGEST_LENGTH:长度32、CC_MD5_BLOCK_BYTES:长度128）
      */
-    func CNMD5(digestLen:Int) -> NSString{
-        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)//UTF8
+    func CNMD5(_ digestLen:Int) -> NSString{
+        let str = self.cString(using: String.Encoding.utf8.rawValue)//UTF8
         
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let strLen = CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8.rawValue))
         
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         
         CC_MD5(str, strLen, result)
         
@@ -47,7 +47,7 @@ extension NSString{
             hash.appendFormat("%02x", result[i])
         }
         
-        result.dealloc(digestLen)
+//        result.deallocateCapacity(digestLen)
         
         return NSString(format: hash)
     }
@@ -63,7 +63,7 @@ extension String{
 //        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regularString options:NSRegularExpressionDotMatchesLineSeparators error:&error];//正则匹配
 //        NSArray * arr = [regex matchesInString:message options:0 range:NSMakeRange(0, [message length])];//匹配结果
 
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
     /**
@@ -82,12 +82,12 @@ extension String{
      
      - returns: MD5加密结果（CC_MD5_DIGEST_LENGTH:长度32、CC_MD5_BLOCK_BYTES:长度128）
      */
-    func CNMD5(digestLen:Int) -> String{
-        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)//UTF8
+    func CNMD5(_ digestLen:Int) -> String{
+        let str = self.cString(using: String.Encoding.utf8)//UTF8
         
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let strLen = CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8))
         
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         
         CC_MD5(str!, strLen, result)
         
@@ -97,7 +97,7 @@ extension String{
             hash.appendFormat("%02x", result[i])
         }
         
-        result.dealloc(digestLen)
+//        result.deallocateCapacity(digestLen)
         
         return String(format: hash as String)
     }

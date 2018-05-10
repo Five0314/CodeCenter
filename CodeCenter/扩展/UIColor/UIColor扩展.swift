@@ -19,7 +19,7 @@ import UIKit
  
  - returns: UIColor
  */
-func RGB(red: Float, green: Float, blue: Float) -> UIColor{
+func RGB(_ red: Float, green: Float, blue: Float) -> UIColor{
     return RGB(red, green: green, blue: blue, alpha: 1.0)
 }
 
@@ -33,7 +33,7 @@ func RGB(red: Float, green: Float, blue: Float) -> UIColor{
  
  - returns: UIColor
  */
-func RGB(red: Float, green: Float, blue: Float, alpha: Float) -> UIColor{
+func RGB(_ red: Float, green: Float, blue: Float, alpha: Float) -> UIColor{
     return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha))
 }
 

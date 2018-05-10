@@ -13,11 +13,11 @@ import Foundation
 struct ViewShowAndHideOptionsOC{
     //MARK: 进入方向
     /// 进入方向
-    var showStyle: CNShowOrHideStyleOC = .Right
+    var showStyle: CNShowOrHideStyleOC = .right
     
     //MARK: 隐藏方向
     /// 隐藏方向
-    var hideStyle: CNShowOrHideStyleOC = .None
+    var hideStyle: CNShowOrHideStyleOC = CNShowOrHideStyleOC()
     //    var asd: MaskType_0314
     //MARK: 约束
     /// 显示自己的父容器
@@ -56,7 +56,7 @@ struct ViewShowAndHideOptionsOC{
     
     //MARK: 遮罩层类型
     /// 遮罩层类型
-    var maskStyle: CNMaskStyleOC = [CNMaskStyleOC.Add, CNMaskStyleOC.Show, CNMaskStyleOC.ClickEnable];
+    var maskStyle: CNMaskStyleOC = [CNMaskStyleOC.add, CNMaskStyleOC.show, CNMaskStyleOC.clickEnable];
     
     init(superUV: UIView?, showDirection: CNShowOrHideStyleOC, hideDirection: CNShowOrHideStyleOC, maskStyle: CNMaskStyleOC, cs : [NSLayoutConstraint]){
         self.superUV = superUV
@@ -68,34 +68,34 @@ struct ViewShowAndHideOptionsOC{
         self.maskStyle = maskStyle
         
         for lc in cs {
-            if lc.firstAttribute == .Top{
+            if lc.firstAttribute == .top{
                 self.top = lc
             }
-            else if lc.firstAttribute == .Bottom{
+            else if lc.firstAttribute == .bottom{
                 self.bottom = lc
             }
-            else if lc.firstAttribute == .Leading{
+            else if lc.firstAttribute == .leading{
                 self.leading = lc
             }
-            else if lc.firstAttribute == .Trailing{
+            else if lc.firstAttribute == .trailing{
                 self.tralling = lc
             }
-            else if lc.firstAttribute == .CenterX{
+            else if lc.firstAttribute == .centerX{
                 self.centerX = lc
             }
-            else if lc.firstAttribute == .CenterY{
+            else if lc.firstAttribute == .centerY{
                 self.centerY = lc
             }
-            else if lc.firstAttribute == .Width{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .width{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedWidth = lc
                 }
                 else{
                     self.relativeWidth = lc
                 }
             }
-            else if lc.firstAttribute == .Height{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .height{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedHeight = lc
                 }
                 else{
@@ -107,34 +107,34 @@ struct ViewShowAndHideOptionsOC{
     
     init(cs : [NSLayoutConstraint]){
         for lc in cs {
-            if lc.firstAttribute == .Top{
+            if lc.firstAttribute == .top{
                 self.top = lc
             }
-            else if lc.firstAttribute == .Bottom{
+            else if lc.firstAttribute == .bottom{
                 self.bottom = lc
             }
-            else if lc.firstAttribute == .Leading{
+            else if lc.firstAttribute == .leading{
                 self.leading = lc
             }
-            else if lc.firstAttribute == .Trailing{
+            else if lc.firstAttribute == .trailing{
                 self.tralling = lc
             }
-            else if lc.firstAttribute == .CenterX{
+            else if lc.firstAttribute == .centerX{
                 self.centerX = lc
             }
-            else if lc.firstAttribute == .CenterY{
+            else if lc.firstAttribute == .centerY{
                 self.centerY = lc
             }
-            else if lc.firstAttribute == .Width{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .width{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedWidth = lc
                 }
                 else{
                     self.relativeWidth = lc
                 }
             }
-            else if lc.firstAttribute == .Height{
-                if lc.secondAttribute == .NotAnAttribute{
+            else if lc.firstAttribute == .height{
+                if lc.secondAttribute == .notAnAttribute{
                     self.specifiedHeight = lc
                 }
                 else{
@@ -184,7 +184,7 @@ extension UIView{
      
      - returns: 成功与否
      */
-    func showInViewOC(superUV: UIView, showStyle: CNShowOrHideStyleOC, hideStyle: CNShowOrHideStyleOC, options: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+    func showInViewOC(_ superUV: UIView, showStyle: CNShowOrHideStyleOC, hideStyle: CNShowOrHideStyleOC, options: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
         var op = ViewShowAndHideOptionsOC(cs : options);
         
         op.superUV = superUV
@@ -197,28 +197,28 @@ extension UIView{
     }
 
     ///从左边显示
-    func showFromLeft(superUV: UIView, constraints: [NSLayoutConstraint], showMask : CNMaskStyleOC) -> Bool{
-        return self.showInView(superUV, showStyle: .Left, hideStyle: .Left, options: constraints)
+    func showFromLeft(_ superUV: UIView, constraints: [NSLayoutConstraint], showMask : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .left, hideStyle: .left, options: constraints)
     }
     
     ///从右边显示
-    func showFromRight(superUV: UIView, constraints: [NSLayoutConstraint], askStyle : CNMaskStyleOC) -> Bool{
-        return self.showInView(superUV, showStyle: .Right, hideStyle: .Right, options: constraints)
+    func showFromRight(_ superUV: UIView, constraints: [NSLayoutConstraint], askStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .right, hideStyle: .right, options: constraints)
     }
     
     ///从上边显示
-    func showFromTop(superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
-        return self.showInView(superUV, showStyle: .Top, hideStyle: .Top, options: constraints)
+    func showFromTop(_ superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .top, hideStyle: .top, options: constraints)
     }
     
     ///从下边显示
-    func showFromBottom(superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
-        return self.showInView(superUV, showStyle: .Bottom, hideStyle: .Bottom, options: constraints)
+    func showFromBottom(_ superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .bottom, hideStyle: .bottom, options: constraints)
     }
     
     ///弹出视图
-    func showInView(superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
-        return self.showInView(superUV, showStyle: .None, hideStyle: .Bottom, options: constraints)
+    func showInView(_ superUV: UIView, constraints: [NSLayoutConstraint], maskStyle : CNMaskStyleOC) -> Bool{
+        return self.showInView(superUV, showStyle: .none, hideStyle: .bottom, options: constraints)
     }
 }
 
@@ -231,19 +231,19 @@ extension UIView{
      - parameter removeAfterComplet: 动画结束，是否从父容器中移除自己
      - parameter complete:           隐藏完毕回调
      */
-    func hideFromSuperViewOC(hideStyle: CNShowOrHideStyleOC, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
-        var shStyle:CNHideStyle = .None
+    func hideFromSuperViewOC(_ hideStyle: CNShowOrHideStyleOC, animated: Bool, removeAfterComplete: Bool, complete:noParamNoReturn?){
+        var shStyle:CNHideStyle = .none
         
         switch hideStyle {
-        case CNShowOrHideStyleOC.Top:
-            shStyle = .Top
-        case CNShowOrHideStyleOC.Bottom:
-            shStyle = .Bottom
-        case CNShowOrHideStyleOC.Right:
-            shStyle = .Right
-        case CNShowOrHideStyleOC.Left:
-            shStyle = .Left
-        case CNShowOrHideStyleOC.None: break
+        case CNShowOrHideStyleOC.top:
+            shStyle = .top
+        case CNShowOrHideStyleOC.bottom:
+            shStyle = .bottom
+        case CNShowOrHideStyleOC.right:
+            shStyle = .right
+        case CNShowOrHideStyleOC.left:
+            shStyle = .left
+        case CNShowOrHideStyleOC(): break
         default: break
         }
         

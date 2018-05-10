@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CNMessageView: UIView {
+open class CNMessageView: UIView {
     
 //    /// 单例
 //    private static let _sharedInstance: CNMessageView = CNMessageView()
@@ -79,10 +79,10 @@ public class CNMessageView: UIView {
 //        }
 //    }
     
-    private var _rootPanel: UIView?{
+    fileprivate var _rootPanel: UIView?{
         didSet{
             //背景色
-            _rootPanel!.backgroundColor = UIColor.whiteColor()
+            _rootPanel!.backgroundColor = UIColor.white
             
             //超过边界不可见
             _rootPanel?.clipsToBounds = true
@@ -94,23 +94,23 @@ public class CNMessageView: UIView {
             _rootPanel?.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
-            topCS.active = true
+            let topCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0)
+            topCS.isActive = true
             
             //Bottom
-            let bottomCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            bottomCS.active = true
+            let bottomCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0)
+            bottomCS.isActive = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadingCS.active = true
+            let leadingCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadingCS.isActive = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            trailingCS.active = true
+            let trailingCS = NSLayoutConstraint.init(item: _rootPanel!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0)
+            trailingCS.isActive = true
         }
     }
-    private var rootPanel: UIView{
+    fileprivate var rootPanel: UIView{
         get{
             if _rootPanel == nil{
                 _rootPanel = UIView()
@@ -122,10 +122,10 @@ public class CNMessageView: UIView {
     
     //MARK: - 标题
     
-    private var _titlePanel:UIView?{
+    fileprivate var _titlePanel:UIView?{
         didSet{
             //背景色
-            _titlePanel!.backgroundColor = UIColor.clearColor()
+            _titlePanel!.backgroundColor = UIColor.clear
             
             //超过边界不可见
             _titlePanel?.clipsToBounds = true
@@ -134,19 +134,19 @@ public class CNMessageView: UIView {
             _titlePanel?.translatesAutoresizingMaskIntoConstraints = false
 
             //Top
-            let topCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Top, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Top, multiplier: 1.0, constant: 0)
-            topCS.active = true
+            let topCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .top, relatedBy: .equal, toItem: self.rootPanel, attribute: .top, multiplier: 1.0, constant: 0)
+            topCS.isActive = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadingCS.active = true
+            let leadingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .leading, relatedBy: .equal, toItem: self.rootPanel, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadingCS.isActive = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            trailingCS.active = true
+            let trailingCS = NSLayoutConstraint.init(item: _titlePanel!, attribute: .trailing, relatedBy: .equal, toItem: self.rootPanel, attribute: .trailing, multiplier: 1.0, constant: 0)
+            trailingCS.isActive = true
         }
     }
-    private var titlePanel:UIView{
+    fileprivate var titlePanel:UIView{
         get{
             if(_titlePanel == nil){
                 _titlePanel = UIView()
@@ -156,10 +156,10 @@ public class CNMessageView: UIView {
         }
     }
     
-    private var _titleLabel:UILabel!{
+    fileprivate var _titleLabel:UILabel!{
         didSet{
             //背景色
-            _titleLabel.backgroundColor = UIColor.clearColor()
+            _titleLabel.backgroundColor = UIColor.clear
             _titleLabel.font = self.title.font
             _titleLabel.textColor = self.title.textColor
             _titleLabel.textAlignment = self.title.textAlignment
@@ -172,23 +172,23 @@ public class CNMessageView: UIView {
             _titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
             //Top
-            self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.top))
-            self.titleTopConstraint?.active = true
+            self.titleTopConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .top, relatedBy: .equal, toItem: self.titlePanel, attribute: .top, multiplier: 1.0, constant: CGFloat(self.title.top))
+            self.titleTopConstraint?.isActive = true
             
             //Bottom
-            self.titleBottomConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.title.bottom))
-            self.titleBottomConstraint?.active = true
+            self.titleBottomConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .bottom, relatedBy: .equal, toItem: self.titlePanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(-self.title.bottom))
+            self.titleBottomConstraint?.isActive = true
             
             //Leading
-            self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
-            self.titleLeadingConstraint?.active = true
+            self.titleLeadingConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .leading, relatedBy: .equal, toItem: self.titlePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.title.leading))
+            self.titleLeadingConstraint?.isActive = true
             
             //Trailing
-            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
-            self.titleTrailingConstraint?.active = true
+            self.titleTrailingConstraint = NSLayoutConstraint.init(item: _titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self.titlePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.title.trailing))
+            self.titleTrailingConstraint?.isActive = true
         }
     }
-    private var titleLabel:UILabel{
+    fileprivate var titleLabel:UILabel{
         get{
             if(_titleLabel == nil){
                 _titleLabel = UILabel()
@@ -201,40 +201,40 @@ public class CNMessageView: UIView {
             return _titleLabel
         }
     }
-    private var titleTopConstraint: NSLayoutConstraint?
-    private var titleBottomConstraint: NSLayoutConstraint?
-    private var titleTrailingConstraint: NSLayoutConstraint?
-    private var titleLeadingConstraint: NSLayoutConstraint?
+    fileprivate var titleTopConstraint: NSLayoutConstraint?
+    fileprivate var titleBottomConstraint: NSLayoutConstraint?
+    fileprivate var titleTrailingConstraint: NSLayoutConstraint?
+    fileprivate var titleLeadingConstraint: NSLayoutConstraint?
     
     //MARK:标题分割线
-    private var _titleTopSeperator:UIView!{
+    fileprivate var _titleTopSeperator:UIView!{
         didSet{
             //填充色
             _titleTopSeperator.backgroundColor = self.title.separator.topSeparator.fillColor
             _titleTopSeperator.tag = 1314
-            _titleTopSeperator.hidden = self.title.separator.topSeparator.hidden
+            _titleTopSeperator.isHidden = self.title.separator.topSeparator.hidden
             
             self.titlePanel.addSubview(_titleTopSeperator)
             _titleTopSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.titleTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.top))
-            self.titleTopSeperatorTopConstraint!.active = true
+            self.titleTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .top, relatedBy: .equal, toItem: self.titlePanel, attribute: .top, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.top))
+            self.titleTopSeperatorTopConstraint!.isActive = true
             
             //Leading
-            self.titleTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.leading))
-            self.titleTopSeperatorTrailingConstraint!.active = true
+            self.titleTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .leading, relatedBy: .equal, toItem: self.titlePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.leading))
+            self.titleTopSeperatorTrailingConstraint!.isActive = true
             
             //Trailing
-            self.titleTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.topSeparator.trailing))
-            self.titleTopSeperatorLeadingConstraint!.active = true
+            self.titleTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .trailing, relatedBy: .equal, toItem: self.titlePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.topSeparator.trailing))
+            self.titleTopSeperatorLeadingConstraint!.isActive = true
             
             //高度
-            self.titleTopSeperatorHeigthConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.height))
-            self.titleTopSeperatorHeigthConstraint!.active = true
+            self.titleTopSeperatorHeigthConstraint = NSLayoutConstraint.init(item: _titleTopSeperator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(self.title.separator.topSeparator.height))
+            self.titleTopSeperatorHeigthConstraint!.isActive = true
         }
     }
-    private var titleTopSeperator:UIView!{
+    fileprivate var titleTopSeperator:UIView!{
         get{
             if(_titleTopSeperator == nil){
                 _titleTopSeperator = UIView()
@@ -243,40 +243,40 @@ public class CNMessageView: UIView {
             return _titleTopSeperator
         }
     }
-    private var titleTopSeperatorTopConstraint: NSLayoutConstraint?
-    private var titleTopSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var titleTopSeperatorLeadingConstraint: NSLayoutConstraint?
-    private var titleTopSeperatorHeigthConstraint: NSLayoutConstraint?
+    fileprivate var titleTopSeperatorTopConstraint: NSLayoutConstraint?
+    fileprivate var titleTopSeperatorTrailingConstraint: NSLayoutConstraint?
+    fileprivate var titleTopSeperatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var titleTopSeperatorHeigthConstraint: NSLayoutConstraint?
     
     
-    private var _titleBottomSeperator:UIView!{
+    fileprivate var _titleBottomSeperator:UIView!{
         didSet{
             //填充色
             _titleBottomSeperator.backgroundColor = self.title.separator.bottomSeparator.fillColor
             _titleBottomSeperator.tag = 1314
-            _titleBottomSeperator.hidden = self.title.separator.bottomSeparator.hidden
+            _titleBottomSeperator.isHidden = self.title.separator.bottomSeparator.hidden
             
             self.titlePanel.addSubview(_titleBottomSeperator)
             _titleBottomSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Bottom
-            self.titleBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.bottom))
-            self.titleBottomSeperatorBottomConstraint!.active = true
+            self.titleBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .bottom, relatedBy: .equal, toItem: self.titlePanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.bottom))
+            self.titleBottomSeperatorBottomConstraint!.isActive = true
             
             //Leading
-            self.titleBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.leading))
-            self.titleBottomSeperatorLeadingConstraint!.active = true
+            self.titleBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .leading, relatedBy: .equal, toItem: self.titlePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.leading))
+            self.titleBottomSeperatorLeadingConstraint!.isActive = true
             
             //Trailing
-            self.titleBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.bottomSeparator.trailing))
-            self.titleBottomSeperatorTrailingConstraint!.active = true
+            self.titleBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .trailing, relatedBy: .equal, toItem: self.titlePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.title.separator.bottomSeparator.trailing))
+            self.titleBottomSeperatorTrailingConstraint!.isActive = true
             
             //高度
-            self.titleBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.height))
-            self.titleBottomSeperatorHeightConstraint!.active = true
+            self.titleBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _titleBottomSeperator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(self.title.separator.bottomSeparator.height))
+            self.titleBottomSeperatorHeightConstraint!.isActive = true
         }
     }
-    private var titleBottomSeperator:UIView!{
+    fileprivate var titleBottomSeperator:UIView!{
         get{
             if(_titleBottomSeperator == nil){
                 _titleBottomSeperator = UIView()
@@ -285,10 +285,10 @@ public class CNMessageView: UIView {
             return _titleBottomSeperator
         }
     }
-    private var titleBottomSeperatorBottomConstraint: NSLayoutConstraint?
-    private var titleBottomSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var titleBottomSeperatorLeadingConstraint: NSLayoutConstraint?
-    private var titleBottomSeperatorHeightConstraint: NSLayoutConstraint?
+    fileprivate var titleBottomSeperatorBottomConstraint: NSLayoutConstraint?
+    fileprivate var titleBottomSeperatorTrailingConstraint: NSLayoutConstraint?
+    fileprivate var titleBottomSeperatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var titleBottomSeperatorHeightConstraint: NSLayoutConstraint?
     
 //    //MARK: 更新标题分割线（主要是根据有木有“TopMessage、TextField、BottomMessage”来确定是否显示标题分割线）
 //    private func updateTitleSeparator(){
@@ -305,10 +305,10 @@ public class CNMessageView: UIView {
     
     //MARK: - TopMessage
     
-    private var _topMessagePanel:UIView?{
+    fileprivate var _topMessagePanel:UIView?{
         didSet{
             //背景色
-            _topMessagePanel!.backgroundColor = UIColor.clearColor()
+            _topMessagePanel!.backgroundColor = UIColor.clear
             
             //超过边界不可见
             _topMessagePanel?.clipsToBounds = true
@@ -317,19 +317,19 @@ public class CNMessageView: UIView {
             _topMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Top, relatedBy: .Equal, toItem: self.titlePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            topCS.active = true
+            let topCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .top, relatedBy: .equal, toItem: self.titlePanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            topCS.isActive = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadingCS.active = true
+            let leadingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .leading, relatedBy: .equal, toItem: self.rootPanel, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadingCS.isActive = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            trailingCS.active = true
+            let trailingCS = NSLayoutConstraint.init(item: _topMessagePanel!, attribute: .trailing, relatedBy: .equal, toItem: self.rootPanel, attribute: .trailing, multiplier: 1.0, constant: 0)
+            trailingCS.isActive = true
         }
     }
-    private var topMessagePanel:UIView{
+    fileprivate var topMessagePanel:UIView{
         get{
             if(_topMessagePanel == nil){
                 _topMessagePanel = UIView()
@@ -339,10 +339,10 @@ public class CNMessageView: UIView {
         }
     }
     
-    private var _topMessageLabel: UILabel!{
+    fileprivate var _topMessageLabel: UILabel!{
         didSet{
             //背景色
-            _topMessageLabel.backgroundColor = UIColor.clearColor()
+            _topMessageLabel.backgroundColor = UIColor.clear
             _topMessageLabel.font = self.messages.topMessage.font
             _topMessageLabel.textColor = self.messages.topMessage.textColor
             _topMessageLabel.textAlignment = self.messages.topMessage.textAlignment
@@ -355,23 +355,23 @@ public class CNMessageView: UIView {
             _topMessageLabel.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .Top, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.top))
-            self.topMessageTopConstraint?.active = true
+            self.topMessageTopConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .top, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .top, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.top))
+            self.topMessageTopConstraint?.isActive = true
             
             //Bottom
-            self.topMessageBottomConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.bottom))
-            self.topMessageBottomConstraint?.active = true
+            self.topMessageBottomConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .bottom, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.bottom))
+            self.topMessageBottomConstraint?.isActive = true
             
             //Leading
-            self.topMessageLeadingConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.leading))
-            self.topMessageLeadingConstraint?.active = true
+            self.topMessageLeadingConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .leading, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.leading))
+            self.topMessageLeadingConstraint?.isActive = true
             
             //Trailing
-            self.topMessageTrailingConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.trailing))
-            self.topMessageTrailingConstraint?.active = true
+            self.topMessageTrailingConstraint = NSLayoutConstraint.init(item: _topMessageLabel, attribute: .trailing, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.trailing))
+            self.topMessageTrailingConstraint?.isActive = true
         }
     }
-    private var topMessageLabel: UILabel{
+    fileprivate var topMessageLabel: UILabel{
         get{
             if(_topMessageLabel == nil){
                 _topMessageLabel = UILabel()
@@ -380,42 +380,42 @@ public class CNMessageView: UIView {
             return _topMessageLabel
         }
     }
-    private var topMessageTopConstraint:NSLayoutConstraint?
-    private var topMessageBottomConstraint:NSLayoutConstraint?
-    private var topMessageLeadingConstraint:NSLayoutConstraint?
-    private var topMessageTrailingConstraint:NSLayoutConstraint?
+    fileprivate var topMessageTopConstraint:NSLayoutConstraint?
+    fileprivate var topMessageBottomConstraint:NSLayoutConstraint?
+    fileprivate var topMessageLeadingConstraint:NSLayoutConstraint?
+    fileprivate var topMessageTrailingConstraint:NSLayoutConstraint?
     
     //MARK: TopMessage分隔线
-    private var _topMessageTopSeperator:UIView!{
+    fileprivate var _topMessageTopSeperator:UIView!{
         didSet{
-            _topMessageTopSeperator.superview?.bringSubviewToFront(_topMessageTopSeperator)
+            _topMessageTopSeperator.superview?.bringSubview(toFront: _topMessageTopSeperator)
             
             //填充色
             _topMessageTopSeperator.backgroundColor = self.messages.topMessage.separator.topSeparator.fillColor
             _topMessageTopSeperator.tag = 1314
-            _topMessageTopSeperator.hidden = self.messages.topMessage.separator.topSeparator.hidden
+            _topMessageTopSeperator.isHidden = self.messages.topMessage.separator.topSeparator.hidden
             
             self.topMessagePanel.addSubview(_topMessageTopSeperator)
             _topMessageTopSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.topMessageTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.topSeparator.top))
-            self.topMessageTopSeperatorTopConstraint!.active = true
+            self.topMessageTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .top, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .top, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.topSeparator.top))
+            self.topMessageTopSeperatorTopConstraint!.isActive = true
             
             //Leading
-            self.topMessageTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.topSeparator.leading))
-            self.topMessageTopSeperatorLeadingConstraint!.active = true
+            self.topMessageTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .leading, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.topSeparator.leading))
+            self.topMessageTopSeperatorLeadingConstraint!.isActive = true
             
             //Trailing
-            self.topMessageTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.topSeparator.trailing))
-            self.topMessageTopSeperatorTrailingConstraint!.active = true
+            self.topMessageTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .trailing, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.topSeparator.trailing))
+            self.topMessageTopSeperatorTrailingConstraint!.isActive = true
             
             //高度
-            self.topMessageTopSeperatorHeightConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.topSeparator.height))
-            self.topMessageTopSeperatorHeightConstraint!.active = true
+            self.topMessageTopSeperatorHeightConstraint = NSLayoutConstraint.init(item: _topMessageTopSeperator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.topSeparator.height))
+            self.topMessageTopSeperatorHeightConstraint!.isActive = true
         }
     }
-    private var topMessageTopSeperator:UIView!{
+    fileprivate var topMessageTopSeperator:UIView!{
         get{
             if(_topMessageTopSeperator == nil){
                 _topMessageTopSeperator = UIView()
@@ -424,42 +424,42 @@ public class CNMessageView: UIView {
             return _topMessageTopSeperator
         }
     }
-    private var topMessageTopSeperatorTopConstraint: NSLayoutConstraint?
-    private var topMessageTopSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var topMessageTopSeperatorLeadingConstraint: NSLayoutConstraint?
-    private var topMessageTopSeperatorHeightConstraint: NSLayoutConstraint?
+    fileprivate var topMessageTopSeperatorTopConstraint: NSLayoutConstraint?
+    fileprivate var topMessageTopSeperatorTrailingConstraint: NSLayoutConstraint?
+    fileprivate var topMessageTopSeperatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var topMessageTopSeperatorHeightConstraint: NSLayoutConstraint?
     
     //MARK: TopMessage分隔线
-    private var _topMessageBottomSeperator:UIView!{
+    fileprivate var _topMessageBottomSeperator:UIView!{
         didSet{
-            _topMessageBottomSeperator.superview?.bringSubviewToFront(_topMessageBottomSeperator)
+            _topMessageBottomSeperator.superview?.bringSubview(toFront: _topMessageBottomSeperator)
             
             //填充色
             _topMessageBottomSeperator.backgroundColor = self.messages.topMessage.separator.bottomSeparator.fillColor
             _topMessageBottomSeperator.tag = 1314
-            _topMessageBottomSeperator.hidden = self.messages.topMessage.separator.bottomSeparator.hidden
+            _topMessageBottomSeperator.isHidden = self.messages.topMessage.separator.bottomSeparator.hidden
             
             self.topMessagePanel.addSubview(_topMessageBottomSeperator)
             _topMessageBottomSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Bottom
-            self.topMessageBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.bottomSeparator.bottom))
-            self.topMessageBottomSeperatorBottomConstraint!.active = true
+            self.topMessageBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .bottom, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.topMessage.separator.bottomSeparator.bottom))
+            self.topMessageBottomSeperatorBottomConstraint!.isActive = true
             
             //Leading
-            self.topMessageBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.bottomSeparator.leading))
-            self.topMessageBottomSeperatorLeadingConstraint!.active = true
+            self.topMessageBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .leading, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.bottomSeparator.leading))
+            self.topMessageBottomSeperatorLeadingConstraint!.isActive = true
             
             //Trailing
-            self.topMessageBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.bottomSeparator.trailing))
-            self.topMessageBottomSeperatorTrailingConstraint!.active = true
+            self.topMessageBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .trailing, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.messages.topMessage.separator.bottomSeparator.trailing))
+            self.topMessageBottomSeperatorTrailingConstraint!.isActive = true
             
             //高度
-            self.topMessageBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.bottomSeparator.height))
-            self.topMessageBottomSeperatorHeightConstraint!.active = true
+            self.topMessageBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _topMessageBottomSeperator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.topMessage.separator.bottomSeparator.height))
+            self.topMessageBottomSeperatorHeightConstraint!.isActive = true
         }
     }
-    private var topMessageBottomSeperator:UIView!{
+    fileprivate var topMessageBottomSeperator:UIView!{
         get{
             if(_topMessageBottomSeperator == nil){
                 _topMessageBottomSeperator = UIView()
@@ -468,17 +468,17 @@ public class CNMessageView: UIView {
             return _topMessageBottomSeperator
         }
     }
-    private var topMessageBottomSeperatorBottomConstraint: NSLayoutConstraint?
-    private var topMessageBottomSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var topMessageBottomSeperatorLeadingConstraint: NSLayoutConstraint?
-    private var topMessageBottomSeperatorHeightConstraint: NSLayoutConstraint?
+    fileprivate var topMessageBottomSeperatorBottomConstraint: NSLayoutConstraint?
+    fileprivate var topMessageBottomSeperatorTrailingConstraint: NSLayoutConstraint?
+    fileprivate var topMessageBottomSeperatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var topMessageBottomSeperatorHeightConstraint: NSLayoutConstraint?
     
     //MARK: - TextField
     
-    private var _textFieldPanel:UIView?{
+    fileprivate var _textFieldPanel:UIView?{
         didSet{
             //背景色
-            _textFieldPanel!.backgroundColor = UIColor.clearColor()
+            _textFieldPanel!.backgroundColor = UIColor.clear
             
             //超过边界不可见
             _textFieldPanel?.clipsToBounds = true
@@ -487,23 +487,23 @@ public class CNMessageView: UIView {
             _textFieldPanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Top, relatedBy: .Equal, toItem: self.topMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            topCS.active = true
+            let topCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .top, relatedBy: .equal, toItem: self.topMessagePanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            topCS.isActive = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadingCS.active = true
+            let leadingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .leading, relatedBy: .equal, toItem: self.rootPanel, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadingCS.isActive = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            trailingCS.active = true
+            let trailingCS = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .trailing, relatedBy: .equal, toItem: self.rootPanel, attribute: .trailing, multiplier: 1.0, constant: 0)
+            trailingCS.isActive = true
             
             //高度
-            self.textFieldHeightConstraint = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.textField.enable ? 38.0 : 0.0)
-            self.textFieldHeightConstraint?.active = true
+            self.textFieldHeightConstraint = NSLayoutConstraint.init(item: _textFieldPanel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.textField.enable ? 38.0 : 0.0)
+            self.textFieldHeightConstraint?.isActive = true
         }
     }
-    private var textFieldPanel:UIView{
+    fileprivate var textFieldPanel:UIView{
         get{
             if(_textFieldPanel == nil){
                 _textFieldPanel = UIView()
@@ -513,29 +513,29 @@ public class CNMessageView: UIView {
         }
     }
     
-    private var _textFieldControl: UITextField?{
+    fileprivate var _textFieldControl: UITextField?{
         didSet{
             self.textFieldPanel.addSubview(_textFieldControl!)
             _textFieldControl!.translatesAutoresizingMaskIntoConstraints = false
 
             //Top
-            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.textField.top))
-            self.textFieldTopConstraint?.active = true
+            self.textFieldTopConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .top, relatedBy: .equal, toItem: self.textFieldPanel, attribute: .top, multiplier: 1.0, constant: CGFloat(self.textField.top))
+            self.textFieldTopConstraint?.isActive = true
             
             //Bottom
-            self.textFieldBottomConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Bottom, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.textField.bottom))
-            self.textFieldBottomConstraint?.active = true
+            self.textFieldBottomConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .bottom, relatedBy: .equal, toItem: self.textFieldPanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(-self.textField.bottom))
+            self.textFieldBottomConstraint?.isActive = true
 
             //Leading
-            self.textFieldLeadingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Leading, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.textField.leading))
-            self.textFieldLeadingConstraint?.active = true
+            self.textFieldLeadingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .leading, relatedBy: .equal, toItem: self.textFieldPanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.textField.leading))
+            self.textFieldLeadingConstraint?.isActive = true
 
             //Trailing
-            self.textFieldTrailingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .Trailing, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.textField.trailing))
-            self.textFieldTrailingConstraint?.active = true
+            self.textFieldTrailingConstraint = NSLayoutConstraint.init(item: _textFieldControl!, attribute: .trailing, relatedBy: .equal, toItem: self.textFieldPanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.textField.trailing))
+            self.textFieldTrailingConstraint?.isActive = true
         }
     }
-    private var textFieldControl: UITextField{
+    fileprivate var textFieldControl: UITextField{
         get{
             if(_textFieldControl == nil){
                 _textFieldControl = UITextField()
@@ -552,18 +552,18 @@ public class CNMessageView: UIView {
             return _textFieldControl!
         }
     }
-    private var textFieldTopConstraint:NSLayoutConstraint?
-    private var textFieldBottomConstraint:NSLayoutConstraint?
-    private var textFieldLeadingConstraint:NSLayoutConstraint?
-    private var textFieldTrailingConstraint:NSLayoutConstraint?
-    private var textFieldHeightConstraint:NSLayoutConstraint?
+    fileprivate var textFieldTopConstraint:NSLayoutConstraint?
+    fileprivate var textFieldBottomConstraint:NSLayoutConstraint?
+    fileprivate var textFieldLeadingConstraint:NSLayoutConstraint?
+    fileprivate var textFieldTrailingConstraint:NSLayoutConstraint?
+    fileprivate var textFieldHeightConstraint:NSLayoutConstraint?
     
     //MARK: - BottomMessage
     
-    private var _bottomMessagePanel:UIView?{
+    fileprivate var _bottomMessagePanel:UIView?{
         didSet{
             //背景色
-            _bottomMessagePanel!.backgroundColor = UIColor.clearColor()
+            _bottomMessagePanel!.backgroundColor = UIColor.clear
             
             //超过边界不可见
             _bottomMessagePanel?.clipsToBounds = true
@@ -572,19 +572,19 @@ public class CNMessageView: UIView {
             _bottomMessagePanel!.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Top, relatedBy: .Equal, toItem: self.textFieldPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            topCS.active = true
+            let topCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .top, relatedBy: .equal, toItem: self.textFieldPanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            topCS.isActive = true
             
             //Leading
-            let leadingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadingCS.active = true
+            let leadingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .leading, relatedBy: .equal, toItem: self.rootPanel, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadingCS.isActive = true
             
             //Trailing
-            let trailingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            trailingCS.active = true
+            let trailingCS = NSLayoutConstraint.init(item: _bottomMessagePanel!, attribute: .trailing, relatedBy: .equal, toItem: self.rootPanel, attribute: .trailing, multiplier: 1.0, constant: 0)
+            trailingCS.isActive = true
         }
     }
-    private var bottomMessagePanel:UIView{
+    fileprivate var bottomMessagePanel:UIView{
         get{
             if(_bottomMessagePanel == nil){
                 _bottomMessagePanel = UIView()
@@ -594,10 +594,10 @@ public class CNMessageView: UIView {
         }
     }
     
-    private var _bottomMessageLabel: UILabel!{
+    fileprivate var _bottomMessageLabel: UILabel!{
         didSet{
             //背景色
-            _bottomMessageLabel.backgroundColor = UIColor.clearColor()
+            _bottomMessageLabel.backgroundColor = UIColor.clear
             _bottomMessageLabel.font = self.messages.bottomMessage.font
             _bottomMessageLabel.textColor = self.messages.bottomMessage.textColor
             _bottomMessageLabel.textAlignment = self.messages.bottomMessage.textAlignment
@@ -610,24 +610,24 @@ public class CNMessageView: UIView {
             _bottomMessageLabel.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.top))
-            self.bottomMessageTopConstraint?.active = true
+            self.bottomMessageTopConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .top, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .top, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.top))
+            self.bottomMessageTopConstraint?.isActive = true
             
             //Bottom
-            self.bottomMessageBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.bottomMessage.bottom))
-            self.bottomMessageBottomConstraint?.active = true
+            self.bottomMessageBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .bottom, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(0 - self.messages.bottomMessage.bottom))
+            self.bottomMessageBottomConstraint?.isActive = true
             
             //Leading
-            self.bottomMessageLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.leading))
-            self.bottomMessageLeadingConstraint?.active = true
+            self.bottomMessageLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .leading, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.leading))
+            self.bottomMessageLeadingConstraint?.isActive = true
             
             //Trailing
-            self.bottomMessageTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.trailing))
-            self.bottomMessageTrailingConstraint?.active = true
+            self.bottomMessageTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageLabel, attribute: .trailing, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.trailing))
+            self.bottomMessageTrailingConstraint?.isActive = true
         }
     }
     
-    private var bottomMessageLabel: UILabel{
+    fileprivate var bottomMessageLabel: UILabel{
         get{
             if(_bottomMessageLabel == nil){
                 _bottomMessageLabel = UILabel()
@@ -636,40 +636,40 @@ public class CNMessageView: UIView {
             return _bottomMessageLabel
         }
     }
-    private var bottomMessageTopConstraint:NSLayoutConstraint?
-    private var bottomMessageBottomConstraint:NSLayoutConstraint?
-    private var bottomMessageLeadingConstraint:NSLayoutConstraint?
-    private var bottomMessageTrailingConstraint:NSLayoutConstraint?
+    fileprivate var bottomMessageTopConstraint:NSLayoutConstraint?
+    fileprivate var bottomMessageBottomConstraint:NSLayoutConstraint?
+    fileprivate var bottomMessageLeadingConstraint:NSLayoutConstraint?
+    fileprivate var bottomMessageTrailingConstraint:NSLayoutConstraint?
     
     //MARK: BottomMessage分隔线
-    private var _bottomMessageTopSeperator:UIView!{
+    fileprivate var _bottomMessageTopSeperator:UIView!{
         didSet{
             //填充色
             _bottomMessageTopSeperator.backgroundColor = self.messages.bottomMessage.separator.bottomSeparator.fillColor
             _bottomMessageTopSeperator.tag = 1314
-            _bottomMessageTopSeperator.hidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
+            _bottomMessageTopSeperator.isHidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
             
             self.bottomMessagePanel.addSubview(_bottomMessageTopSeperator)
             _bottomMessageTopSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            self.bottomMessageTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Top, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.topSeparator.top))
-            self.bottomMessageTopSeperatorTopConstraint!.active = true
+            self.bottomMessageTopSeperatorTopConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .top, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .top, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.topSeparator.top))
+            self.bottomMessageTopSeperatorTopConstraint!.isActive = true
             
             //Leading
-            self.bottomMessageTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.topSeparator.leading))
-            self.bottomMessageTopSeperatorLeadingConstraint!.active = true
+            self.bottomMessageTopSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .leading, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.topSeparator.leading))
+            self.bottomMessageTopSeperatorLeadingConstraint!.isActive = true
             
             //Trailing
-            self.bottomMessageTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.topSeparator.trailing))
-            self.bottomMessageTopSeperatorTrailingConstraint!.active = true
+            self.bottomMessageTopSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .trailing, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.topSeparator.trailing))
+            self.bottomMessageTopSeperatorTrailingConstraint!.isActive = true
             
             //高度
-            self.bottomMessageTopSeperatorHeightConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.topSeparator.height))
-            self.bottomMessageTopSeperatorHeightConstraint!.active = true
+            self.bottomMessageTopSeperatorHeightConstraint = NSLayoutConstraint.init(item: _bottomMessageTopSeperator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.topSeparator.height))
+            self.bottomMessageTopSeperatorHeightConstraint!.isActive = true
         }
     }
-    private var bottomMessageTopSeperator:UIView!{
+    fileprivate var bottomMessageTopSeperator:UIView!{
         get{
             if(_bottomMessageTopSeperator == nil){
                 _bottomMessageTopSeperator = UIView()
@@ -678,39 +678,39 @@ public class CNMessageView: UIView {
             return _bottomMessageTopSeperator
         }
     }
-    private var bottomMessageTopSeperatorTopConstraint: NSLayoutConstraint?
-    private var bottomMessageTopSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var bottomMessageTopSeperatorLeadingConstraint: NSLayoutConstraint?
-    private var bottomMessageTopSeperatorHeightConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageTopSeperatorTopConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageTopSeperatorTrailingConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageTopSeperatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageTopSeperatorHeightConstraint: NSLayoutConstraint?
     
-    private var _bottomMessageBottomSeperator:UIView!{
+    fileprivate var _bottomMessageBottomSeperator:UIView!{
         didSet{
             //填充色
             _bottomMessageBottomSeperator.backgroundColor = self.messages.bottomMessage.separator.bottomSeparator.fillColor
             _bottomMessageBottomSeperator.tag = 1314
-            _bottomMessageBottomSeperator.hidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
+            _bottomMessageBottomSeperator.isHidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
             
             self.bottomMessagePanel.addSubview(_bottomMessageBottomSeperator)
             _bottomMessageBottomSeperator.translatesAutoresizingMaskIntoConstraints = false
             
             //Bottom
-            self.bottomMessageBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.bottom))
-            self.bottomMessageBottomSeperatorBottomConstraint!.active = true
+            self.bottomMessageBottomSeperatorBottomConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .bottom, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.bottom))
+            self.bottomMessageBottomSeperatorBottomConstraint!.isActive = true
             
             //Leading
-            self.bottomMessageBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Leading, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.bottomSeparator.leading))
-            self.bottomMessageBottomSeperatorLeadingConstraint!.active = true
+            self.bottomMessageBottomSeperatorLeadingConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .leading, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .leading, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.bottomSeparator.leading))
+            self.bottomMessageBottomSeperatorLeadingConstraint!.isActive = true
             
             //Trailing
-            self.bottomMessageBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Trailing, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.trailing))
-            self.bottomMessageBottomSeperatorTrailingConstraint!.active = true
+            self.bottomMessageBottomSeperatorTrailingConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .trailing, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .trailing, multiplier: 1.0, constant: CGFloat(-self.messages.bottomMessage.separator.bottomSeparator.trailing))
+            self.bottomMessageBottomSeperatorTrailingConstraint!.isActive = true
             
             //高度
-            self.bottomMessageBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.bottomSeparator.height))
-            self.bottomMessageBottomSeperatorHeightConstraint!.active = true
+            self.bottomMessageBottomSeperatorHeightConstraint = NSLayoutConstraint.init(item: _bottomMessageBottomSeperator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(self.messages.bottomMessage.separator.bottomSeparator.height))
+            self.bottomMessageBottomSeperatorHeightConstraint!.isActive = true
         }
     }
-    private var bottomMessageBottomSeperator:UIView!{
+    fileprivate var bottomMessageBottomSeperator:UIView!{
         get{
             if(_bottomMessageBottomSeperator == nil){
                 _bottomMessageBottomSeperator = UIView()
@@ -719,10 +719,10 @@ public class CNMessageView: UIView {
             return _bottomMessageBottomSeperator
         }
     }
-    private var bottomMessageBottomSeperatorBottomConstraint: NSLayoutConstraint?
-    private var bottomMessageBottomSeperatorTrailingConstraint: NSLayoutConstraint?
-    private var bottomMessageBottomSeperatorLeadingConstraint: NSLayoutConstraint?
-    private var bottomMessageBottomSeperatorHeightConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageBottomSeperatorBottomConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageBottomSeperatorTrailingConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageBottomSeperatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var bottomMessageBottomSeperatorHeightConstraint: NSLayoutConstraint?
     
 //    //MARK: - 不再提醒
 //    private var _noLongerRemindPanel: UIView!{
@@ -757,7 +757,7 @@ public class CNMessageView: UIView {
     //MARK: - 底部按钮
     
     //底部按钮容器(请勿直接调用，可调用buttonPanel)
-    private var _buttonPanel: UIView!{
+    fileprivate var _buttonPanel: UIView!{
         didSet{
             _buttonPanel.clipsToBounds = true
             
@@ -765,24 +765,24 @@ public class CNMessageView: UIView {
             _buttonPanel.translatesAutoresizingMaskIntoConstraints = false
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Leading, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadigLC.active = true
+            let leadigLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .leading, relatedBy: .equal, toItem: self.rootPanel, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadigLC.isActive = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Trailing, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            trailingLC.active = true
+            let trailingLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .trailing, relatedBy: .equal, toItem: self.rootPanel, attribute: .trailing, multiplier: 1.0, constant: 0)
+            trailingLC.isActive = true
             
             //Top
-            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Top, relatedBy: .Equal, toItem: self.bottomMessagePanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            self.buttonPanelTopConstraint?.active = true;
+            self.buttonPanelTopConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .top, relatedBy: .equal, toItem: self.bottomMessagePanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            self.buttonPanelTopConstraint?.isActive = true;
             
             //Bottom
-            let bottomLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Bottom, relatedBy: .Equal, toItem: self.rootPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            bottomLC.active = true
+            let bottomLC = NSLayoutConstraint.init(item: _buttonPanel, attribute: .bottom, relatedBy: .equal, toItem: self.rootPanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            bottomLC.isActive = true
             
             //高度
-            self.buttonPanelHeightConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44.0)
-            self.buttonPanelHeightConstraint?.active = true
+            self.buttonPanelHeightConstraint = NSLayoutConstraint.init(item: _buttonPanel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 44.0)
+            self.buttonPanelHeightConstraint?.isActive = true
             
             //水平分割线
             self.buttonHorizontalSeparator
@@ -791,7 +791,7 @@ public class CNMessageView: UIView {
             self.buttonVerticalSeparator
         }
     }
-    private var buttonPanel:UIView{//底部按钮容器
+    fileprivate var buttonPanel:UIView{//底部按钮容器
         get{
             if(_buttonPanel == nil){
                 _buttonPanel = UIView()
@@ -800,11 +800,11 @@ public class CNMessageView: UIView {
             return _buttonPanel
         }
     }
-    private var buttonPanelHeightConstraint: NSLayoutConstraint?//按钮容器的高度
-    private var buttonPanelTopConstraint: NSLayoutConstraint?//按钮容器的Top约束
+    fileprivate var buttonPanelHeightConstraint: NSLayoutConstraint?//按钮容器的高度
+    fileprivate var buttonPanelTopConstraint: NSLayoutConstraint?//按钮容器的Top约束
     
     //MARK: 按钮水平分割线
-    private var _buttonHorizontalSeparator:UIView!{
+    fileprivate var _buttonHorizontalSeparator:UIView!{
         didSet{
             //填充色
             _buttonHorizontalSeparator.backgroundColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
@@ -814,23 +814,23 @@ public class CNMessageView: UIView {
             _buttonHorizontalSeparator.translatesAutoresizingMaskIntoConstraints = false
             
             //Top
-            let topLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Top, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Top, multiplier: 1.0, constant: 0.0)
-            topLC.active = true
+            let topLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .top, relatedBy: .equal, toItem: self.buttonPanel, attribute: .top, multiplier: 1.0, constant: 0.0)
+            topLC.isActive = true
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Leading, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Leading, multiplier: 1.0, constant: 4.0)
-            leadigLC.active = true
+            let leadigLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .leading, relatedBy: .equal, toItem: self.buttonPanel, attribute: .leading, multiplier: 1.0, constant: 4.0)
+            leadigLC.isActive = true
             
             //Trailing
-            let trailingLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Trailing, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Trailing, multiplier: 1.0, constant: -4.0)
-            trailingLC.active = true
+            let trailingLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .trailing, relatedBy: .equal, toItem: self.buttonPanel, attribute: .trailing, multiplier: 1.0, constant: -4.0)
+            trailingLC.isActive = true
             
             //高度
-            let heightLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
-            heightLC.active = true
+            let heightLC = NSLayoutConstraint.init(item: _buttonHorizontalSeparator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.5)
+            heightLC.isActive = true
         }
     }
-    private var buttonHorizontalSeparator:UIView!{
+    fileprivate var buttonHorizontalSeparator:UIView!{
         get{
             if(_buttonHorizontalSeparator == nil){
                 _buttonHorizontalSeparator = UIView()
@@ -841,7 +841,7 @@ public class CNMessageView: UIView {
     }
     
     //MARK: 按钮水平分割线
-    private var _buttonVerticalSeparator:UIView!{
+    fileprivate var _buttonVerticalSeparator:UIView!{
         didSet{
             //填充色
             _buttonVerticalSeparator.backgroundColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0)
@@ -851,23 +851,23 @@ public class CNMessageView: UIView {
             _buttonVerticalSeparator.translatesAutoresizingMaskIntoConstraints = false
 
             //CenterX
-            let centerXLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .CenterX, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
-            centerXLC.active = true
+            let centerXLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .centerX, relatedBy: .equal, toItem: self.buttonPanel, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+            centerXLC.isActive = true
             
             //CenterY
-            let centerYLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .CenterY, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
-            centerYLC.active = true
+            let centerYLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .centerY, relatedBy: .equal, toItem: self.buttonPanel, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+            centerYLC.isActive = true
             
             //宽度
-            let widthLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
-            widthLC.active = true
+            let widthLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.5)
+            widthLC.isActive = true
             
             //高度
-            let heightLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .Height, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Height, multiplier: 0.67, constant: 0)
-            heightLC.active = true
+            let heightLC = NSLayoutConstraint.init(item: _buttonVerticalSeparator, attribute: .height, relatedBy: .equal, toItem: self.buttonPanel, attribute: .height, multiplier: 0.67, constant: 0)
+            heightLC.isActive = true
         }
     }
-    private var buttonVerticalSeparator:UIView!{
+    fileprivate var buttonVerticalSeparator:UIView!{
         get{
             if(_buttonVerticalSeparator == nil){
                 _buttonVerticalSeparator = UIView()
@@ -879,40 +879,40 @@ public class CNMessageView: UIView {
     
     
     //MARK: 左边的按钮(请勿直接调用，可调用leftButtonControl)
-    private var _leftButtonControl: UIButton!{
+    fileprivate var _leftButtonControl: UIButton!{
         didSet{
             //背景色
-            self._leftButtonControl.backgroundColor = UIColor.clearColor()
+            self._leftButtonControl.backgroundColor = UIColor.clear
             
             self.buttonPanel.addSubview(_leftButtonControl)
             _leftButtonControl.translatesAutoresizingMaskIntoConstraints = false
             
             //点击事件
-            _leftButtonControl.addTarget(self, action: #selector(self.leftButtonClick(_:)), forControlEvents: .TouchUpInside)
+            _leftButtonControl.addTarget(self, action: #selector(self.leftButtonClick(_:)), for: .touchUpInside)
             
             //Top
-            let topLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Top, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Top, multiplier: 1.0, constant: 0)
-            topLC.active = true
+            let topLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .top, relatedBy: .equal, toItem: self.buttonPanel, attribute: .top, multiplier: 1.0, constant: 0)
+            topLC.isActive = true
             
             //Leading
-            let leadigLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Leading, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Leading, multiplier: 1.0, constant: 0)
-            leadigLC.active = true
+            let leadigLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .leading, relatedBy: .equal, toItem: self.buttonPanel, attribute: .leading, multiplier: 1.0, constant: 0)
+            leadigLC.isActive = true
             
             //Bottom
-            let bottomLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            bottomLC.active = true
+            let bottomLC = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .bottom, relatedBy: .equal, toItem: self.buttonPanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            bottomLC.isActive = true
             
             //== 父容器宽度的一半
-            self.leftButtonWidthConstraint_PanelHalfWidth = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 0.5, constant: 0)
-            self.leftButtonWidthConstraint_PanelHalfWidth!.active = true
+            self.leftButtonWidthConstraint_PanelHalfWidth = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .width, relatedBy: .equal, toItem: self.buttonPanel, attribute: .width, multiplier: 0.5, constant: 0)
+            self.leftButtonWidthConstraint_PanelHalfWidth!.isActive = true
             
             //== 父容器的宽度
-            self.leftButtonWidthConstraint_PanelWidth = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 1.0, constant: 0)
+            self.leftButtonWidthConstraint_PanelWidth = NSLayoutConstraint.init(item: _leftButtonControl, attribute: .width, relatedBy: .equal, toItem: self.buttonPanel, attribute: .width, multiplier: 1.0, constant: 0)
            
-            self.leftButtonWidthConstraint_PanelWidth!.active = false
+            self.leftButtonWidthConstraint_PanelWidth!.isActive = false
         }
     }
-    private var leftButtonControl: UIButton{
+    fileprivate var leftButtonControl: UIButton{
         get{
             if(_leftButtonControl == nil){
                 _leftButtonControl = UIButton()
@@ -927,12 +927,12 @@ public class CNMessageView: UIView {
         }
     }
     
-    private var leftButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度的一半
-    private var leftButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度
+    fileprivate var leftButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度的一半
+    fileprivate var leftButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//左边的按钮的宽度 == 父容器的宽度
 
-    @objc private func leftButtonClick(sender: UIButton){
+    @objc fileprivate func leftButtonClick(_ sender: UIButton){
         if (self.buttons.leftButton.click != nil){
-            self.buttons.leftButton.click!(textValue: self.textFieldControl.text ?? "")
+            self.buttons.leftButton.click!((self.textFieldControl.text ?? "") as NSString)
         }
         else{
             self .hideFromSuperView()
@@ -941,38 +941,38 @@ public class CNMessageView: UIView {
     
     
     //MARK: 右边的按钮(请勿直接调用，可调用leftButtonControl)
-    private var _rightButtonControl: UIButton!{
+    fileprivate var _rightButtonControl: UIButton!{
         didSet{
             self.buttonPanel.addSubview(_rightButtonControl)
             _rightButtonControl.translatesAutoresizingMaskIntoConstraints = false
             
             //点击事件
-            _rightButtonControl.addTarget(self, action: #selector(self.rightButtonClick(_:)), forControlEvents: .TouchUpInside)
+            _rightButtonControl.addTarget(self, action: #selector(self.rightButtonClick(_:)), for: .touchUpInside)
 
             
             //Top
-            let topLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .Top, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Top, multiplier: 1.0, constant: 0)
-            topLC.active = true
+            let topLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .top, relatedBy: .equal, toItem: self.buttonPanel, attribute: .top, multiplier: 1.0, constant: 0)
+            topLC.isActive = true
             
             //Bottom
-            let bottomLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            bottomLC.active = true
+            let bottomLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .bottom, relatedBy: .equal, toItem: self.buttonPanel, attribute: .bottom, multiplier: 1.0, constant: 0)
+            bottomLC.isActive = true
             
             //Trailing
-            let leadigLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .Trailing, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Trailing, multiplier: 1.0, constant: 0)
-            leadigLC.active = true
+            let leadigLC = NSLayoutConstraint.init(item: _rightButtonControl, attribute: .trailing, relatedBy: .equal, toItem: self.buttonPanel, attribute: .trailing, multiplier: 1.0, constant: 0)
+            leadigLC.isActive = true
             
             //== 父容器宽度的一半
-            self.rightButtonWidthConstraint_PanelHalfWidth = NSLayoutConstraint.init(item: self._rightButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 0.5, constant: 0)
-            self.rightButtonWidthConstraint_PanelHalfWidth!.active = true
+            self.rightButtonWidthConstraint_PanelHalfWidth = NSLayoutConstraint.init(item: self._rightButtonControl, attribute: .width, relatedBy: .equal, toItem: self.buttonPanel, attribute: .width, multiplier: 0.5, constant: 0)
+            self.rightButtonWidthConstraint_PanelHalfWidth!.isActive = true
             
             //== 父容器的宽度
-            self.rightButtonWidthConstraint_PanelWidth = NSLayoutConstraint.init(item: self._rightButtonControl, attribute: .Width, relatedBy: .Equal, toItem: self.buttonPanel, attribute: .Width, multiplier: 1.0, constant: 0)
+            self.rightButtonWidthConstraint_PanelWidth = NSLayoutConstraint.init(item: self._rightButtonControl, attribute: .width, relatedBy: .equal, toItem: self.buttonPanel, attribute: .width, multiplier: 1.0, constant: 0)
             
-            self.rightButtonWidthConstraint_PanelWidth!.active = false
+            self.rightButtonWidthConstraint_PanelWidth!.isActive = false
         }
     }
-    private var rightButtonControl: UIButton{
+    fileprivate var rightButtonControl: UIButton{
         get{
             if(_rightButtonControl == nil){
                 _rightButtonControl = UIButton()
@@ -987,12 +987,12 @@ public class CNMessageView: UIView {
         }
     }
     
-    private var rightButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度的一半
-    private var rightButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度
+    fileprivate var rightButtonWidthConstraint_PanelHalfWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度的一半
+    fileprivate var rightButtonWidthConstraint_PanelWidth: NSLayoutConstraint!//右边的按钮的宽度 == 父容器的宽度
     
-    @objc private func rightButtonClick(sender: UIButton){
+    @objc fileprivate func rightButtonClick(_ sender: UIButton){
         if (self.buttons.rightButton.click != nil){
-            self.buttons.rightButton.click!(textValue: self.textFieldControl.text ?? "")
+            self.buttons.rightButton.click!((self.textFieldControl.text ?? "") as NSString)
         }
         else{
             self .hideFromSuperView()
@@ -1012,7 +1012,7 @@ public class CNMessageView: UIView {
 //MARK: - KVO
 extension CNMessageView{
     //MARK: 添加KVO
-    private func addCNKVO(){
+    fileprivate func addCNKVO(){
         
         //Title
         title.propertyValueChanged = {[unowned self] (propertyName: NSString) in
@@ -1086,7 +1086,7 @@ extension CNMessageView{
                 break
                 
             case "hidden":
-                self.titleTopSeperator.hidden = self.title.separator.topSeparator.hidden
+                self.titleTopSeperator.isHidden = self.title.separator.topSeparator.hidden
                 break
                 
             case "fillColor":
@@ -1116,7 +1116,7 @@ extension CNMessageView{
                 break
                 
             case "hidden":
-                self.titleBottomSeperator.hidden = self.title.separator.bottomSeparator.hidden
+                self.titleBottomSeperator.isHidden = self.title.separator.bottomSeparator.hidden
                 break
                 
             case "fillColor":
@@ -1198,7 +1198,7 @@ extension CNMessageView{
                 break
                 
             case "hidden":
-                self.topMessageTopSeperator.hidden = self.messages.topMessage.separator.topSeparator.hidden
+                self.topMessageTopSeperator.isHidden = self.messages.topMessage.separator.topSeparator.hidden
                 break
                 
             case "fillColor":
@@ -1228,7 +1228,7 @@ extension CNMessageView{
                 break
                 
             case "hidden":
-                self.topMessageBottomSeperator.hidden = self.messages.topMessage.separator.bottomSeparator.hidden
+                self.topMessageBottomSeperator.isHidden = self.messages.topMessage.separator.bottomSeparator.hidden
                 break
                 
             case "fillColor":
@@ -1361,7 +1361,7 @@ extension CNMessageView{
                 break
                 
             case "hidden":
-                self.bottomMessageTopSeperator.hidden = self.messages.bottomMessage.separator.topSeparator.hidden
+                self.bottomMessageTopSeperator.isHidden = self.messages.bottomMessage.separator.topSeparator.hidden
                 break
                 
             case "fillColor":
@@ -1391,7 +1391,7 @@ extension CNMessageView{
                 break
                 
             case "hidden":
-                self.bottomMessageBottomSeperator.hidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
+                self.bottomMessageBottomSeperator.isHidden = self.messages.bottomMessage.separator.bottomSeparator.hidden
                 break
                 
             case "fillColor":
@@ -1405,11 +1405,11 @@ extension CNMessageView{
         self.buttons.rightButton.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
             case "title":
-                self.rightButtonControl.setTitle(self.buttons.rightButton.title, forState: .Normal)
+                self.rightButtonControl.setTitle(self.buttons.rightButton.title, for: UIControlState())
                 break
                 
             case "titleColor":
-                self.rightButtonControl.setTitleColor(self.buttons.rightButton.titleColor, forState: .Normal)
+                self.rightButtonControl.setTitleColor(self.buttons.rightButton.titleColor, for: UIControlState())
                 break
                 
             case "font":
@@ -1417,36 +1417,36 @@ extension CNMessageView{
                 break
                 
             case "enable":
-                self.rightButtonControl.hidden = !self.buttons.rightButton.enable//右边按钮不可用的时候隐藏
+                self.rightButtonControl.isHidden = !self.buttons.rightButton.enable//右边按钮不可用的时候隐藏
                 if(self.buttons.rightButton.enable){//右边按钮可用
                     if(self.buttons.leftButton.enable){//如果左边按钮可用，则右边按钮只占一半的宽度
-                        self.rightButtonWidthConstraint_PanelWidth?.active = false
-                        self.rightButtonWidthConstraint_PanelHalfWidth?.active = true
+                        self.rightButtonWidthConstraint_PanelWidth?.isActive = false
+                        self.rightButtonWidthConstraint_PanelHalfWidth?.isActive = true
                     }
                     else{//否则右边按钮的宽度 == 按钮容器的宽度
-                        self.rightButtonWidthConstraint_PanelWidth?.active = true
-                        self.rightButtonWidthConstraint_PanelHalfWidth?.active = false
+                        self.rightButtonWidthConstraint_PanelWidth?.isActive = true
+                        self.rightButtonWidthConstraint_PanelHalfWidth?.isActive = false
                     }
                 }
                 
-                self.leftButtonControl.hidden = !self.buttons.leftButton.enable//左边按钮不可用的时候隐藏
+                self.leftButtonControl.isHidden = !self.buttons.leftButton.enable//左边按钮不可用的时候隐藏
                 if(self.buttons.leftButton.enable){//左边按钮可用
                     if(self.buttons.rightButton.enable){//如果右边按钮可用，则左边按钮只占一半的宽度
-                        self.leftButtonWidthConstraint_PanelWidth?.active = false
-                        self.leftButtonWidthConstraint_PanelHalfWidth?.active = true
+                        self.leftButtonWidthConstraint_PanelWidth?.isActive = false
+                        self.leftButtonWidthConstraint_PanelHalfWidth?.isActive = true
                     }
                     else{//否则右左边按钮的宽度 == 按钮容器的宽度
-                        self.leftButtonWidthConstraint_PanelWidth?.active = true
-                        self.leftButtonWidthConstraint_PanelHalfWidth?.active = false
+                        self.leftButtonWidthConstraint_PanelWidth?.isActive = true
+                        self.leftButtonWidthConstraint_PanelHalfWidth?.isActive = false
                     }
                 }
                 
                 //只有左右两个按钮同时可用的时候，才需要显示垂直的分割线
                 if(self.buttons.rightButton.enable && self.buttons.leftButton.enable){
-                    self.buttonVerticalSeparator.hidden = false
+                    self.buttonVerticalSeparator.isHidden = false
                 }
                 else{
-                    self.buttonVerticalSeparator.hidden = true
+                    self.buttonVerticalSeparator.isHidden = true
                 }
                 
                 //只要有一个按钮可用，那么按钮容器的高度就得为44，否则为0
@@ -1466,11 +1466,11 @@ extension CNMessageView{
         self.buttons.leftButton.propertyValueChanged = {[unowned self] (propertyName: NSString) in
             switch propertyName {
             case "title":
-                self.leftButtonControl.setTitle(self.buttons.leftButton.title, forState: .Normal)
+                self.leftButtonControl.setTitle(self.buttons.leftButton.title, for: UIControlState())
                 break
                 
             case "titleColor":
-                self.leftButtonControl.setTitleColor(self.buttons.leftButton.titleColor, forState: .Normal)
+                self.leftButtonControl.setTitleColor(self.buttons.leftButton.titleColor, for: UIControlState())
                 break
                 
             case "font":
@@ -1503,8 +1503,8 @@ extension CNMessageView{
         self.title.leading = 8.0
         self.title.trailing = 8.0
         self.title.textColor = UIColor(red: 23 / 255.0, green: 23 / 255.0, blue: 23 / 255.0, alpha: 1.0)
-        self.title.textAlignment = .Center
-        self.title.font = UIFont.systemFontOfSize(20.0)
+        self.title.textAlignment = .center
+        self.title.font = UIFont.systemFont(ofSize: 20.0)
         //        self.title.highlightColor = UIColor(red: 0 / 255.0, green: 122 / 255.0, blue: 255 / 255.0, alpha: 1.0)
         //        self.title.regularExpression = "“((?!”.*“).)+”"
         
@@ -1519,8 +1519,8 @@ extension CNMessageView{
         self.messages.topMessage.trailing = 8.0
         self.messages.topMessage.text = nil
         self.messages.topMessage.textColor = UIColor(red: 74 / 255.0, green: 74 / 255.0, blue: 74 / 255.0, alpha: 1.0)
-        self.messages.topMessage.textAlignment = .Center
-        self.messages.topMessage.font = UIFont.systemFontOfSize(16.0)
+        self.messages.topMessage.textAlignment = .center
+        self.messages.topMessage.font = UIFont.systemFont(ofSize: 16.0)
         
         //TextField
         self.textField.top = 0.0
@@ -1528,11 +1528,11 @@ extension CNMessageView{
         self.textField.leading = 8.0
         self.textField.trailing = 8.0
         self.textField.text = nil
-        self.textField.textColor = UIColor.blackColor()
-        self.textField.textAlignment = .Left
-        self.textField.font = UIFont.systemFontOfSize(16.0)
+        self.textField.textColor = UIColor.black
+        self.textField.textAlignment = .left
+        self.textField.font = UIFont.systemFont(ofSize: 16.0)
         self.textField.placeholder = "请输入"
-        self.textField.borderStyle = .RoundedRect
+        self.textField.borderStyle = .roundedRect
         self.textField.enable = false
         
         //BottomMessage
@@ -1542,19 +1542,19 @@ extension CNMessageView{
         self.messages.bottomMessage.trailing = 8.0
         self.messages.bottomMessage.text = nil
         self.messages.bottomMessage.textColor = UIColor(red: 74 / 255.0, green: 74 / 255.0, blue: 74 / 255.0, alpha: 1.0)
-        self.messages.bottomMessage.textAlignment = .Left
-        self.messages.bottomMessage.font = UIFont.systemFontOfSize(16.0)
+        self.messages.bottomMessage.textAlignment = .left
+        self.messages.bottomMessage.font = UIFont.systemFont(ofSize: 16.0)
         
         //LeftButton
         self.buttons.leftButton.enable = true
         self.buttons.leftButton.title = "取消"
-        self.buttons.leftButton.titleColor = UIColor.lightGrayColor()
-        self.buttons.leftButton.font = UIFont.systemFontOfSize(16.0)
+        self.buttons.leftButton.titleColor = UIColor.lightGray
+        self.buttons.leftButton.font = UIFont.systemFont(ofSize: 16.0)
         
         //RightButton
         self.buttons.rightButton.enable = true
         self.buttons.rightButton.title = "确定"
         self.buttons.rightButton.titleColor = UIColor(red: 255 / 255.0, green: 68 / 255.0, blue: 0 / 255.0, alpha: 1.0)
-        self.buttons.rightButton.font = UIFont.systemFontOfSize(16.0)
+        self.buttons.rightButton.font = UIFont.systemFont(ofSize: 16.0)
     }
 }

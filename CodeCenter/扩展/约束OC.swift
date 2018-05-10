@@ -19,7 +19,7 @@ public extension UIView{
      
      - returns: 约束集
      */
-    public func constraintsOC(specifiedWidth:NSNumber?, specifiedHeight:NSNumber?) -> NSMutableArray{
+    public func constraintsOC(_ specifiedWidth:NSNumber?, specifiedHeight:NSNumber?) -> NSMutableArray{
         let mArray = self.constraints(specifiedWidth?.floatValue, specifiedHeight: specifiedHeight?.floatValue)
         
         return NSMutableArray(array: mArray)
@@ -37,7 +37,7 @@ public extension UIView{
      
      - returns: 约束集
      */
-    func constraintsOC(secondeItem:UIView?, top:NSNumber?, bottom:NSNumber?, leading:NSNumber?, trailing:NSNumber?) -> NSMutableArray{
+    func constraintsOC(_ secondeItem:UIView?, top:NSNumber?, bottom:NSNumber?, leading:NSNumber?, trailing:NSNumber?) -> NSMutableArray{
         let mArray = self.constraints(secondeItem, top: top?.floatValue, bottom: bottom?.floatValue, leading: leading?.floatValue, trailing: trailing?.floatValue)
         
         return NSMutableArray(array: mArray)
@@ -55,7 +55,7 @@ public extension UIView{
      
      - returns: 约束集
      */
-    func constraintsOC(secondeItem:UIView?, relatedWidth:NSNumber?, relatedHeight:NSNumber?, centerX:NSNumber?, centerY:NSNumber?) -> NSMutableArray{
+    func constraintsOC(_ secondeItem:UIView?, relatedWidth:NSNumber?, relatedHeight:NSNumber?, centerX:NSNumber?, centerY:NSNumber?) -> NSMutableArray{
         let mArray = self.constraints(secondeItem, relatedWidth: relatedWidth?.floatValue, relatedHeight: relatedHeight?.floatValue, centerX: centerX?.floatValue, centerY: centerY?.floatValue)
         
         return NSMutableArray(array: mArray)
@@ -73,7 +73,7 @@ public extension UIView{
      
      - returns: 约束集
      */
-    func constraintsOC(secondeItem:UIView?, centerX:NSNumber?, centerY:NSNumber?, specifiedWidth:NSNumber?, specifiedHeight:NSNumber?) -> NSMutableArray{
+    func constraintsOC(_ secondeItem:UIView?, centerX:NSNumber?, centerY:NSNumber?, specifiedWidth:NSNumber?, specifiedHeight:NSNumber?) -> NSMutableArray{
         let mArray = self.constraints(secondeItem, centerX: centerX?.floatValue, centerY: centerY?.floatValue, specifiedWidth: specifiedWidth?.floatValue, specifiedHeight: specifiedHeight?.floatValue)
         
         return NSMutableArray(array: mArray)
@@ -95,7 +95,7 @@ public extension UIView{
      
      - returns: 约束集
      */
-    func constraintsOC(secondeItem:UIView?, top:NSNumber?, bottom:NSNumber?, leading:NSNumber?, trailing:NSNumber?, relatedWidth:NSNumber?, relatedHeight:NSNumber?, centerX:NSNumber?, centerY:NSNumber?) -> NSMutableArray{
+    func constraintsOC(_ secondeItem:UIView?, top:NSNumber?, bottom:NSNumber?, leading:NSNumber?, trailing:NSNumber?, relatedWidth:NSNumber?, relatedHeight:NSNumber?, centerX:NSNumber?, centerY:NSNumber?) -> NSMutableArray{
         
         let mArray = self.constraints(secondeItem, top: top?.floatValue, bottom: bottom?.floatValue,
                                       leading: leading?.floatValue, trailing: trailing?.floatValue,
@@ -124,7 +124,7 @@ public extension UIView{
      
      - returns: 约束集
      */
-    func constraintsOC(secondeItem:UIView?, top:NSNumber?, bottom:NSNumber?, leading:NSNumber?, trailing:NSNumber?, relatedWidth:NSNumber?, relatedHeight:NSNumber?, centerX:NSNumber?, centerY:NSNumber?, specifiedWidth:NSNumber?, specifiedHeight:NSNumber?) -> NSMutableArray{
+    func constraintsOC(_ secondeItem:UIView?, top:NSNumber?, bottom:NSNumber?, leading:NSNumber?, trailing:NSNumber?, relatedWidth:NSNumber?, relatedHeight:NSNumber?, centerX:NSNumber?, centerY:NSNumber?, specifiedWidth:NSNumber?, specifiedHeight:NSNumber?) -> NSMutableArray{
         
         let mArray = self.constraints(secondeItem, top: top?.floatValue, bottom: bottom?.floatValue,
                                       leading: leading?.floatValue, trailing: trailing?.floatValue,

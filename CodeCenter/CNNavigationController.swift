@@ -21,23 +21,23 @@ class CNNavigationController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
 //        print("NVG =============== shouldAutorotate")
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
 //        print("NVG =============== supportedInterfaceOrientations")
         if let vc = self.visibleViewController{
-            if vc.respondsToSelector(#selector(UIViewController.supportedInterfaceOrientations)){
-                return vc.supportedInterfaceOrientations()
+            if vc.responds(to: #selector(getter: UIViewController.supportedInterfaceOrientations)){
+                return vc.supportedInterfaceOrientations
             }
         }
-        return .Portrait
+        return .portrait
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return .LandscapeRight
+    override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+        return .landscapeRight
     }
 
     /*
@@ -53,28 +53,28 @@ class CNNavigationController: UINavigationController {
 }
 
 extension UINavigationController{
-    override public func shouldAutorotate() -> Bool {
+    override open var shouldAutorotate : Bool {
 //        print("extensionNVG =============== shouldAutorotate")
         return true
     }
     
-    override public func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
 //        print("extensionNVG =============== supportedInterfaceOrientations")
         if let vc = self.visibleViewController{
-            if vc.respondsToSelector(#selector(UIViewController.supportedInterfaceOrientations)){
-                return vc.supportedInterfaceOrientations()
+            if vc.responds(to: #selector(getter: UIViewController.supportedInterfaceOrientations)){
+                return vc.supportedInterfaceOrientations
             }
         }
-        return .Portrait
+        return .portrait
     }
     
-    override public func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    override open var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
 //        print("extensionNVG =============== preferredInterfaceOrientationForPresentation")
         if let vc = self.visibleViewController{
-            if vc.respondsToSelector(#selector(UIViewController.preferredInterfaceOrientationForPresentation)){
-                return vc.preferredInterfaceOrientationForPresentation()
+            if vc.responds(to: #selector(getter: UIViewController.preferredInterfaceOrientationForPresentation)){
+                return vc.preferredInterfaceOrientationForPresentation
             }
         }
-        return .LandscapeRight
+        return .landscapeRight
     }
 }

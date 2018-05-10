@@ -9,10 +9,10 @@
 import UIKit
 
 ///属性值变更
-typealias propertyChange = @convention(block) (propertyName: NSString) -> Void
+typealias propertyChange = @convention(block) (_ propertyName: NSString) -> Void
 
 ///按钮点击回调
-typealias buttonClick = @convention(block) (textValue: NSString) -> Void
+typealias buttonClick = @convention(block) (_ textValue: NSString) -> Void
 
 //protocol CNKVOPropertyProtocol {
 //    var propertyValueChanged: propertyChange?{ get set}
@@ -27,28 +27,28 @@ class CNConstraintProperty: CNKVOProperty{
     var top: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "top")
+                self.propertyValueChanged!("top")
             }
         }
     }
     var bottom: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "bottom")
+                self.propertyValueChanged!("bottom")
             }
         }
     }
     var leading: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "leading")
+                self.propertyValueChanged!("leading")
             }
         }
     }
     var trailing: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "trailing")
+                self.propertyValueChanged!("trailing")
             }
         }
     }
@@ -57,45 +57,45 @@ class CNConstraintProperty: CNKVOProperty{
 //MARK: - Label
 class CNLabelProperty: CNConstraintProperty{
     
-    var textAlignment:NSTextAlignment = .Center{
+    var textAlignment:NSTextAlignment = .center{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "textAlignment")
+                self.propertyValueChanged!("textAlignment")
             }
         }
     }
     var textColor:UIColor?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "textColor")
+                self.propertyValueChanged!("textColor")
             }
         }
     }
     var font:UIFont?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "font")
+                self.propertyValueChanged!("font")
             }
         }
     }
     var text:String?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "text")
+                self.propertyValueChanged!("text")
             }
         }
     }
     var regularExpression:String?{//正则（高亮匹配到的字符串）
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "regularExpression")
+                self.propertyValueChanged!("regularExpression")
             }
         }
     }
     var highlightColor:UIColor = UIColor(red: 255 / 255.0, green: 68 / 255.0, blue: 0 / 255.0, alpha: 1.0){//高亮的颜色
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "highlightColor")
+                self.propertyValueChanged!("highlightColor")
             }
         }
     }
@@ -106,14 +106,14 @@ class CNBaseSeparatorProperty: CNKVOProperty{
     var leading: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "leading")
+                self.propertyValueChanged!("leading")
             }
         }
     }
     var trailing: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "trailing")
+                self.propertyValueChanged!("trailing")
             }
         }
     }
@@ -121,21 +121,21 @@ class CNBaseSeparatorProperty: CNKVOProperty{
     var hidden:Bool = true{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "hidden")
+                self.propertyValueChanged!("hidden")
             }
         }
     }
     var height:Float = 0.5{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "height")
+                self.propertyValueChanged!("height")
             }
         }
     }
     var fillColor: UIColor = UIColor(red: 234 / 255.0, green: 234 / 255.0, blue: 234 / 255.0, alpha: 1.0){
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "fillColor")
+                self.propertyValueChanged!("fillColor")
             }
         }
     }
@@ -144,7 +144,7 @@ class CNTopSeparatorProperty:CNBaseSeparatorProperty{
     var top: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "top")
+                self.propertyValueChanged!("top")
             }
         }
     }
@@ -154,7 +154,7 @@ class CNBottomSeparatorProperty: CNBaseSeparatorProperty{
     var bottom: Float = 0{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "bottom")
+                self.propertyValueChanged!("bottom")
             }
         }
     }
@@ -187,14 +187,14 @@ class CNTextFieldProperty: CNLabelProperty{
     var placeholder:String?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "placeholder")
+                self.propertyValueChanged!("placeholder")
             }
         }
     }
     var borderStyle:UITextBorderStyle?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "borderStyle")
+                self.propertyValueChanged!("borderStyle")
             }
         }
     }
@@ -202,7 +202,7 @@ class CNTextFieldProperty: CNLabelProperty{
     var enable:Bool = false{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "enable")
+                self.propertyValueChanged!("enable")
             }
         }
     }
@@ -213,35 +213,35 @@ class CNButtonProperty: CNKVOProperty{
     var titleColor:UIColor?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "titleColor")
+                self.propertyValueChanged!("titleColor")
             }
         }
     }
     var font:UIFont?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "font")
+                self.propertyValueChanged!("font")
             }
         }
     }
     var title:String?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "title")
+                self.propertyValueChanged!("title")
             }
         }
     }
     var enable:Bool = true{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "enable")
+                self.propertyValueChanged!("enable")
             }
         }
     }
     var click: buttonClick?{
         didSet{
             if self.propertyValueChanged != nil{
-                self.propertyValueChanged!(propertyName: "click")
+                self.propertyValueChanged!("click")
             }
         }
     }

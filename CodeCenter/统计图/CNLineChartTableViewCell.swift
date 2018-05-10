@@ -15,13 +15,13 @@ class CNLineChartTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    private var _shapLayer: CAShapeLayer?
+    fileprivate var _shapLayer: CAShapeLayer?
     var shapLayer: CAShapeLayer{
         get{
             if _shapLayer == nil{
@@ -40,10 +40,10 @@ class CNLineChartTableViewCell: UITableViewCell {
             }
             
             let bezierPath = UIBezierPath()
-            bezierPath.moveToPoint(CGPointMake(0, 0))
+            bezierPath.move(to: CGPoint(x: 0, y: 0))
             
             for v in data! {
-                bezierPath.addLineToPoint(CGPointMake(0, CGFloat(v)))
+                bezierPath.addLine(to: CGPoint(x: 0, y: CGFloat(v)))
             }
         }
     }
